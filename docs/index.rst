@@ -1,0 +1,5 @@
+=============
+sdswas.events
+=============
+
+User documentation

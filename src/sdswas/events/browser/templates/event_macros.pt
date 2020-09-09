@@ -1,0 +1,102 @@
+ <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+ >
+<metal:row define-macro="pagetitle" i18n:domain="sdswas.events">
+    <div tal:replace="structure provider:plone.abovecontenttitle" />
+    <h2 tal:content="context/title" />
+    <!--<h1 class="documentFirstHeading" tal:content="context/title" />-->
+    <!--<div tal:replace="structure provider:plone.belowcontenttitle" />
+    <p class="documentDescription" tal:content="context/description" />
+    -->
+</metal:row>
+
+<metal:row define-macro="filedownload" i18n:domain="sdswas.events">
+    <div class="download-document">
+        <h4 tal:content="title"></h4>
+        <div class="button-download-default">
+            <a href="${context/absolute_url}/@@download/document/${view/w/document/filename}">
+            <i class="fa fa-cloud-download-alt"></i>
+            <span>DOWNLOAD</span>
+            </a>
+        </div>
+    </div>
+</metal:row>
+
+<metal:row define-macro="title_to_fullview" i18n:domain="sdswas.events">
+    <h3 class="truncate-overflow-3">
+      <a href="#" class="open_full_view" tal:content="title"
+        tal:attributes="data-url absolute_url;
+                        data-goback-link go_back_link_name;
+                        data-title title;
+                        data-target target;
+                        data-toggle string:modal">
+    </a></h3>
+</metal:row>
+
+<metal:row define-macro="read_more_button"  i18n:domain="sdswas.events">
+  <div class="button button-dark">
+    <a href="#" class="open_full_view color-yellow"
+            tal:attributes="data-url absolute_url;
+                            data-goback-link go_back_link_name;
+                            data-title title;
+                            data-target target;
+                            data-toggle string:modal">READ MORE</a>
+  </div>
+</metal:row>
+
+<metal:row define-macro="upcoming_event_teaser" i18n:domain="sdswas.events">
+  <div class="light-background "
+      tal:define="go_back_link_name string:GO BACK TO UPCOMING EVENTS;
+                    absolute_url python:item['absolute_url'];
+                    title python:item['title'];
+                    target string: #full_view">
+    <div class="griditem-image">
+        <img tal:define="url python:item['absolute_url']+'/@@images/image/event-teaser'"
+            tal:attributes="src url"/>
+    </div>
+    <div class="griditemcontent dark-background">
+        <h4 style="text-transform:uppercase" tal:content="python:item['event_start_date']"></h4>
+        <h5 tal:content="python:item['location']"></h5>
+        <metal:macro use-macro="context/event_macros/macros/title_to_fullview" />
+     </div>
+    <div class="griditemfooter">
+        <metal:macro use-macro="context/event_macros/macros/read_more_button" />
+    </div>
+  </div>
+</metal:row>
+
+<metal:row define-macro="past_event_teaser" i18n:domain="sdswas.events">
+    <div class="light-background "
+        tal:define="go_back_link_name string:GO BACK TO PAST EVENTS;
+                    absolute_url python:item['absolute_url'];
+                    title python:item['title'];
+                    target string: #full_view">
+      <div class="griditemcontent">
+          <metal:macro use-macro="context/event_macros/macros/title_to_fullview" />
+          <p tal:content="python:item['start']"></p>
+      </div>
+      <div class="griditemfooter">
+        <metal:macro use-macro="context/event_macros/macros/read_more_button" />
+      </div>
+  </div>
+</metal:row>
+<metal:row define-macro="generic_event_menu" i18n:domain="sdswas.events">
+  <ul class="nav flex-column" tal:condition="context/images | context/presentations | context/document ">
+      <li class="nav-item">
+          <a class="nav-link active" href="#summary">Summary</a>
+      </li>
+      <li class="nav-item" tal:condition="context/document">
+          <a class="nav-link" href="#agenda">Agenda</a>
+      </li>
+      <li class="nav-item"  tal:condition="context/images">
+          <a class="nav-link" href="#images">Images</a>
+      </li>
+      <li class="nav-item"  tal:condition="context/presentations">
+          <a class="nav-link" href="#presentations">Presentations</a>
+      </li>
+  </ul>
+</metal:row>
+</html>

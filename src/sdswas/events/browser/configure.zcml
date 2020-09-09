@@ -1,0 +1,66 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="sdswas.events">
+
+  <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
+  <include package="z3c.jbot" file="meta.zcml" />
+  <browser:jbot
+      directory="overrides"
+      layer="sdswas.events.interfaces.ISdswasEventsLayer"
+      />
+
+  <!-- Publish static files -->
+  <plone:static
+      name="sdswas.events"
+      type="plone"
+      directory="static"
+      />
+
+  <!--Browser views-->
+    <browser:page
+     name="eventslist_view"
+     for="*"
+     layer="zope.interface.Interface"
+    class=".EventListView.EventListView"
+     template="templates/eventslist_view.pt"
+     permission="zope2.View"
+   />
+
+    <browser:page
+     name="generic_event_view"
+     for="*"
+     layer="zope.interface.Interface"
+     class=".EventView.EventView"
+     template="templates/generic_event_view.pt"
+     permission="zope2.View"
+   />
+
+    <browser:page
+     name="webinar_view"
+     for="*"
+     layer="zope.interface.Interface"
+     class=".EventView.EventView"
+     template="templates/webinar_view.pt"
+     permission="zope2.View"
+   />
+
+  <browser:page
+    name="event_macros"
+    for="*"
+    layer="zope.interface.Interface"
+    template="templates/event_macros.pt"
+    permission="zope2.View"
+  />
+
+      <browser:page
+     name="modal"
+     for="*"
+     layer="zope.interface.Interface"
+     class=".EventView.EventView"
+     template="templates/modal.pt"
+     permission="zope2.View"
+   />
+
+</configure>

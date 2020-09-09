@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="sdswas.events">
+
+<body>
+    <metal:main fill-slot="main">
+        <div class="row form-group">
+            <div class="col-md-8" id="summary">
+                <div metal:use-macro="context/event_macros/macros/generic_event_menu" />
+                <br/>
+                <h3>Summary</h3>
+                <div id="summary" class="section" tal:content="structure view/w/full_description/render" ></div>
+                <div id="agenda" tal:condition="context/document" tal:define="title string:Agenda"
+                        metal:use-macro="context/event_macros/macros/filedownload" />
+            </div>
+            <div class="col-md-4" id ="details">
+                <div class="section-body">
+                    <h3 class="start" tal:content="view/start" ></h3>
+                    <div class ="col-md-12 resource-field"  >
+                        <div id="location" tal:condition="context/location" tal:content="structure view/w/IEventLocation.location/render" ></div>
+                    </div>
+                    <div class ="col-md-12 resource-field">
+                        <label for="place"  tal:condition="context/place">Place</label>
+                        <div id="place"  tal:condition="context/place" tal:content="structure view/w/place/render" ></div>
+                    </div>
+                    <div class ="col-md-6 resource-field">
+                        <label for="event_type">Event type</label>
+                        <span id="event_type" tal:content="structure view/w/event_type/render">Webinar</span>
+                    </div>
+                    <div class ="col-md-6 resource-field">
+                        <label for="time">Time</label>
+                        <span id ="time" tal:content="view/time" ></span>
+                    </div>
+                    <div class ="col-md-6 resource-field">
+                        <label for="language">Language</label>
+                        <span id="language" tal:content="view/language" ></span>
+                    </div>
+                    <div class ="col-md-6 resource-field">
+                        <label for="duration">Duration</label>
+                        <span id ="duration" tal:content="view/duration" ></span>
+                    </div>
+                    <div class ="col-md-12 resource-field">
+                        <span id ="website-url" tal:content="structure view/w/website_url/render" ></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div tal:condition="context/images" class="row form-group" id="images">
+            <div class="col-md-12">
+                <h3>Images</h3>
+            </div>
+        </div>
+        <div  tal:condition="context/presentations" class="row form-group" id="presentations">
+            <div class="col-md-12">
+                <h3>Presentations</h3>
+            </div>
+        </div>
+    </metal:main>
+</body>
+</html>

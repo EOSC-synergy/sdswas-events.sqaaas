@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="sdswas.events">
+<body>
+    <metal:main fill-slot="main">
+
+         <div id="content-body">
+            <div tal:condition="context/embedded_url" class="col-md-16 embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item"
+                    tal:attributes="src python:view.embedded_url();
+                                    allowfullscreen True"></iframe>
+            </div>
+           <div class="col-md-8" id="summary">
+                <div class="section-header">
+                    <h3>Summary</h3>
+                </div>
+                <div tal:content="structure view/w/full_description/render" ></div>
+
+                <div tal:condition="context/document" tal:define="title string:Presentation"
+                    metal:use-macro="context/event_macros/macros/filedownload" />
+            </div>
+            <div class="col-md-4" id ="details">
+                <div class="section-header">
+                </div>
+                <div class="section-body">
+                    <h3 id="start" tal:content="view/start" ></h3>
+                    <div class ="col-md-12 resource-field">
+                        <div id="location"
+                            tal:condition="context/location"
+                            tal:content="structure view/w/IEventLocation.location/render"/>
+                        <div tal:condition = "context/speaker">
+                            <label for="speaker" >Presented by</label>
+                            <div id="speaker" tal:content="structure view/w/speaker/render" ></div>
+                        </div>
+                    </div>
+                    <div class ="col-md-6 resource-field">
+                        <label for="event_type">Event type</label>
+                        <span id="event_type">Webinar</span>
+                    </div>
+                    <div class ="col-md-6 resource-field">
+                        <label for="time">Time</label>
+                        <span id ="time" tal:content="view/time" ></span>
+                    </div>
+                    <div class ="col-md-6 resource-field">
+                        <label for="language">Language</label>
+                        <span id="language" tal:content="structure view/language" ></span>
+                    </div>
+                    <div class ="col-md-6 resource-field">
+                        <label for="duration">Duration</label>
+                        <span id ="duration" tal:content="view/duration" ></span>
+                    </div>
+            </div>
+        </div>
+    </metal:main>
+</body>
+</html>

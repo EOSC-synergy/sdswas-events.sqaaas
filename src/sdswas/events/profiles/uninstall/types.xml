@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<object meta_type="Plone Types Tool" name="portal_types">
+  <object meta_type="Dexterity FTI" name="sds_event" remove="True" />
+  <object meta_type="Dexterity FTI" name="generic_event" remove="True" />
+  <object meta_type="Dexterity FTI" name="webinar" remove="True" />
+  <object meta_type="Dexterity FTI" name="presentation" remove="True"/>
+</object>
+

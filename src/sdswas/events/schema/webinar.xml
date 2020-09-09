@@ -1,0 +1,43 @@
+<model xmlns:i18n="http://xml.zope.org/namespaces/i18n" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:users="http://namespaces.plone.org/supermodel/users" xmlns:lingua="http://namespaces.plone.org/supermodel/lingua" xmlns="http://namespaces.plone.org/supermodel/schema">
+  <schema>
+    <field name="full_description" type="plone.app.textfield.RichText">
+      <description/>
+      <required>True</required>
+      <title>Full description</title>
+    </field>
+    <field name="image" type="plone.namedfile.field.NamedBlobImage">
+      <description/>
+      <required>False</required>
+      <title>Image</title>
+    </field>
+    <field name="embedded_url" type="zope.schema.URI">
+      <description/>
+      <required>False</required>
+      <title>Embedded media URL</title>
+    </field>
+    <field name="document" type="plone.namedfile.field.NamedBlobFile">
+      <description/>
+      <required>False</required>
+      <title>Document</title>
+    </field>
+    <field name="speaker" type="zope.schema.TextLine">
+      <description/>
+      <required>False</required>
+      <title>Speaker</title>
+    </field>
+    <field name="event_type" type="zope.schema.Choice">
+      <description/>
+      <required>False</required>
+      <title>Event type</title>
+      <values>
+        <element>This is a type</element>
+        <element>This is another type</element>
+      </values>
+    </field>
+    <field name="event_language" type="zope.schema.TextLine">
+      <description/>
+      <required>False</required>
+      <title>Language</title>
+    </field>
+  </schema>
+</model>

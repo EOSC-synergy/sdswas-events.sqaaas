@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="sdswas.events">
+
+
+<body>
+<metal:main fill-slot="main">
+    <h1>Upcoming Events</h1>
+    <div id="upcoming-events" class="grid" tal:define="items python:view.upcoming_events()">
+        <div class="griditem col-md-4" tal:repeat="item items">
+            <metal:macro use-macro="context/event_macros/macros/upcoming_event_teaser"/>
+        </div>
+    </div>
+    <h2>Past Events</h2>
+    <p>You can find and explore all the resources from our past events in the Resources tab in the menu, or you can search directly in the following boxes.</p>
+    <div class="button button-yellow"><a href="#" target="_blank" tal:define="url python:view.resources_page_url()" tal:attributes="href url">
+        GO TO RESOURCES</a>
+    </div>
+    <br/>
+    <div id="past-events" class="grid" tal:define="items python:view.past_events()">
+        <div class="griditem col-md-4" tal:repeat="item items">
+            <metal:macro use-macro="context/event_macros/macros/past_event_teaser"/>
+        </div>
+    </div>
+
+    <div id="full_view" class="modal fade" tabindex="-1" role="dialog">
+        <metal:macro use-macro="context/modal/macros/modal"/>
+    </div>
+</metal:main>
+</body>
+</html>
