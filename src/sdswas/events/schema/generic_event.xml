@@ -39,5 +39,15 @@
       <required>False</required>
       <title>Agenda</title>
     </field>
+        <field name="images" type="zope.schema.TextLine">
+      <description/>
+      <required>False</required>
+      <title>Images</title>
+    </field>
+        <field name="presentations" type="zope.schema.TextLine">
+      <description/>
+      <required>False</required>
+      <title>Presentations</title>
+    </field>
   </schema>
 </model>

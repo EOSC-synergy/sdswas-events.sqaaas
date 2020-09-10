@@ -52,12 +52,15 @@
         <div tal:condition="context/images" class="row form-group" id="images">
             <div class="col-md-12">
                 <h3>Images</h3>
+             </div>
+            <div id="generic-event-images" class="carousel slide col-md-12" data-ride="carousel">
+                <div metal:use-macro="context/event_macros/macros/images-carousel" />
             </div>
         </div>
-        <div  tal:condition="context/presentations" class="row form-group" id="presentations">
-            <div class="col-md-12">
-                <h3>Presentations</h3>
-            </div>
+        <div class="row form-group" id="presentations">
+            <div  tal:condition="context/presentations" class="row form-group col-md-12" id="presentations">
+                    <h3>Presentations</h3>
+             </div>
         </div>
     </metal:main>
 </body>

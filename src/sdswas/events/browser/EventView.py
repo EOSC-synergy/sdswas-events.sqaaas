@@ -70,3 +70,17 @@ class EventView(DefaultView):
         self.request.set('disable_plone.leftcolumn',1)
 
 
+    def recurse_all_content(self):
+        ###return self.context.listFolderContents(contentFilter={"portal_type" : "Image"})
+
+        brains = self.context.getFolderContents()
+        results = []
+        for brain in brains:
+            resObj = brain.getObject()
+            results.append({
+             'title': resObj.Title(),
+             'absolute_url': resObj.absolute_url(),
+             'width': resObj.image.width
+            })
+        return results
+

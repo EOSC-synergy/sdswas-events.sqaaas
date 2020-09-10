@@ -99,4 +99,28 @@
       </li>
   </ul>
 </metal:row>
+
+<metal:row define-macro="images-carousel" i18n:domain="sdswas.events">
+    <div class="carousel-inner">
+        <tal:loop repeat="item view/recurse_all_content">
+            <div tal:define= "activeclass string:carousel-item active;
+                            nonactiveclass string:carousel-item;
+                            index repeat/item/index"
+                    tal:attributes="class python:activeclass if index==0 else nonactiveclass">
+                <img class="d-block w-100"
+
+                    tal:attributes="src item/absolute_url"/>
+            </div>
+        </tal:loop>
+    </div>
+
+    <a class="carousel-control-prev" href="#generic-event-images" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#generic-event-images" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</metal:row>
 </html>
