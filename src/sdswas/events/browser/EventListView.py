@@ -43,7 +43,8 @@ class EventListView(DefaultView):
                 end= {'query':dt.date.today(),
                     'range':'min'},
                 sort_on=["start"], ###second criteria should be "sortable_title"
-                sort_order="descending")
+                sort_order="descending",
+                sort_limit = 3)
 
         results = []
         for event in events:
