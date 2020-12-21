@@ -38,6 +38,16 @@
    />
 
     <browser:page
+     name="generic_event_modal"
+     for="*"
+     layer="zope.interface.Interface"
+     class=".EventView.EventView"
+     template="templates/generic_event_modal.pt"
+     permission="zope2.View"
+   />
+
+
+    <browser:page
      name="webinar_view"
      for="*"
      layer="zope.interface.Interface"
@@ -47,20 +57,45 @@
    />
 
   <browser:page
-    name="event_macros"
+     name="webinar_modal"
+     for="*"
+     layer="zope.interface.Interface"
+     class=".EventView.EventView"
+     template="templates/webinar_modal.pt"
+     permission="zope2.View"
+   />
+
+    <browser:page
+    name="events_utils"
     for="*"
     layer="zope.interface.Interface"
-    template="templates/event_macros.pt"
+    template="templates/events_utils.pt"
     permission="zope2.View"
   />
 
       <browser:page
-     name="modal"
-     for="*"
-     layer="zope.interface.Interface"
-     class=".EventView.EventView"
-     template="templates/modal.pt"
-     permission="zope2.View"
-   />
+    name="presentation_teaser"
+    for="*"
+    layer="zope.interface.Interface"
+    template="templates/presentation_teaser.pt"
+    permission="zope2.View"
+  />
+
+    <browser:page
+    name="presentation_view"
+    for="*"
+    layer="zope.interface.Interface"
+    class=".PresentationView.PresentationView"
+    template="templates/presentation_view.pt"
+    permission="zope2.View"
+  />
+
+
+  <!-- Resource directory -->
+
+   <browser:resourceDirectory
+      name="sdswas.events"
+      directory="static" />
+
 
 </configure>

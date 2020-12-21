@@ -1,0 +1,41 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="sdswas.events">
+<body>
+    <metal:main
+        fill-slot="main"
+        tal:define="page_title string: Event presentation;
+                    is_upcoming False">
+
+        <metal:macro use-macro="context/events_utils/macros/page-title"/>
+        <metal:macro use-macro="context/events_utils/macros/breadcumb"/>
+
+        <div class="bg-color-white">
+            <section class="modwin-title-section">
+                <div class="modwin-title-wrap modwin-padding">
+                <div class="modwin-title-container">
+                    <div class="modwin-title">
+                    <h2 tal:content="context/title"/>
+                    </div>
+                </div>
+                </div>
+            </section>
+
+            <section class="modwin-text-section">
+            <div class="modwin-text-wrap modwin-padding">
+                <div class="modwin-text-container">
+                    <p tal:content="string:Date: ${view/presentationDate}">
+                    <p tal:content="string:Author: ${context/author}"/>
+                    <p tal:content="structure view/w/document/render"></p>
+                </div>
+            </div>
+        </section><!-- Modal window text ends -->
+        </div>
+     </metal:main>
+</body>
+</html>

@@ -9,27 +9,124 @@
 
 <body>
 <metal:main fill-slot="main">
-    <h1>Upcoming Events</h1>
-    <div id="upcoming-events" class="grid" tal:define="items python:view.upcoming_events()">
-        <div class="griditem col-md-4" tal:repeat="item items">
-            <metal:macro use-macro="context/event_macros/macros/upcoming_event_teaser"/>
-        </div>
-    </div>
-    <h2>Past Events</h2>
-    <p>You can find and explore all the resources from our past events in the Resources tab in the menu, or you can search directly in the following boxes.</p>
-    <div class="button button-yellow"><a href="#" target="_blank" tal:define="url python:view.resources_page_url()" tal:attributes="href url">
-        GO TO RESOURCES</a>
-    </div>
-    <br/>
-    <div id="past-events" class="grid" tal:define="items python:view.past_events()">
-        <div class="griditem col-md-4" tal:repeat="item items">
-            <metal:macro use-macro="context/event_macros/macros/past_event_teaser"/>
-        </div>
-    </div>
+    <!-- Banner top -->
+    <section class="banner-top bg-color-white">
 
-    <div id="full_view" class="modal fade" tabindex="-1" role="dialog">
-        <metal:macro use-macro="context/modal/macros/modal"/>
-    </div>
+        <div class="banner-top-wrap main-wrap main-padding">
+
+            <div class="banner-top-container main-container">
+
+                <div class="page-title"><h1>Upcoming Events</h1></div>
+
+            </div>
+        </div>
+    </section>
+    <!-- Banner top ends -->
+
+    <!-- Upcoming events-->
+    <section class="bg-color-white">
+
+        <!-- Upcoming events wrap -->
+        <div class="main-wrap main-padding">
+
+            <div id="upcoming-events" class="events-upco-cards-container main-container"
+                tal:define="items python:view.upcoming_events()">
+
+                <tal:row tal:repeat="item items">
+                    <!-- Events upco card -->
+                    <div class="events-upco-card"
+                            tal:define="small_info python:item['event_start_date'];
+                                        url python:item['absolute_url'];
+                                        title python:item['title'];
+                                        event_type python:item['event_type'];"
+                            tal:attributes="data-gobacklink string:< BACK TO UPCOMING EVENTS;
+                                            data-url string:${url}/${event_type}_modal;
+                                            data-title title">
+                        <metal:macro use-macro="context/events_utils/macros/upcoming_event_teaser"/>
+
+                    </div><!-- Events upco card ends -->
+
+                </tal:row>
+
+            </div><!-- Upcoming events container ends -->
+
+        </div><!-- Upcoming events wrap carpet ends -->
+
+    </section><!-- Upcoming events carpet ends -->
+
+    <!-- Upcoming events container -->
+
+    <!-- Past events -->
+    <section class="bg-color-grey-light">
+
+        <!-- Past events wrap -->
+        <div class="pastev-wrap main-wrap main-padding">
+
+            <!-- Past events container -->
+            <div class="pastev-container main-container">
+
+            <!-- Past events header -->
+            <div class="pastev-header">
+
+                <h2 class="pastev-desc-text">Past Events</h2>
+                <p class="pastev-desc-text">
+                You can find and explore all the resources from our past events in the Resources tab in the menu, or
+                you can search directly in the following boxes.
+                </p>
+
+                <!-- Past events toolbar -->
+                <div class="pastev-toolbar">
+
+                <!-- Past events cta -->
+                <a class="pastev-cta" href="resources.html" target="_self">
+                    <p>Go to resources</p>
+                </a>
+                <!-- Past events cta ends -->
+
+                <!-- Past events seach tool -->
+                <div id="pastev-search-tool" class="search-tool-container">
+                    <form action="#">
+                    <input class="search-tool-input" type="text" placeholder="Search..." name="search">
+                    <span class="search-icon icon-search"></span>
+                    </form>
+                </div><!-- Past events seach tool ends -->
+
+                </div><!-- Past events toolbar ends -->
+
+            </div><!-- Past events header ends -->
+
+            <!-- Past events cards container -->
+
+            <div class="pastev-cards-container"
+                 tal:define="items python:view.past_events_all();">
+               <tal:row tal:repeat="item items">
+
+                    <div class="pastev-card"
+                        tal:define="small_info python:item['event_start_date'];
+                                    url python:item['absolute_url'];
+                                    title python:item['title'];
+                                    event_type python:item['event_type'];"
+                        tal:attributes="data-gobacklink string:< BACK TO PAST EVENTS;
+                                        data-url string:${url}/${event_type}_modal;
+                                        data-title title">
+
+                            <!-- Card content -->
+                            <metal:macro use-macro="context/events_utils/macros/past_event_teaser"/><!-- Card content ends-->
+
+                    </div><!-- Past events card  ends -->
+
+                </tal:row>
+
+
+
+            </div><!-- Past events container ends -->
+
+        </div><!-- Past events wrap ends -->
+
+
+
+    </section><!-- Past events çends -->
+
 </metal:main>
 </body>
 </html>

@@ -24,6 +24,7 @@
   <element value="plone.namefromtitle"/>
   <element value="plone.eventbasic"/>
   <element value="plone.eventlocation"/>
+  <element value="plone.imagecropping"/>
  </property>
  <property name="schema"></property>
  <property name="model_source"></property>

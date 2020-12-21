@@ -20,10 +20,10 @@
       <required>False</required>
       <title>Document</title>
     </field>
-    <field name="speaker" type="zope.schema.TextLine">
+    <field name="presented_by" type="zope.schema.TextLine">
       <description/>
-      <required>False</required>
-      <title>Speaker</title>
+      <required>True</required>
+      <title>Presented by</title>
     </field>
     <field name="event_type" type="zope.schema.Choice">
       <description/>

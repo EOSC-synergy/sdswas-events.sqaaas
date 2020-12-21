@@ -13,10 +13,57 @@ class EventListView(DefaultView):
     def past_events(self):
         ## Returns generic events and webinars with a date older than today
         events = self.context.portal_catalog(
+                portal_type=["generic_event","webinar"],
+            review_state="published",
+            end= {'query':dt.datetime.now(),
+                'range':'max'},
+            sort_on=["start"], ###second criteria should be "sortable_title"
+            sort_order="descending")
+
+        return events
+
+    def past_events_all(self):
+        events = self.past_events()
+        results = []
+        for event in events:
+            resObj = event.getObject()
+            results.append({
+                'title': resObj.Title(),
+                'event_start_date': resObj.start.strftime('%-d %B %Y'),
+                'absolute_url': resObj.absolute_url(),
+                'location': resObj.location,
+                'lead_image_url': resObj.absolute_url(),
+                'end': resObj.end,
+                'event_type': resObj.portal_type
+            })
+        return results
+
+    def past_events_batch(self, start, size):
+
+        events = self.past_events()
+        results = []
+        batch = events[start:size]
+        for event in batch:
+            resObj = event.getObject()
+            results.append({
+                'title': resObj.Title(),
+                'event_start_date': resObj.start.strftime('%-d %B %Y'),
+                'absolute_url': resObj.absolute_url(),
+                'location': resObj.location,
+                'lead_image_url': resObj.absolute_url(),
+                'end': resObj.end,
+                'event_type': resObj.portal_type
+            })
+
+        return results
+
+    def upcoming_events(self):
+        ## Returns generic events and webinars with a date newer or equal to today
+        events = self.context.portal_catalog(
                  portal_type=["generic_event","webinar"],
                 review_state="published",
-                end= {'query':dt.datetime.now(),
-                    'range':'max'},
+                end= {'query':dt.date.today(),
+                    'range':'min'},
                 sort_on=["start"], ###second criteria should be "sortable_title"
                 sort_order="descending")
 
@@ -30,33 +77,7 @@ class EventListView(DefaultView):
                 'location': resObj.location,
                 'lead_image_url': resObj.absolute_url(),
                 'end': resObj.end,
-                'start': resObj.start.strftime('%-d %B %Y')
-            })
-
-        return results
-
-    def upcoming_events(self):
-        ## Returns generic events and webinars with a date newer or equal to today
-        events = self.context.portal_catalog(
-                 portal_type=["generic_event","webinar"],
-                review_state="published",
-                end= {'query':dt.date.today(),
-                    'range':'min'},
-                sort_on=["start"], ###second criteria should be "sortable_title"
-                sort_order="descending",
-                sort_limit = 3)
-
-        results = []
-        for event in events:
-            resObj = event.getObject()
-            results.append({
-                'title': resObj.Title(),
-                'event_start_date': resObj.start.strftime('%-d %B %Y'),
-                'absolute_url': resObj.absolute_url(),
-                'location': resObj.location,
-                'lead_image_url': resObj.absolute_url(),
-                'end': resObj.end,
-                'start': resObj.start.strftime('%Y%m%d'),
+                'event_type': resObj.portal_type
             })
 
         return results

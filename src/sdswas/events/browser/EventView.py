@@ -1,6 +1,8 @@
 from plone.dexterity.browser.view import DefaultView
 import datetime as dt
 import re
+from pytz import UTC as utc
+
 
 class EventView(DefaultView):
 
@@ -51,6 +53,12 @@ class EventView(DefaultView):
 
         return result
 
+    def downloadfile_url(self):
+        if (self.context.document):
+            return self.context.absolute_url()+"/@@download/document/"+self.context.document.filename
+        else:
+            return ""
+
     def embedded_url(self):
         ## Returns the URL stored in the field embedded_url to be used as the source URL of the video field
         ## If it is not a valid youtube embed URL then convert it
@@ -70,17 +78,43 @@ class EventView(DefaultView):
         self.request.set('disable_plone.leftcolumn',1)
 
 
-    def recurse_all_content(self):
-        ###return self.context.listFolderContents(contentFilter={"portal_type" : "Image"})
+    def images(self):
 
-        brains = self.context.getFolderContents()
+        brains = self.context.getFolderContents(contentFilter={"portal_type" : "Image"})
         results = []
         for brain in brains:
             resObj = brain.getObject()
             results.append({
              'title': resObj.Title(),
-             'absolute_url': resObj.absolute_url(),
-             'width': resObj.image.width
+             'absolute_url': resObj.absolute_url()
             })
         return results
 
+    def is_upcoming(self):
+        return self.context.start >= utc.localize(dt.datetime.now())
+
+    def presentations(self):
+        brains = self.context.portal_catalog(
+            path = {
+                'query': '/'.join(self.context.getPhysicalPath()),
+                'depth': 1},
+            portal_type=["presentation"],
+            review_state="published",
+            sort_on=["getPresentationDate"], ###second criteria should be "sortable_title"
+            sort_order="descending")
+
+
+
+        #brains = self.context.getFolderContents(contentFilter={"portal_type" : "presentation"})
+        results = []
+        for brain in brains:
+            resObj = brain.getObject()
+            results.append({
+            'title': resObj.Title(),
+            'absolute_url': resObj.absolute_url(),
+            'author': resObj.author,
+            'presentation_date': resObj.presentationDate.strftime('%-d %B %Y'),
+            'doc_filepath': resObj.absolute_url()+"/@@download/document/"+resObj.document.filename
+            })
+
+        return results

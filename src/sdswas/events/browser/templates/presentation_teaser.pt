@@ -1,0 +1,45 @@
+  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+ >
+
+<metal:row define-macro="teaser" i18n:domain="sdswas.events">
+    <!-- Modular window card -->
+    <div class="modwin-card pastev-presentation-card">
+
+        <!-- Card content -->
+        <div class="modwin-card-content">
+
+            <div class="modwin-card-small-info">
+                <p tal:content="python:item['presentation_date']"/>
+            </div>
+
+            <div class="modwin-card-small-info">
+                <p tal:content="python:item['author']"/>
+            </div>
+
+            <a class="modwin-card-subtitle pastev-presentation-card-title js-card-trigger">
+                <h4 tal:content="python:item['title']"/>
+            </a>
+
+            <a class="modwin-text-link js-card-trigger" href="#" target="_self">
+                <p>Preview</p>
+            </a>
+
+            <div class="flex-container">
+                <a class="modwin-card-cta" target="_self"
+                    href="${context/absolute_url}/@@download/document/${view/w/document/filename}">
+                    <p>Download</p>
+                    <i class="icon-download"></i>
+                </a>
+            </div>
+
+        </div><!-- Card content ends -->
+
+    </div><!-- Modular window cards ends -->
+
+</metal:row>
+
+</html>

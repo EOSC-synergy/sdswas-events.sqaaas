@@ -5,63 +5,18 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="sdswas.events">
-
 <body>
-    <metal:main fill-slot="main">
-        <div class="row form-group">
-            <div class="col-md-8" id="summary">
-                <div metal:use-macro="context/event_macros/macros/generic_event_menu" />
-                <br/>
-                <h3>Summary</h3>
-                <div id="summary" class="section" tal:content="structure view/w/full_description/render" ></div>
-                <div id="agenda" tal:condition="context/document" tal:define="title string:Agenda"
-                        metal:use-macro="context/event_macros/macros/filedownload" />
-            </div>
-            <div class="col-md-4" id ="details">
-                <div class="section-body">
-                    <h3 class="start" tal:content="view/start" ></h3>
-                    <div class ="col-md-12 resource-field"  >
-                        <div id="location" tal:condition="context/location" tal:content="structure view/w/IEventLocation.location/render" ></div>
-                    </div>
-                    <div class ="col-md-12 resource-field">
-                        <label for="place"  tal:condition="context/place">Place</label>
-                        <div id="place"  tal:condition="context/place" tal:content="structure view/w/place/render" ></div>
-                    </div>
-                    <div class ="col-md-6 resource-field">
-                        <label for="event_type">Event type</label>
-                        <span id="event_type" tal:content="structure view/w/event_type/render">Webinar</span>
-                    </div>
-                    <div class ="col-md-6 resource-field">
-                        <label for="time">Time</label>
-                        <span id ="time" tal:content="view/time" ></span>
-                    </div>
-                    <div class ="col-md-6 resource-field">
-                        <label for="language">Language</label>
-                        <span id="language" tal:content="view/language" ></span>
-                    </div>
-                    <div class ="col-md-6 resource-field">
-                        <label for="duration">Duration</label>
-                        <span id ="duration" tal:content="view/duration" ></span>
-                    </div>
-                    <div class ="col-md-12 resource-field">
-                        <span id ="website-url" tal:content="structure view/w/website_url/render" ></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div tal:condition="context/images" class="row form-group" id="images">
-            <div class="col-md-12">
-                <h3>Images</h3>
-             </div>
-            <div id="generic-event-images" class="carousel slide col-md-12" data-ride="carousel">
-                <div metal:use-macro="context/event_macros/macros/images-carousel" />
-            </div>
-        </div>
-        <div class="row form-group" id="presentations">
-            <div  tal:condition="context/presentations" class="row form-group col-md-12" id="presentations">
-                    <h3>Presentations</h3>
-             </div>
-        </div>
-    </metal:main>
+    <metal:main
+            fill-slot="main"
+            tal:define="is_upcoming view/is_upcoming;
+                        text_upcoming string: Upcoming Events;
+                        text_past string: Resources;
+                        page_title python:text_upcoming if is_upcoming else text_past">
+
+
+            <metal:macro use-macro="context/events_utils/macros/page-title">
+            <metal:macro use-macro="context/events_utils/macros/breadcumb"/>
+            <metal:macro use-macro="context/generic_event_modal/macros/main-content"/>
+     </metal:main>
 </body>
 </html>

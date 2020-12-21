@@ -7,15 +7,22 @@
     </field>
     <field name="image" type="plone.namedfile.field.NamedBlobImage">
       <description/>
+      <required>False</required>
       <title>Image</title>
     </field>
     <field name="place" type="zope.schema.TextLine">
       <description/>
-      <required>False</required>
+      <required>True</required>
       <title>Place</title>
+    </field>
+    <field name="presented_by" type="zope.schema.TextLine">
+      <description/>
+      <required>True</required>
+      <title>Presented by</title>
     </field>
     <field name="event_type" type="zope.schema.Choice">
       <description/>
+      <required>False</required>
       <title>Event type</title>
       <values>
         <element>Workshop</element>
@@ -38,16 +45,6 @@
       <description/>
       <required>False</required>
       <title>Agenda</title>
-    </field>
-        <field name="images" type="zope.schema.TextLine">
-      <description/>
-      <required>False</required>
-      <title>Images</title>
-    </field>
-        <field name="presentations" type="zope.schema.TextLine">
-      <description/>
-      <required>False</required>
-      <title>Presentations</title>
     </field>
   </schema>
 </model>
