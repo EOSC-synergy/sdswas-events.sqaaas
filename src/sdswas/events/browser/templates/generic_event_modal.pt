@@ -8,155 +8,153 @@
 
 <metal:row define-macro="main-content" i18n:domain="sdswas.events">
 
-  <div class="modwin-main-content bg-color-white">
-        <!-- Modal window title -->
-        <div metal:use-macro="context/events_utils/macros/modalsectiontitle"/>
-        <!-- Modal window title ends -->
+    <!-- Modal window title -->
+    <div metal:use-macro="context/events_utils/macros/modalsectiontitle"/>
+    <!-- Modal window title ends -->
 
-        <!-- Modal window text -->
-        <section class="modwin-text-section">
-            <div class="modwin-text-wrap modwin-padding">
-                <div class="modwin-text-container">
-                    <div class="modwin-text">
-                        <h3>Summary</h3>
-                        <p tal:content="structure context/full_description/raw" />
-                    </div>
+    <!-- Modal window text -->
+    <section class="modwin-text-section">
+        <div class="modwin-text-wrap modwin-padding">
+            <div class="modwin-text-container">
+                <div class="modwin-text">
+                    <h3>Summary</h3>
+                    <p tal:content="structure context/full_description/raw" />
                 </div>
             </div>
-        </section><!-- Modal window text ends -->
+        </div>
+    </section><!-- Modal window text ends -->
 
 
-        <!-- Modal window sidepanel section -->
-        <section class="modwin-sidepanel-section">
-            <div class="modwin-sidepanel-wrap modwin-padding">
-                <div class="modwin-sidepanel-container">
+    <!-- Modal window sidepanel section -->
+    <section class="modwin-sidepanel-section">
+        <div class="modwin-sidepanel-wrap modwin-padding">
+            <div class="modwin-sidepanel-container">
 
-                <!-- Modal window sidepanel -->
-                <div class="modwin-sidepanel">
+            <!-- Modal window sidepanel -->
+            <div class="modwin-sidepanel">
 
-                    <!-- Sidepanel info card -->
-                    <div class="sidepanel-info-card">
-                        <div class="info-card-content">
+                <!-- Sidepanel info card -->
+                <div class="sidepanel-info-card">
+                    <div class="info-card-content">
 
-                            <h3 tal:content="view/start">-</h3>
+                        <h3 tal:content="view/start">-</h3>
 
-                            <div class="info-card-small-info"
-                                tal:condition="context/location" >
-                                <p tal:content="structure view/w/IEventLocation.location/render">-</p>
+                        <div class="info-card-small-info"
+                            tal:condition="context/location" >
+                            <p tal:content="structure view/w/IEventLocation.location/render">-</p>
+                        </div>
+
+                        <div class="info-card-data">
+                            <p class="text-bold">Place</p>
+                            <p tal:content="structure view/w/place/render">-</p>
+                        </div>
+
+                        <div class="info-card-data">
+                            <p class="text-bold">Presented by</p>
+                            <p tal:content="structure view/w/presented_by/render"/>
+                        </div>
+
+                        <!-- Info card subcontent -->
+                        <div class="info-card-subcontent">
+
+                            <div class="info-card-data">
+                                <p class="text-bold">Event type</p>
+                                <p tal:content="structure view/w/event_type/render">-</p>
                             </div>
 
                             <div class="info-card-data">
-                                <p class="text-bold">Place</p>
-                                <p tal:content="structure view/w/place/render">-</p>
+                                <p class="text-bold">Time</p>
+                                <p tal:content="view/time">-</p>
                             </div>
 
                             <div class="info-card-data">
-                                <p class="text-bold">Presented by</p>
-                                <p tal:content="structure view/w/presented_by/render"/>
+                                <p class="text-bold">Language</p>
+                                <p tal:content="view/language">-</p>
                             </div>
 
-                            <!-- Info card subcontent -->
-                            <div class="info-card-subcontent">
+                            <div class="info-card-data">
+                                <p class="text-bold">Duration</p>
+                                <p tal:content="view/duration" >-</p>
+                            </div>
 
-                                <div class="info-card-data">
-                                    <p class="text-bold">Event type</p>
-                                    <p tal:content="structure view/w/event_type/render">-</p>
-                                </div>
+                        </div><!-- Info card subcontent ends  -->
 
-                                <div class="info-card-data">
-                                    <p class="text-bold">Time</p>
-                                    <p tal:content="view/time">-</p>
-                                </div>
-
-                                <div class="info-card-data">
-                                    <p class="text-bold">Language</p>
-                                    <p tal:content="view/language">-</p>
-                                </div>
-
-                                <div class="info-card-data">
-                                    <p class="text-bold">Duration</p>
-                                    <p tal:content="view/duration" >-</p>
-                                </div>
-
-                            </div><!-- Info card subcontent ends  -->
-
-                            <a class="info-card-data">
-                                <p class="text-bold" tal:content="structure view/w/website_url/render">-</p>
-                            </a>
-
-                        </div><!-- Info card content ends  -->
-
-                    </div><!-- Sidepanel info card ends -->
-
-                    <!-- Sidepanel cta component -->
-                    <div class="sidepanel-cta-component"
-                        tal:define="picture nocall:context/document;"
-                        tal:condition="nocall:picture">
-                            <div tal:define="title string:Agenda"
-                                metal:use-macro="context/events_utils/macros/filedownload"/>
-                    </div>  <!-- Sidepanel cta component ends -->
-
-                    <!-- Sidepanel share component -->
-                    <div class="sidepanel-share-component" metal:use-macro="context/events_utils/macros/share-buttons"/>
-                    <!-- Sidepanel share component ends -->
-
-                </div>
-                <!-- Modal window sidepanel ends -->
-
-                </div>
-            </div>
-        </section>
-
-          <section class="modwin-img-slider-section"
-                   tal:define="items python:view.images()"
-                    tal:condition="items">
-            <div class="modwin-cards-wrap modwin-padding">
-              <div class="modwin-cards-container">
-
-                    <div class="modwin-cards-header">
-                        <h3>Images</h3>
-                    </div>
-                </div>
-            </div>
-
-        </section><!-- News slider ends -->
-
-          <!-- Modal window image slider -->
-
-        <!-- Presentation cards -->
-
-        <section class="modwin-cards-section">
-            <div class="modwin-cards-wrap modwin-padding">
-                <div class="modwin-cards-container"
-                    tal:define="items python:view.presentations()"
-                    tal:condition="nocall:items">
-
-                    <div class="modwin-cards-header">
-                        <h3>Presentations</h3>
-
-                        <a  tal:condition="python:len(items) > 1"
-                            class="outlined-cta" href="#" target="_self">
-                            <p>Download all</p>
-                            <i class="icon-download"></i>
+                        <a class="info-card-data">
+                            <p class="text-bold" tal:content="structure view/w/website_url/render">-</p>
                         </a>
 
-                    </div>
+                    </div><!-- Info card content ends  -->
 
-                    <!-- Modular window cards -->
-                    <div class="modwin-cards">
+                </div><!-- Sidepanel info card ends -->
 
-                        <tal:row tal:repeat="item items">
+                <!-- Sidepanel cta component -->
+                <div class="sidepanel-cta-component"
+                    tal:define="picture nocall:context/document;"
+                    tal:condition="nocall:picture">
+                        <div tal:define="title string:Agenda"
+                            metal:use-macro="context/events_utils/macros/filedownload"/>
+                </div>  <!-- Sidepanel cta component ends -->
 
-                            <div metal:use-macro="context/presentation_teaser/macros/teaser"/>
+                <!-- Sidepanel share component -->
+                <div class="sidepanel-share-component" metal:use-macro="context/events_utils/macros/share-buttons"/>
+                <!-- Sidepanel share component ends -->
 
-                        </tal:row>
-
-                    </div>
             </div>
-        </section><!-- Modal window cards ends -->
-        <!-- Presentation cards ends-->
+            <!-- Modal window sidepanel ends -->
 
-    </div><!-- Modal window content ends -->
+            </div>
+        </div>
+    </section>
+
+        <section class="modwin-img-slider-section"
+                tal:define="items python:view.images()"
+                tal:condition="items">
+        <div class="modwin-cards-wrap modwin-padding">
+            <div class="modwin-cards-container">
+
+                <div class="modwin-cards-header">
+                    <h3>Images</h3>
+                </div>
+            </div>
+        </div>
+
+    </section><!-- News slider ends -->
+
+        <!-- Modal window image slider -->
+
+    <!-- Presentation cards -->
+
+    <section class="modwin-cards-section">
+        <div class="modwin-cards-wrap modwin-padding">
+            <div class="modwin-cards-container"
+                tal:define="items python:view.presentations()"
+                tal:condition="nocall:items">
+
+                <div class="modwin-cards-header">
+                    <h3>Presentations</h3>
+
+                    <a  tal:condition="python:len(items) > 1"
+                        class="outlined-cta" href="#" target="_self">
+                        <p>Download all</p>
+                        <i class="icon-download"></i>
+                    </a>
+
+                </div>
+
+                <!-- Modular window cards -->
+                <div class="modwin-cards">
+
+                    <tal:row tal:repeat="item items">
+
+                        <div metal:use-macro="context/presentation_teaser/macros/teaser"/>
+
+                    </tal:row>
+
+                </div>
+        </div>
+    </section><!-- Modal window cards ends -->
+    <!-- Presentation cards ends-->
+
 
   </metal:row>
 </html>

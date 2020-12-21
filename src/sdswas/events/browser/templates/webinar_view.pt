@@ -8,10 +8,15 @@
 <body>
     <metal:main
             fill-slot="main"
-            tal:define="is_upcoming view/is_upcoming;">
+            tal:define="is_upcoming view/is_upcoming;
+            text_upcoming string: Upcoming Events;
+            text_past string: Resources;
+            page_title python:text_upcoming if is_upcoming else text_past">
             <metal:macro use-macro="context/events_utils/macros/page-title">
             <metal:macro use-macro="context/events_utils/macros/breadcumb"/>
-            <metal:macro use-macro="context/webinar_modal/macros/main-content"/>
+            <div class="modwin-main-content bg-color-white">
+                  <metal:macro use-macro="context/webinar_modal/macros/main-content"/>
+            </div>
      </metal:main>
 </body>
 </html>

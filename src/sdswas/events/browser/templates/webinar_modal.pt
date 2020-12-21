@@ -7,126 +7,100 @@
 
 <metal:row define-macro="main-content" i18n:domain="sdswas.events">
 
-    <div class="modwin-main-content bg-color-white">
-        <!-- Modal window title -->
-        <div metal:use-macro="context/events_utils/macros/modalsectiontitle"/>
-        <!-- Modal window title ends -->
+    <!-- Modal window title -->
+    <div metal:use-macro="context/events_utils/macros/modalsectiontitle"/>
+    <!-- Modal window title ends -->
 
-        <!-- Modal window video -->
-        <section class="modwin-image-section">
-            <div class="modwin-image-wrap modwin-padding">
-                <div class="modwin-image-container">
-                    <div tal:condition="context/embedded_url"
-                        class="col-md-16 embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item"
-                            tal:attributes="src python:view.embedded_url();
-                                            allowfullscreen True"/>
-                    </div>
+    <!-- Modal window video -->
+    <section class="modwin-image-section">
+        <div class="modwin-image-wrap modwin-padding">
+            <div class="modwin-image-container">
+                <div tal:condition="context/embedded_url"
+                    class="col-md-16 embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item"
+                        tal:attributes="src python:view.embedded_url();
+                                        allowfullscreen True"/>
                 </div>
             </div>
-        </section><!-- Modal window text ends -->
+        </div>
+    </section><!-- Modal window text ends -->
 
-        <!-- Modal window text -->
-        <section class="modwin-text-section">
-            <div class="modwin-text-wrap modwin-padding">
-                <div class="modwin-text-container">
-                    <div class="modwin-text">
-                        <h3>Summary</h3>
-                        <p tal:content="structure context/full_description/raw" />
-                    </div>
+    <!-- Modal window text -->
+    <section class="modwin-text-section">
+        <div class="modwin-text-wrap modwin-padding">
+            <div class="modwin-text-container">
+                <div class="modwin-text">
+                    <h3>Summary</h3>
+                    <p tal:content="structure context/full_description/raw" />
                 </div>
             </div>
-        </section><!-- Modal window text ends -->
+        </div>
+    </section><!-- Modal window text ends -->
 
 
-        <!-- Modal window sidepanel section -->
-        <section class="modwin-sidepanel-section">
-            <div class="modwin-sidepanel-wrap modwin-padding">
-                <div class="modwin-sidepanel-container">
+    <!-- Modal window sidepanel section -->
+    <section class="modwin-sidepanel-section">
+        <div class="modwin-sidepanel-wrap modwin-padding">
+            <div class="modwin-sidepanel-container">
 
-                    <!-- Modal window sidepanel -->
-                    <div class="modwin-sidepanel">
+                <!-- Modal window sidepanel -->
+                <div class="modwin-sidepanel">
 
-                        <!-- Sidepanel info card -->
-                        <div class="sidepanel-info-card">
-                            <div class="info-card-content">
+                    <!-- Sidepanel info card -->
+                    <div class="sidepanel-info-card">
+                        <div class="info-card-content">
 
-                                <h3 tal:content="view/start">-</h3>
+                            <h3 tal:content="view/start">-</h3>
 
-                                <div class="info-card-small-info"
-                                    tal:condition="context/location" >
-                                    <p tal:content="structure view/w/IEventLocation.location/render">-</p>
+                            <div class="info-card-small-info"
+                                tal:condition="context/location" >
+                                <p tal:content="structure view/w/IEventLocation.location/render">-</p>
+                            </div>
+
+                            <div class="info-card-data">
+                                <p class="text-bold">Presented by</p>
+                                <p tal:content="structure view/w/presented_by/render"/>
+                            </div>
+
+                            <!-- Info card subcontent -->
+                            <div class="info-card-subcontent">
+
+                                <div class="info-card-data">
+                                    <p class="text-bold">Event type</p>
+                                    <p>Webinar</p>
                                 </div>
 
                                 <div class="info-card-data">
-                                    <p class="text-bold">Presented by</p>
-                                    <p tal:content="structure view/w/presented_by/render"/>
+                                    <p class="text-bold">Time</p>
+                                    <p tal:content="view/time">-</p>
                                 </div>
 
-                                <!-- Info card subcontent -->
-                                <div class="info-card-subcontent">
+                                <div class="info-card-data">
+                                    <p class="text-bold">Language</p>
+                                    <p tal:content="view/language">-</p>
+                                </div>
 
-                                    <div class="info-card-data">
-                                        <p class="text-bold">Event type</p>
-                                        <p>Webinar</p>
-                                    </div>
+                                <div class="info-card-data">
+                                    <p class="text-bold">Duration</p>
+                                    <p tal:content="view/duration" >-</p>
+                                </div>
 
-                                    <div class="info-card-data">
-                                        <p class="text-bold">Time</p>
-                                        <p tal:content="view/time">-</p>
-                                    </div>
+                            </div><!-- Info card subcontent ends  -->
 
-                                    <div class="info-card-data">
-                                        <p class="text-bold">Language</p>
-                                        <p tal:content="view/language">-</p>
-                                    </div>
+                        </div><!-- Info card content ends  -->
 
-                                    <div class="info-card-data">
-                                        <p class="text-bold">Duration</p>
-                                        <p tal:content="view/duration" >-</p>
-                                    </div>
+                    </div><!-- Sidepanel info card ends -->
 
-                                </div><!-- Info card subcontent ends  -->
-
-                            </div><!-- Info card content ends  -->
-
-                        </div><!-- Sidepanel info card ends -->
-
-                        <!-- Sidepanel share component -->
-                        <div class="sidepanel-share-component" metal:use-macro="context/events_utils/macros/share-buttons"/>
-                        <!-- Sidepanel share component ends -->
-
-                    </div>
-                    <!-- Modal window sidepanel ends -->
+                    <!-- Sidepanel share component -->
+                    <div class="sidepanel-share-component" metal:use-macro="context/events_utils/macros/share-buttons"/>
+                    <!-- Sidepanel share component ends -->
 
                 </div>
+                <!-- Modal window sidepanel ends -->
+
             </div>
-        </section>
-<!--
-
-
-
-                <div class ="col-md-6 resource-field">
-                    <label for="event_type">Event type</label>
-                    <span id="event_type">Webinar</span>
-                </div>
-                <div class ="col-md-6 resource-field">
-                    <label for="time">Time</label>
-                    <span id ="time" tal:content="view/time" ></span>
-                </div>
-                <div class ="col-md-6 resource-field">
-                    <label for="language">Language</label>
-                    <span id="language" tal:content="structure view/language" ></span>
-                </div>
-                <div class ="col-md-6 resource-field">
-                    <label for="duration">Duration</label>
-                    <span id ="duration" tal:content="view/duration" ></span>
-                </div>
         </div>
-
-    </div>
--->
-    </div><!-- Modal window content ends -->
+    </section>
 
   </metal:row>
 </html>

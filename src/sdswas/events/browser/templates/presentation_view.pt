@@ -15,27 +15,37 @@
         <metal:macro use-macro="context/events_utils/macros/page-title"/>
         <metal:macro use-macro="context/events_utils/macros/breadcumb"/>
 
-        <div class="bg-color-white">
-            <section class="modwin-title-section">
-                <div class="modwin-title-wrap modwin-padding">
-                <div class="modwin-title-container">
-                    <div class="modwin-title">
-                    <h2 tal:content="context/title"/>
-                    </div>
+        <section class="modwin-title-section">
+            <div class="modwin-title-wrap modwin-padding">
+            <div class="modwin-title-container">
+                <div class="modwin-title">
+                <h2 tal:content="context/title"/>
                 </div>
-                </div>
-            </section>
+            </div>
+            </div>
+        </section>
 
-            <section class="modwin-text-section">
+        <section class="modwin-text-section">
             <div class="modwin-text-wrap modwin-padding">
                 <div class="modwin-text-container">
                     <p tal:content="string:Date: ${view/presentationDate}">
                     <p tal:content="string:Author: ${context/author}"/>
-                    <p tal:content="structure view/w/document/render"></p>
                 </div>
             </div>
         </section><!-- Modal window text ends -->
-        </div>
-     </metal:main>
+
+        <section class="modwin-pdf-section">
+            <div class="main-wrap main-padding">
+                <div class="main-container">
+                <div tal:condition="context/document"
+                    class="col-md-16 embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item"
+                        tal:attributes="src string:${context/absolute_url}/@@images/document;
+                                        allowfullscreen True"/>
+                </div>
+            </div>
+        </section>
+
+    </metal:main>
 </body>
 </html>

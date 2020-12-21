@@ -16,7 +16,11 @@
 
             <metal:macro use-macro="context/events_utils/macros/page-title">
             <metal:macro use-macro="context/events_utils/macros/breadcumb"/>
-            <metal:macro use-macro="context/generic_event_modal/macros/main-content"/>
+
+            <div class="modwin-main-content bg-color-white">
+               <metal:macro use-macro="context/generic_event_modal/macros/main-content"/>
+            </div><!-- Modal window content ends -->
+
      </metal:main>
 </body>
 </html>
