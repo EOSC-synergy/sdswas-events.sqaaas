@@ -20,9 +20,26 @@
                     <h3>Summary</h3>
                     <p tal:content="structure context/full_description/raw" />
                 </div>
+
+                <div class="modwin-text-cta">
+                    <!-- Add to calendar button -->
+                    <a class="modwin-cta-within-text" href="https://calendar.google.com/calendar/r/eventedit?text=New+BSC+Event&dates=20210512T230000Z/20210513T030000Z&details=For+details,+link+here:+https://www.bsc.es/&location=Barcelona+Supercomputing+Center+-+Centre+Nacional+de+Supercomputació" target="_blank">
+                    <p>Add to calendar</p>
+                    </a>
+
+                    <!-- Register button -->
+                    <a class="modwin-cta-within-text" href="#" target="_self">
+                    <p>Register</p>
+                    </a>
+                </div>
             </div>
         </div>
+
+
     </section><!-- Modal window text ends -->
+
+
+
 
 
     <!-- Modal window sidepanel section -->
