@@ -6,15 +6,25 @@
       i18n:domain="sdswas.events">
 
 
-<metal:row define-macro="main-content" i18n:domain="sdswas.events">
+<metal:row define-macro="main-content" i18n:domain="sdswas.events"
+        tal:define = "images python:view.images();
+                    presentations python:view.presentations();
+                    agenda context/document">
 
     <!-- Modal window title -->
     <div metal:use-macro="context/events_utils/macros/modalsectiontitle"/>
     <!-- Modal window title ends -->
 
+
     <!-- Modal window text -->
     <section class="modwin-text-section">
+
         <div class="modwin-text-wrap modwin-padding">
+
+            <!-- Menu -->
+            <div metal:use-macro="context/events_utils/macros/generic_event_menu"/>
+            <!-- Menu ends -->
+
             <div class="modwin-text-container">
                 <div class="modwin-text">
                     <h3>Summary</h3>
@@ -35,12 +45,7 @@
             </div>
         </div>
 
-
     </section><!-- Modal window text ends -->
-
-
-
-
 
     <!-- Modal window sidepanel section -->
     <section class="modwin-sidepanel-section">
@@ -105,9 +110,8 @@
                 </div><!-- Sidepanel info card ends -->
 
                 <!-- Sidepanel cta component -->
-                <div class="sidepanel-cta-component"
-                    tal:define="picture nocall:context/document;"
-                    tal:condition="nocall:picture">
+                <div id="agenda" class="sidepanel-cta-component"
+                    tal:condition="nocall:agenda">
                         <div tal:define="title string:Agenda"
                             metal:use-macro="context/events_utils/macros/filedownload"/>
                 </div>  <!-- Sidepanel cta component ends -->
@@ -123,9 +127,8 @@
         </div>
     </section>
 
-        <section class="modwin-img-slider-section"
-                tal:define="items python:view.images()"
-                tal:condition="items">
+    <section id="images" class="modwin-img-slider-section"
+            tal:condition="nocall:images">
         <div class="modwin-cards-wrap modwin-padding">
             <div class="modwin-cards-container">
 
@@ -141,27 +144,36 @@
 
     <!-- Presentation cards -->
 
-    <section class="modwin-cards-section">
+    <section id="presentations" class="modwin-cards-section">
         <div class="modwin-cards-wrap modwin-padding">
             <div class="modwin-cards-container"
-                tal:define="items python:view.presentations()"
-                tal:condition="nocall:items">
+                tal:condition="nocall:presentations">
 
                 <div class="modwin-cards-header">
                     <h3>Presentations</h3>
 
-                    <a  tal:condition="python:len(items) > 1"
+                     <div class="modwin-cards-header-toolbar">
+                    <!-- Search tool -->
+                    <div id="modwin-cards-search-tool" class="search-tool-container">
+                      <form action="#">
+                        <input class="search-tool-input" type="text" placeholder="Search..." name="search">
+                        <span class="search-icon icon-search"></span>
+                      </form>
+                    </div><!-- Search tool ends -->
+
+                    <a  tal:condition="python:len(presentations) > 1"
                         class="outlined-cta" href="#" target="_self">
                         <p>Download all</p>
                         <i class="icon-download"></i>
                     </a>
+                  </div>
 
                 </div>
 
                 <!-- Modular window cards -->
                 <div class="modwin-cards">
 
-                    <tal:row tal:repeat="item items">
+                    <tal:row tal:repeat="item presentations">
 
                         <div metal:use-macro="context/presentation_teaser/macros/teaser"/>
 

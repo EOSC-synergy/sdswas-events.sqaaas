@@ -134,20 +134,24 @@
 </metal:row>
 
 <metal:row define-macro="generic_event_menu" i18n:domain="sdswas.events">
-  <ul class="nav flex-column" tal:condition="view/images | view/presentations | context/document ">
-      <li class="nav-item">
-          <a class="nav-link active" href="#summary">Summary</a>
+   <ul class="modwin-anchor-navigation">
+      <li tal:condition="nocall:agenda">
+        <a href="#agenda">
+          <p class="modwin-anchor-link-p">Agenda</p>
+        </a>
       </li>
-      <li class="nav-item" tal:condition="context/document">
-          <a class="nav-link" href="#agenda">Agenda</a>
+      <li tal:condition="nocall:images">
+        <a href="#images">
+          <p class="modwin-anchor-link-p">Images</p>
+        </a>
       </li>
-      <li class="nav-item"  tal:condition="view/images">
-          <a class="nav-link" href="#images">Images</a>
+      <li tal:condition="nocall:presentations">
+        <a href="#presentations">
+          <p class="modwin-anchor-link-p">Presentations</p>
+        </a>
       </li>
-      <li class="nav-item"  tal:condition="view/presentations">
-          <a class="nav-link" href="#presentations">Presentations</a>
-      </li>
-  </ul>
+    </ul>
+
 </metal:row>
 
 <metal:row define-macro="images_carousel" i18n:domain="sdswas.events">
@@ -174,9 +178,6 @@
     </div>
 </metal:row>
 
-</html>
-
-
 <metal:row define-macro="subscribe" i18n:domain="sdswas.events">
 
     <!--Subscribe-->
@@ -198,3 +199,5 @@
     </section>    <!--Subscribe end-->
 
 </metal:row>
+
+</html>
