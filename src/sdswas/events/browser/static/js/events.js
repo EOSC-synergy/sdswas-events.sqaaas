@@ -42,7 +42,9 @@
                         // Trim titles
                         this.titles.each(function() {
                             var text = $(this).text();
-                            $(this).text(Utils.textTrimmer(text, Events.upcoCards.titleLenght));
+                            var maxlength = Events.upcoCards.titleLenght;
+                            $(this).text(Utils.textTrimmer(text, maxlength));
+                            if(text.length > maxlength) $(this).attr("title", text);
                         });
                     },
                     addListeners: function() {
@@ -73,7 +75,9 @@
                         // Trim titles
                         this.titles.each(function() {
                             var text = $(this).text();
-                            $(this).text(Utils.textTrimmer(text, Events.pastevCards.titleLenght));
+                            var maxlength = Events.pastevCards.titleLenght;
+                            $(this).text(Utils.textTrimmer(text, maxlength));
+                            if(text.length > maxlength) $(this).attr("title", text);
                         });
                     },
                     addListeners: function() {
@@ -130,7 +134,10 @@
                         // Trim titles
                         $(".pastev-presentation-card .modwin-card-subtitle :first-child").each(function() {
                             var text = $(this).text();
-                            $(this).text(Utils.textTrimmer(text, Events.pastevPresentCards.titleLenght));
+                            var maxlength = Events.pastevPresentCards.titleLenght;
+                            $(this).text(Utils.textTrimmer(text, maxlength));
+                            if(text.length > maxlength) $(this).attr("title", text);
+
                         });
                     },
                 }
