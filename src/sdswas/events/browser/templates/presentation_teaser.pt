@@ -20,11 +20,15 @@
                 <p tal:content="python:item['author']"/>
             </div>
 
-            <a class="modwin-card-subtitle js-card-trigger">
+            <a class="modwin-card-subtitle"
+                    tal:attributes="href python:item['absolute_url']"
+                    target="_blank">
                 <h4 tal:content="python:item['title']"/>
             </a>
 
-            <a class="modwin-text-link js-card-trigger" href="#" target="_self">
+            <a class="modwin-text-link"
+                    tal:attributes="href python:item['absolute_url']"
+                    target="_blank">
                 <p>Preview</p>
             </a>
 

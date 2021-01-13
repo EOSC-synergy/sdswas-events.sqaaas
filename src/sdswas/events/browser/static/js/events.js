@@ -124,7 +124,6 @@
 
                     init: function() {
                         this.trimTextsLength();
-                        this.addListeners();
                     },
 
                     trimTextsLength: function() {
@@ -134,18 +133,7 @@
                             $(this).text(Utils.textTrimmer(text, Events.pastevPresentCards.titleLenght));
                         });
                     },
-                    addListeners: function() {
-                        this.selectors.each(function() {
-
-                            $(".pastev-presentation-card").on("click", ".js-card-trigger", function(event) {
-                                event.preventDefault();
-                                //this is the current trigger but we use the parent who set the event because it has the data to be used by its children
-                                ModalWindow.populateModal(event.delegateTarget);
-                            });
-                        });
-                    },
                 }
-
             }
 
             $(document).ready(function() {
