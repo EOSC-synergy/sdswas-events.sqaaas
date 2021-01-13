@@ -20,7 +20,7 @@
                 <p tal:content="python:item['author']"/>
             </div>
 
-            <a class="modwin-card-subtitle pastev-presentation-card-title js-card-trigger">
+            <a class="modwin-card-subtitle js-card-trigger">
                 <h4 tal:content="python:item['title']"/>
             </a>
 

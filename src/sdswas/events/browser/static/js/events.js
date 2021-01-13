@@ -96,8 +96,12 @@
                         var url = $(trigger).attr("data-url");
                         /**Fetch the rest of the information: contents of the body */
                         $(".modwin-main-content").load(url, function(responseTxt, statusTxt, xhr) {
-                            if (statusTxt = "success") {}
-                            Events.pastevCards.openModal();
+                            if (statusTxt = "success") {
+                                Events.pastevCards.openModal();
+                                $(document).ready(function() {
+                                    Events.pastevPresentCards.init();
+                                });
+                            }
                         });
                     },
                     openModal: function() {
@@ -109,16 +113,14 @@
                         ModalWindow.el.addClass("show");
                         ModalWindow.el.removeClass("hide");
                         ModalWindow.isOpen = true;
-
-                        this.pastevPresentCards.init();
                     },
                 },
 
                 pastevPresentCards: {
                     selectors: $(".pastev-presentation-card"),
                     triggers: $(".js-card-trigger"),
-                    titles: $(".pastev-presentation-card-title :first-child"),
-                    titleLenght: 70,
+                    titles: $(".pastev-presentation-card-title  :first-child"),
+                    titleLenght: 135,
 
                     init: function() {
                         this.trimTextsLength();
@@ -127,16 +129,15 @@
 
                     trimTextsLength: function() {
                         // Trim titles
-                        this.titles.each(function() {
+                        $(".pastev-presentation-card .modwin-card-subtitle :first-child").each(function() {
                             var text = $(this).text();
-                            $(this).text(Utils.textTrimmer(text, Events.pastevCards.titleLenght));
+                            $(this).text(Utils.textTrimmer(text, Events.pastevPresentCards.titleLenght));
                         });
                     },
                     addListeners: function() {
-                        App.con("----)))) Past event presentations >> Cards are listening");
                         this.selectors.each(function() {
 
-                            $(this).on("click", ".js-card-trigger", function(event) {
+                            $(".pastev-presentation-card").on("click", ".js-card-trigger", function(event) {
                                 event.preventDefault();
                                 //this is the current trigger but we use the parent who set the event because it has the data to be used by its children
                                 ModalWindow.populateModal(event.delegateTarget);
