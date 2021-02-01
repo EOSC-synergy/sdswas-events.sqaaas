@@ -89,18 +89,18 @@ class EventListView(DefaultView):
         return resource_folder.absolute_url_path()
 
     def highlighted_upcoming_events(self):
-        ## Returns generic events and webinars with categorization "highlighted-home" sorted by date descendantly
+        ## Returns the next 2 upcoming events (both generic events and webinars), sorted by date descendantly
         events = self.context.portal_catalog(
                  portal_type=["generic_event","webinar"],
                 review_state="published",
-                Subject=["highlighted-home"],
                 end= {'query':dt.date.today(),
                     'range':'min'},
                 sort_on=["start"], ###second criteria should be "sortable_title"
-                sort_order="descending")
+                sort_order="ascending")
 
         results = []
-        for event in events:
+        latests = events[:2]
+        for event in latests:
             resObj = event.getObject()
             results.append({
                 'event_start_date': resObj.start.strftime('%-d %B %Y'),
