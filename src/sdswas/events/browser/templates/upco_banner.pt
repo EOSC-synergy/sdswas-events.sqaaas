@@ -1,0 +1,38 @@
+<!-- Upcoming events widget -->
+<div class="home-upcoev home-widget">
+    <h3>Upcoming events</h3>
+
+    <!-- Home upcoming events cards container -->
+    <div class="home-upcoev-cards-container"
+        tal:define="items python:view.highlighted_upcoming_events()">
+
+        <tal:row tal:repeat="item items">
+        <!-- Home upcoming event card -->
+            <div class="home-upcoev-card">
+                <div class="home-upcoev-card-content">
+
+                <a class="home-upcoev-card-title" target="_self"
+                tal:attributes="href string:${context/portal_url}/news-events/events">
+                    <h3 tal:content="item/event_start_date"></h3>
+                </a>
+
+                <div class="home-upcoev-card-small-info">
+                    <p tal:content="item/location"></p>
+                </div>
+
+                <div class="home-upcoev-card-description">
+                    <p tal:content="item/description"></p>
+                </div>
+
+                <a class="home-upcoev-text-link" target="_self"
+                tal:attributes="href string:${context/portal_url}/news-events/events">
+                    <p>Read more</p>
+                </a>
+
+                </div>
+            </div><!-- Home upcoming event card ends -->
+        </tal:row>
+
+    </div><!-- Home upcoming events cards container ends -->
+
+</div><!-- Upcoming events widget ends -->
