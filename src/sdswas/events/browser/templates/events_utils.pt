@@ -16,20 +16,8 @@
     </section>
 </metal:row>
 
-<metal:row define-macro="modalsectiontitle" i18n:domain="sdswas.events">
-  <section class="modwin-title-section">
-    <div class="modwin-title-wrap modwin-padding">
-      <div class="modwin-title-container">
-        <div class="modwin-title">
-          <h2 tal:content="context/title"/>
-        </div>
-      </div>
-    </div>
-  </section>
-</metal:row>
-
 <metal:row define-macro="filedownload" i18n:domain="sdswas.events">
-    <h4 tal:content="title"></h4>
+    <<h2 class="modwin-cta-comp-title" tal:content="title"></h2>
     <a class="outlined-cta"
         href="${context/absolute_url}/@@download/document/${view/w/document/filename}"
         target="_self">
