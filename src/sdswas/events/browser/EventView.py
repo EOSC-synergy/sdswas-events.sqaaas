@@ -103,8 +103,6 @@ class EventView(DefaultView):
             sort_on=["getPresentationDate"], ###second criteria should be "sortable_title"
             sort_order="descending")
 
-
-
         #brains = self.context.getFolderContents(contentFilter={"portal_type" : "presentation"})
         results = []
         for brain in brains:
@@ -118,3 +116,13 @@ class EventView(DefaultView):
             })
 
         return results
+
+    def numPresentations(self):
+
+        brains = self.context.portal_catalog(
+            path = {
+                'query': '/'.join(self.context.getPhysicalPath()),
+                'depth': 1},
+            portal_type=["presentation"],
+            review_state="published")
+        return len(brains)

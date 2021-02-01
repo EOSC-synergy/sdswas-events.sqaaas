@@ -8,9 +8,9 @@
 
 <metal:row define-macro="main-content" i18n:domain="sdswas.events"
         tal:define = "images python:view.images();
-                    presentations python:view.presentations();
-                    agenda context/document">
-
+                    numPresentations python:view.numPresentations();
+                    hasPresentations python: numPresentations > 0;
+                    agenda context/document;">
     <!-- Modal window title -->
     <div metal:use-macro="context/events_utils/macros/modalsectiontitle"/>
     <!-- Modal window title ends -->
@@ -127,6 +127,7 @@
         </div>
     </section>
 
+    <!-- Modal window image slider -->
     <section id="images" class="modwin-img-slider-section"
             tal:condition="nocall:images">
         <div class="modwin-cards-wrap modwin-padding">
@@ -140,50 +141,41 @@
 
     </section><!-- News slider ends -->
 
-        <!-- Modal window image slider -->
+    <section id="presentations"
+            tal:condition="python: numPresentations > 1"
+            class="modwin-cards-section">
 
-    <!-- Presentation cards -->
-
-    <section id="presentations" class="modwin-cards-section">
         <div class="modwin-cards-wrap modwin-padding">
-            <div class="modwin-cards-container"
-                tal:condition="nocall:presentations">
+            <div class="modwin-cards-container">
 
                 <div class="modwin-cards-header">
                     <h3>Presentations</h3>
 
-                     <div class="modwin-cards-header-toolbar">
-                    <!-- Search tool -->
-                    <div id="modwin-cards-search-tool" class="search-tool-container">
-                      <form action="#">
-                        <input class="search-tool-input" type="text" placeholder="Search..." name="search">
-                        <span class="search-icon icon-search"></span>
-                      </form>
-                    </div><!-- Search tool ends -->
+                    <div class="modwin-cards-header-toolbar">
+                        <!-- Search tool -->
+                        <div id="modwin-cards-search-tool" class="search-tool-container">
+                            <form action="#">
+                            <input class="search-tool-input" type="text" placeholder="Search..." name="search">
+                            <span class="search-icon icon-search"></span>
+                            </form>
+                        </div><!-- Search tool ends -->
 
-                    <a  tal:condition="python:len(presentations) > 1"
-                        class="outlined-cta" href="#" target="_self">
-                        <p>Download all</p>
-                        <i class="icon-download"></i>
-                    </a>
-                  </div>
+                        <a  tal:condition="hasPresentations"
+                            class="outlined-cta" href="#" target="_self">
+                            <p>Download all</p>
+                            <i class="icon-download"></i>
+                        </a>
+                    </div>
 
                 </div>
 
                 <!-- Modular window cards -->
-                <div class="modwin-cards">
-
-                    <tal:row tal:repeat="item presentations">
-
-                        <div metal:use-macro="context/presentation_teaser/macros/teaser"/>
-
-                    </tal:row>
-
+                <div class="modwin-cards"
+                        tal:attributes="data-url string:${context/absolute_url}/presentations_list">
                 </div>
+
+            </div>
         </div>
-    </section><!-- Modal window cards ends -->
-    <!-- Presentation cards ends-->
-
-
+    </section>
   </metal:row>
 </html>

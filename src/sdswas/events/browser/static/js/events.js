@@ -103,7 +103,7 @@
                             if (statusTxt = "success") {
                                 Events.pastevCards.openModal();
                                 $(document).ready(function() {
-                                    Events.pastevPresentCards.init();
+                                    Events.pastevPresentCardsContainer.update();
                                 });
                             }
                         });
@@ -140,7 +140,23 @@
 
                         });
                     },
+                },
+
+                pastevPresentCardsContainer:{
+
+                    update: function() {
+
+                        var url = $(".modwin-cards").attr("data-url");
+                        $(".modwin-cards").load(url, function(responseTxt, statusTxt, xhr) {
+                            if (statusTxt = "success") {
+                                $(document).ready(function() {
+                                    Events.pastevPresentCards.init();
+                                });
+                            } else $(this).text("Error: The contents are not available now. Please contact us.");
+                        })
+                    }
                 }
+
             }
 
             $(document).ready(function() {

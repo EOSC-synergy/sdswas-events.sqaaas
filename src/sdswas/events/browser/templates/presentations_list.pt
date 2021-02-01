@@ -1,0 +1,20 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="sdswas.events">
+
+
+<metal:row define-macro="main-content" i18n:domain="sdswas.events"
+        tal:define="presentations python:view.presentations();">
+
+    <!-- Presentation cards -->
+    <tal:row tal:repeat="item presentations">
+
+        <div metal:use-macro="context/presentation_teaser/macros/teaser"/>
+
+    </tal:row>
+
+</metal:row>
+</html>

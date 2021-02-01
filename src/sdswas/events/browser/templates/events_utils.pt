@@ -145,7 +145,7 @@
           <p class="modwin-anchor-link-p">Images</p>
         </a>
       </li>
-      <li tal:condition="nocall:presentations">
+      <li tal:condition="hasPresentations">
         <a href="#presentations">
           <p class="modwin-anchor-link-p">Presentations</p>
         </a>
