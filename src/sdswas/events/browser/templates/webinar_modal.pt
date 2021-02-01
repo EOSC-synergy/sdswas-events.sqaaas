@@ -8,8 +8,8 @@
 <metal:row define-macro="main-content" i18n:domain="sdswas.events">
 
     <!-- Modal window title -->
-    <div metal:use-macro="context/events_utils/macros/modalsectiontitle"/>
-    <!-- Modal window title ends -->
+    <div tal:replace="structure context/modwin_page_title"/>
+    <!-- Modal window title ends-->
 
     <!-- Modal window video -->
     <section class="modwin-image-section">

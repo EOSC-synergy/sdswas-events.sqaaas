@@ -11,10 +11,10 @@
                     numPresentations python:view.numPresentations();
                     hasPresentations python: numPresentations > 0;
                     agenda context/document;">
-    <!-- Modal window title -->
-    <div metal:use-macro="context/events_utils/macros/modalsectiontitle"/>
-    <!-- Modal window title ends -->
 
+    <!-- Modal window title -->
+    <div tal:replace="structure context/modwin_page_title"/>
+    <!-- Modal window title ends-->
 
     <!-- Modal window text -->
     <section class="modwin-text-section">
