@@ -126,6 +126,12 @@
 
         </section><!-- Past events ends -->
 
+        <!-- Homepage subscribe form section -->
+        <div tal:replace="structure context/subscribeform_banner"/>
+
+        <!-- Homepage subscribe form section ends-->
+        <section class="news-spacer"></section>
+
 </metal:main>
 </body>
 </html>
