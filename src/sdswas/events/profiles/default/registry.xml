@@ -3,20 +3,6 @@
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     i18n:domain="sdswas.events">
 
-
-  <records prefix="plone.bundles/sdswas-events"
-            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
-    <value key="enabled">True</value>
-    <value key="jscompilation">++resource++sdswas.events/js/events.js</value>
-
-    <!-- <value key="last_compilation">2015-11-11 00:00:00</value>-->
-
-    <value key="compile">False</value>
-    <!--<value key="depends">plone</value>-->
-    <value key="depends">plone</value>
-  </records>
-
-
   <records prefix="plone"
       interface="Products.CMFPlone.interfaces.controlpanel.IImagingSchema">
     <value key="allowed_sizes" purge="false">
