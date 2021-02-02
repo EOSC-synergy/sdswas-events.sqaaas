@@ -17,7 +17,7 @@
 </metal:row>
 
 <metal:row define-macro="filedownload" i18n:domain="sdswas.events">
-    <<h2 class="modwin-cta-comp-title" tal:content="title"></h2>
+    <h2 class="modwin-cta-comp-title" tal:content="title"></h2>
     <a class="outlined-cta"
         href="${context/absolute_url}/@@download/document/${view/w/document/filename}"
         target="_self">
@@ -58,7 +58,7 @@
                     url_past string:${portal_url}/resources/;
                     text python:text_upcoming if is_upcoming else text_past;
                     url python:url_upcoming if is_upcoming else url_past;">
-    <div class="modwin-title-wrap bg-color-white">
+    <div class="modwin-title-wrap bg-color-white modwin-padding-lr modwin-padding-t">
       <a class="modwin-back-link modwin-main-content" tal:attributes="href url">
         <p class="breadcrum-text" tal:content="text"></p>
       </a>
