@@ -19,20 +19,15 @@
             <div class="modwin-title-wrap modwin-padding">
             <div class="modwin-title-container">
                 <div class="modwin-title">
-                <h2 tal:content="context/title"/>
+                    <h2 tal:content="context/title"/>
                 </div>
-            </div>
-            </div>
-        </section>
-
-        <section class="modwin-text-section">
-            <div class="modwin-text-wrap modwin-padding">
                 <div class="modwin-text-container">
                     <p tal:content="string:Date: ${view/presentationDate}">
                     <p tal:content="string:Author: ${context/author}"/>
                 </div>
             </div>
-        </section><!-- Modal window text ends -->
+            </div>
+        </section>
 
         <section class="modwin-pdf-section">
             <div class="main-wrap main-padding">
