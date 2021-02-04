@@ -17,15 +17,15 @@
 
         <section class="modwin-title-section">
             <div class="modwin-title-wrap modwin-padding">
-            <div class="modwin-title-container">
-                <div class="modwin-title">
-                    <h2 tal:content="context/title"/>
+                <div class="modwin-title-container">
+                    <div class="modwin-title">
+                        <h2 tal:content="context/title"/>
+                    </div>
                 </div>
-                <div class="modwin-text-container">
+                <div class="modwin-text-container modwin-padding-t">
                     <p tal:content="string:Date: ${view/presentationDate}">
                     <p tal:content="string:Author: ${context/author}"/>
                 </div>
-            </div>
             </div>
         </section>
 
