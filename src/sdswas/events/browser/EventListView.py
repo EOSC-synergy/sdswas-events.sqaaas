@@ -88,8 +88,8 @@ class EventListView(DefaultView):
         resource_folder = portal.unrestrictedTraverse("resources")
         return resource_folder.absolute_url_path()
 
-    def highlighted_upcoming_events(self):
-        ## Returns the next 2 upcoming events (both generic events and webinars), sorted by date descendantly
+    def upcoming_events_subset(self, numitems):
+        ## Returns the next 'numitems' upcoming events (both generic events and webinars), sorted by date ascendantly
         events = self.context.portal_catalog(
                  portal_type=["generic_event","webinar"],
                 review_state="published",
