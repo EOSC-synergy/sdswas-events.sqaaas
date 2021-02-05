@@ -30,8 +30,7 @@
       <required>False</required>
       <title>Event type</title>
       <values>
-        <element>This is a type</element>
-        <element>This is another type</element>
+        <element>Webinar</element>
       </values>
     </field>
     <field name="event_language" type="zope.schema.TextLine">

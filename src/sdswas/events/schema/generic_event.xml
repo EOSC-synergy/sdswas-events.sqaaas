@@ -28,7 +28,6 @@
         <element>Workshop</element>
         <element>Training School</element>
         <element>Meeting</element>
-        <element></element>
       </values>
     </field>
     <field name="event_language" type="zope.schema.TextLine">
