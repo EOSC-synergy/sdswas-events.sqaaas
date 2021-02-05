@@ -27,7 +27,7 @@
 
             <div class="modwin-text-container">
                 <div class="modwin-text">
-                    <h3>Summary</h3>
+                    <h2>Summary</h2>
                     <p tal:content="structure context/full_description/raw" />
                 </div>
 
@@ -160,7 +160,7 @@
                             </form>
                         </div><!-- Search tool ends -->
 
-                        <a  tal:condition="hasPresentations"
+                        <a  id="download-all-cta" tal:condition="hasPresentations"
                             class="outlined-cta" href="#" target="_self">
                             <p>Download all</p>
                             <i class="icon-download"></i>

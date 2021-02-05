@@ -30,7 +30,7 @@
         <div class="modwin-text-wrap modwin-padding">
             <div class="modwin-text-container">
                 <div class="modwin-text">
-                    <h3>Summary</h3>
+                    <h2>Summary</h2>
                     <p tal:content="structure context/full_description/raw" />
                 </div>
             </div>
