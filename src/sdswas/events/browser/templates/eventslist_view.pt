@@ -85,7 +85,8 @@
                         <div class="pastev-toolbar">
 
                         <!-- Past events cta -->
-                        <a class="pastev-cta" href="resources.html" target="_self">
+                        <a class="pastev-cta" target="_self"
+                          tal:attributes="href string:${context/portal_url}/resources">
                             <p>Go to resources</p>
                         </a>
                         <!-- Past events cta ends -->
