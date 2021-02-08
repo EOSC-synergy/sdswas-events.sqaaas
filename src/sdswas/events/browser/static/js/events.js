@@ -5,7 +5,8 @@
         baseUrl: '++theme++sdswas/',
         optimize: 'none',
         paths: {
-            'main': 'js/main'
+            'main': '++theme++sdswas/js/main',
+            'event_presentations': '++resource++sdswas.events/js/event_presentations.js',
         }
     };
 
@@ -25,6 +26,36 @@
                     App.con("----> Events init");
                     this.upcoCards.init();
                     this.pastevCards.init();
+                },
+
+                populateModal: function(trigger) {
+
+                    ModalWindow.init();
+
+                    /*Set available information (title and go back link)*/
+                    ModalWindow.gobackLink.text($(trigger).attr("data-gobacklink"));
+                    ModalWindow.title.text($(trigger).attr("data-title"));
+
+                    var url = $(trigger).attr("data-url");
+                    /**Fetch the rest of the information: contents of the body */
+                    $(".modwin-main-content").load(url, function(responseTxt, statusTxt, xhr) {
+                        if (statusTxt = "success") {
+                            Events.openModal();
+                            $(document).ready(function() {
+                                EventPresentations.init();
+                            });
+                        }
+                    });
+                },
+
+                openModal: function() {
+
+                    App.mainContent.addClass("freeze-main-content");
+                    Sidenav.repos();
+
+                    ModalWindow.el.addClass("show");
+                    ModalWindow.el.removeClass("hide");
+                    ModalWindow.isOpen = true;
                 },
 
                 upcoCards: {
@@ -54,7 +85,7 @@
                             $(this).on("click", ".js-card-trigger", function(event) {
                                 event.preventDefault();
                                 //this is the current trigger but we use the parent who set the event because it has the data to be used by its children
-                                ModalWindow.populateModal(event.delegateTarget);
+                                Events.populateModal(event.delegateTarget);
                             });
                         });
                     },
@@ -87,77 +118,13 @@
                             $(this).on("click", ".js-card-trigger", function(event) {
                                 event.preventDefault();
                                 //this is the current trigger but we use the parent who set the event because it has the data to be used by its children
-                                Events.pastevCards.populateModal(event.delegateTarget);
+                                Events.populateModal(event.delegateTarget);
                             });
                         });
                     },
-                    populateModal: function(trigger) {
-
-                        /*Set available information (title and go back link)*/
-                        ModalWindow.gobackLink.text($(trigger).attr("data-gobacklink"));
-                        ModalWindow.title.text($(trigger).attr("data-title"));
-
-                        var url = $(trigger).attr("data-url");
-                        /**Fetch the rest of the information: contents of the body */
-                        $(".modwin-main-content").load(url, function(responseTxt, statusTxt, xhr) {
-                            if (statusTxt = "success") {
-                                Events.pastevCards.openModal();
-                                $(document).ready(function() {
-                                    Events.pastevPresentCardsContainer.update();
-                                });
-                            }
-                        });
-                    },
-                    openModal: function() {
-
-                        App.mainContent.addClass("freeze-main-content");
-                        ModalWindow.addListeners();
-                        Sidenav.repos();
-
-                        ModalWindow.el.addClass("show");
-                        ModalWindow.el.removeClass("hide");
-                        ModalWindow.isOpen = true;
-                    },
-                },
-
-                pastevPresentCards: {
-                    selectors: $(".pastev-presentation-card"),
-                    triggers: $(".js-card-trigger"),
-                    titles: $(".pastev-presentation-card-title  :first-child"),
-                    titleLenght: 135,
-
-                    init: function() {
-                        this.trimTextsLength();
-                    },
-
-                    trimTextsLength: function() {
-                        // Trim titles
-                        $(".pastev-presentation-card .modwin-card-subtitle :first-child").each(function() {
-                            var text = $(this).text();
-                            var maxlength = Events.pastevPresentCards.titleLenght;
-                            $(this).text(Utils.textTrimmer(text, maxlength));
-                            if(text.length > maxlength) $(this).attr("title", text);
-
-                        });
-                    },
-                },
-
-                pastevPresentCardsContainer:{
-
-                    update: function() {
-
-                        var url = $(".modwin-cards").attr("data-url");
-                        $(".modwin-cards").load(url, function(responseTxt, statusTxt, xhr) {
-                            if (statusTxt = "success") {
-                                $(document).ready(function() {
-                                    Events.pastevPresentCards.init();
-                                });
-                            } else $(this).text("Error: The contents are not available now. Please contact us.");
-                        })
-                    }
                 }
-
             }
+
 
             $(document).ready(function() {
                 Events.init();

@@ -6,6 +6,13 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="sdswas.events">
 <body>
+
+
+      <metal:javascriptslot fill-slot="javascript_head_slot">
+      <script type="text/javascript" tal:define="navroot context/@@plone_portal_state/navigation_root_url"
+                  tal:attributes="src string:${navroot}/++resource++sdswas.events/js/event_view.js"/>
+      </metal:javascriptslot>
+
     <metal:main
             fill-slot="main"
             tal:define="is_upcoming view/is_upcoming;
@@ -18,7 +25,8 @@
             <metal:macro use-macro="context/events_utils/macros/breadcumb"/>
 
             <div class="modwin-main-content bg-color-white">
-               <metal:macro use-macro="context/generic_event_modal/macros/main-content"/>
+                <div tal:replace="structure context/generic_event_modal">
+
             </div><!-- Modal window content ends -->
 
      </metal:main>
