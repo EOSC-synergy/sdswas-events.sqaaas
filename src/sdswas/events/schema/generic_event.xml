@@ -40,6 +40,11 @@
       <required>False</required>
       <title>Website URL</title>
     </field>
+    <field name="register_url" type="zope.schema.URI">
+      <description/>
+      <required>False</required>
+      <title>Register website URL</title>
+    </field>
     <field name="document" type="plone.namedfile.field.NamedBlobFile">
       <description/>
       <required>False</required>

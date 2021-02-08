@@ -10,7 +10,9 @@
         tal:define = "images python:view.images();
                     numPresentations python:view.numPresentations();
                     hasPresentations python: numPresentations > 0;
-                    agenda context/document;">
+                    agenda context/document;
+                    register_url context/register_url;
+                    is_upcoming python:view.is_upcoming();">
 
     <!-- Modal window title -->
     <div tal:replace="structure context/modwin_page_title"/>
@@ -31,15 +33,16 @@
                     <p tal:content="structure context/full_description/raw" />
                 </div>
 
-                <div class="modwin-text-cta">
-                       <!-- Add to calendar button -->
+                <div class="modwin-text-cta" tal:condition="is_upcoming">
+                    <!-- Add to calendar button -->
                     <a id="add-calendar" class="modwin-cta-within-text" href="#" target="_blank">
                     <p>Add to calendar</p>
                     </a>
 
                     <!-- Register button -->
-                    <a class="modwin-cta-within-text" href="#" target="_self">
-                    <p>Register</p>
+                    <a tal:condition="nocall:register_url" class="modwin-cta-within-text"
+                        tal:attributes="href register_url" target="_blank">
+                        <p>Register</p>
                     </a>
                 </div>
             </div>
