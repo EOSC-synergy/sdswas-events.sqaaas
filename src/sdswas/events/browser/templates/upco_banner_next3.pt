@@ -1,0 +1,54 @@
+<!-- News upcoming events -->
+<section class="bg-color-seaweed-dark">
+<!-- News upcoming events wrap -->
+<div class="news-upcoev-wrap main-wrap main-padding main-padding-tb">
+    <!-- News upcoming events container -->
+    <div class="news-upcoev-container main-container">
+
+    <h2 class="news-upcoev-title">Upcoming events</h2>
+
+    <!-- News upcoming events cards container -->
+    <div class="news-upcoev-cards-container"
+        tal:define="items python:view.upcoming_events_subset(3)">
+
+        <!-- Upcoming event card -->
+        <tal:row tal:repeat="item items">
+
+            <div class="news-upcoev-card">
+
+                <!-- Upcoming event card content -->
+                <div class="news-upcoev-card-content">
+
+               <a class="home-upcoev-card-title" target="_self"
+                tal:attributes="href string:${context/portal_url}/news-events/events">
+                    <h3 tal:content="item/event_start_date"></h3>
+                </a>
+
+                <div class="news-upcoev-card-small-info">
+                   <p tal:content="item/location"></p>
+                </div>
+
+                <div class="news-upcoev-card-description">
+                    <p tal:content="item/description"></p>
+                </div>
+
+                <a class="home-upcoev-text-link" target="_self"
+                tal:attributes="href string:${context/portal_url}/news-events/events">
+                    <p>Read more</p>
+                </a>
+
+                </div><!-- Upcoming event card content ends -->
+
+            </div>
+
+        </tal:row><!-- Upcoming event card ends -->
+
+    </div><!-- News upcoming events cards container ends -->
+
+    <a class="news-upcoev-link" href="events.html">
+        <p>Explore all events</p>
+    </a>
+
+    </div><!-- Upcoming events carpet wrap ends -->
+</div>
+</section>

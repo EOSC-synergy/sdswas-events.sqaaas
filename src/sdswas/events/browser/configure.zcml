@@ -108,6 +108,16 @@
     permission="zope2.View"
   />
 
+      <browser:page
+    name="upco_banner_next3"
+    for="*"
+    layer="zope.interface.Interface"
+    class=".EventListView.EventListView"
+    template="templates/upco_banner_next3.pt"
+    permission="zope2.View"
+  />
+
+
   <!-- Resource directory -->
 
    <browser:resourceDirectory
