@@ -1,7 +1,3 @@
 <?xml version="1.0"?>
 <registry>
-  <records prefix="plone.bundles/sdswas-events"
-           interface="Products.CMFPlone.interfaces.IBundleRegistry"
-           remove="True">
-  </records>
 </registry>
