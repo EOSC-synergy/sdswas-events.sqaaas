@@ -32,8 +32,8 @@
                 </div>
 
                 <div class="modwin-text-cta">
-                    <!-- Add to calendar button -->
-                    <a class="modwin-cta-within-text" href="https://calendar.google.com/calendar/r/eventedit?text=New+BSC+Event&dates=20210512T230000Z/20210513T030000Z&details=For+details,+link+here:+https://www.bsc.es/&location=Barcelona+Supercomputing+Center+-+Centre+Nacional+de+Supercomputació" target="_blank">
+                       <!-- Add to calendar button -->
+                    <a id="add-calendar" class="modwin-cta-within-text" href="#" target="_blank">
                     <p>Add to calendar</p>
                     </a>
 
@@ -117,7 +117,8 @@
                 </div>  <!-- Sidepanel cta component ends -->
 
                 <!-- Sidepanel share component -->
-                <div class="sidepanel-share-component" metal:use-macro="context/events_utils/macros/share-buttons"/>
+                <div class="sidepanel-share-component"
+                    metal:use-macro="context/events_utils/macros/share-buttons"/>
                 <!-- Sidepanel share component ends -->
 
             </div>

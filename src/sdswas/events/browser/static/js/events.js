@@ -36,16 +36,49 @@
                     ModalWindow.gobackLink.text($(trigger).attr("data-gobacklink"));
                     ModalWindow.title.text($(trigger).attr("data-title"));
 
+
                     var url = $(trigger).attr("data-url");
                     /**Fetch the rest of the information: contents of the body */
                     $(".modwin-main-content").load(url, function(responseTxt, statusTxt, xhr) {
                         if (statusTxt = "success") {
                             Events.openModal();
                             $(document).ready(function() {
+                                if ($(trigger).attr("data-has-calendar")) Events.setAddCalendarLink(trigger);
                                 EventPresentations.init();
                             });
                         }
                     });
+                },
+
+                setAddCalendarLink: function(trigger) {
+
+                    try {
+                        var is_upcoming = $(trigger).attr("data-is-upcoming");
+                        var event_page_url = $(trigger).attr("data-page-url");
+                        var event_title = $(trigger).attr("data-title");
+                        var event_start_date = $(trigger).attr("data-start-date")+"TZ";
+                        var event_end_date = $(trigger).attr("data-end-date")+"TZ";
+
+                        if (!event_page_url) event_page_url = "";
+                        else {
+                            event_page_url = "For+details,+visit:"+event_page_url;
+                        }
+
+                        if (!event_title) event_title = "";
+                        if (!event_start_date) event_start_date = "";
+                        if (!event_end_date) event_start_date = "";
+
+                        var url = "https://calendar.google.com/calendar/r/eventedit?text="+event_title
+                                    +"&dates="+event_start_date +"/"+event_end_date
+                                    +"&details="+event_page_url
+                                    +"&location=Barcelona+Supercomputing+Center+-+Centre+Nacional+de+Supercomputació";
+
+                        $("#add-calendar").attr("href", url);
+                     }
+                     catch (Exception) {
+                        $("#add-calendar").hide();
+                     }
+
                 },
 
                 openModal: function() {

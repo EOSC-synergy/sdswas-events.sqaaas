@@ -73,6 +73,8 @@ class EventListView(DefaultView):
             results.append({
                 'title': resObj.Title(),
                 'event_start_date': resObj.start.strftime('%-d %B %Y'),
+                'event_start_date_gcalendar': resObj.start.strftime('%Y%m%d'),
+                'event_end_date_gcalendar': resObj.end.strftime('%Y%m%d'),
                 'absolute_url': resObj.absolute_url(),
                 'location': resObj.location,
                 'lead_image_url': resObj.absolute_url(),
@@ -104,6 +106,8 @@ class EventListView(DefaultView):
             resObj = event.getObject()
             results.append({
                 'event_start_date': resObj.start.strftime('%-d %B %Y'),
+                'event_start_date_gcalendar': resObj.start.strftime('%Y%m%d'),
+                'event_end_date_gcalendar': resObj.end.strftime('%Y%m%d'),
                 'absolute_url': resObj.absolute_url(),
                 'location': resObj.location,
                 'description': resObj.description,
