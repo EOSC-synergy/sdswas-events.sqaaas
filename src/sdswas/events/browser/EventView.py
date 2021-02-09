@@ -2,9 +2,19 @@ from plone.dexterity.browser.view import DefaultView
 import datetime as dt
 import re
 from pytz import UTC as utc
-
+import locale
 
 class EventView(DefaultView):
+
+    def update(self):
+
+        locale.setlocale(locale.LC_TIME,"en_US.UTF-8")
+
+        ## Disable all portlets
+        super(DefaultView, self).update()
+        self.request.set('disable_plone.rightcolumn',1)
+        self.request.set('disable_plone.leftcolumn',1)
+
 
     def language(self):
         ##Display value of the field language
@@ -74,13 +84,6 @@ class EventView(DefaultView):
         if match:
             url = "https://www.youtube.com/embed/"+match.group('id')
         return url
-
-    def update(self):
-        ## Disable all portlets
-        super(DefaultView, self).update()
-        self.request.set('disable_plone.rightcolumn',1)
-        self.request.set('disable_plone.leftcolumn',1)
-
 
     def images(self):
 

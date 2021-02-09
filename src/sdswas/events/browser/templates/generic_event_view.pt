@@ -20,14 +20,19 @@
                         text_past string: Resources;
                         page_title python:text_upcoming if is_upcoming else text_past">
 
-
             <metal:macro use-macro="context/events_utils/macros/page-title">
-            <metal:macro use-macro="context/events_utils/macros/breadcumb"/>
 
-            <div class="modwin-main-content bg-color-white">
-                <div tal:replace="structure context/generic_event_modal">
+            <!-- Wrapper to fix the max width -->
+            <div class="main-wrap">
 
-            </div><!-- Modal window content ends -->
+                  <metal:macro use-macro="context/events_utils/macros/breadcumb"/>
+
+                  <!-- Modal window main content ends -->
+                  <div class="modwin-main-content bg-color-white">
+                        <div tal:replace="structure context/generic_event_modal">
+                  </div><!-- Modal window maincontent ends -->
+
+            </div>  <!-- Wrapper to fix the max width ends-->
 
      </metal:main>
 </body>
