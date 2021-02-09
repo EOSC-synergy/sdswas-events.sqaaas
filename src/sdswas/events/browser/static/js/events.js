@@ -5,8 +5,7 @@
         baseUrl: '++theme++sdswas/',
         optimize: 'none',
         paths: {
-            'main': '++theme++sdswas/js/main',
-            'event_presentations': '++resource++sdswas.events/js/event_presentations.js',
+            'main': 'js/main',
         }
     };
 
@@ -43,7 +42,9 @@
                         if (statusTxt = "success") {
                             Events.openModal();
                             $(document).ready(function() {
-                                if ($(trigger).attr("data-has-calendar")) Events.setAddCalendarLink(trigger);
+                                if ($(trigger).attr("data-has-calendar")=="True")
+                                    Events.setAddCalendarLink(trigger);
+                                else
                                 EventPresentations.init();
                             });
                         }
