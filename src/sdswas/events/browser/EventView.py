@@ -17,7 +17,18 @@ class EventView(DefaultView):
         return self.context.start.strftime('%-d %B %Y')
 
     def time(self):
-        ##Display value of the field Time (from event behaviour)
+
+        if (self.context.whole_day): return 'Whole day'
+
+        if (not(self.context.end) and not(self.context.start)): return '-'
+
+        if (self.context.open_end):
+            return self.context.start.strftime('%H:%M') +" GMT - open"
+
+        if (self.context.end):
+            diff = self.context.end - self.context.start
+            if (diff.days >= 1): return '-'
+
         return self.context.start.strftime('%H:%M') + " - " + self.context.end.strftime('%H:%M') + " GMT"
 
     def duration(self):
@@ -25,10 +36,7 @@ class EventView(DefaultView):
         if (not(self.context.start) or not(self.context.end)): return '-'
 
         if (self.context.open_end):
-            if (self.context.whole_day):
-                return 'Whole day'
-            else:
-                return '-'
+            return 'Open end'
 
         diff = self.context.end - self.context.start
         days = diff.days
@@ -38,18 +46,14 @@ class EventView(DefaultView):
             result = str(days) + ' day'
             if days > 1: result += 's'
         else:
-            if (self.context.whole_day):
-                result = 'Whole day'
+            hours, minutes = divmod(diff.seconds,60*60)
 
-            else:
-                hours, minutes = divmod(diff.seconds,60*60)
+            result = ''
+            if hours > 0:
+                result = str(hours) + ' h '
 
-                result = '-'
-                if hours > 0:
-                    result = str(hours) + ' h '
-
-                if minutes > 0:
-                    result = str(int(minutes/60)) + ' m'
+            if minutes > 0:
+                result += str(int(minutes/60)) + ' m'
 
         return result
 
