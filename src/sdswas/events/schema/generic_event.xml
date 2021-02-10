@@ -12,7 +12,7 @@
     </field>
     <field name="place" type="zope.schema.TextLine">
       <description/>
-      <required>True</required>
+      <required>False</required>
       <title>Place</title>
     </field>
     <field name="presented_by" type="zope.schema.TextLine">
