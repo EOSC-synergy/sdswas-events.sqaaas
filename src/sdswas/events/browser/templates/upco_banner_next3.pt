@@ -5,7 +5,9 @@
     <!-- News upcoming events container -->
     <div class="news-upcoev-container main-container">
 
-    <h2 class="news-upcoev-title">Upcoming events</h2>
+    <div class="news-upcoev-title">
+        <h2>Upcoming events</h2>
+    </div>
 
     <!-- News upcoming events cards container -->
     <div class="news-upcoev-cards-container"
@@ -19,7 +21,7 @@
                 <!-- Upcoming event card content -->
                 <div class="news-upcoev-card-content">
 
-               <a class="home-upcoev-card-title" target="_self"
+               <a class="news-upcoev-card-title" target="_self"
                 tal:attributes="href string:${context/portal_url}/news-events/events">
                     <h3 tal:content="item/event_start_date"></h3>
                 </a>
@@ -32,7 +34,7 @@
                     <p tal:content="item/description"></p>
                 </div>
 
-                <a class="home-upcoev-text-link" target="_self"
+                <a class="news-upcoev-text-link" target="_self"
                 tal:attributes="href string:${context/portal_url}/news-events/events">
                     <p>Read more</p>
                 </a>
