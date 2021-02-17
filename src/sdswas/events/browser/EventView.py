@@ -92,7 +92,6 @@ class EventView(DefaultView):
 
         results = []
         for brain in brains:
-            print(brain)
             resObj = brain.getObject()
             results.append({
              'title': resObj.Title(),

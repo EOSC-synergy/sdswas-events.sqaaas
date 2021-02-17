@@ -117,6 +117,14 @@
     permission="zope2.View"
   />
 
+      <browser:page
+    name="images_slider"
+    for="*"
+    layer="zope.interface.Interface"
+    class=".EventView.EventView"
+    template="templates/images_slider.pt"
+    permission="zope2.View"
+  />
 
   <!-- Resource directory -->
 

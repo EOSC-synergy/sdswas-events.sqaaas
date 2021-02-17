@@ -131,9 +131,10 @@
         </div>
     </section>
 
+
     <!-- Modal window image slider -->
-    <div tal:replace="structure context/images_slider">
-    <!-- News slider ends -->
+    <metal:macro  tal:condition="nocall:images" use-macro="context/images_slider/macros/slider">
+    <!-- Modal window image slider ends -->
 
     <section id="presentations"
             tal:condition="python: numPresentations > 1"
