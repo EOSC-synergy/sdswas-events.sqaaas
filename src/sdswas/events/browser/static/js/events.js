@@ -45,12 +45,25 @@
                                 if ($(trigger).attr("data-has-calendar")=="True")
                                     Events.setAddCalendarLink(trigger);
                                 else
-                                EventPresentations.init();
+                                    EventPresentations.init();
+
+                                Events.initImages();
                             });
                         }
                     });
                 },
 
+                initImages: function(){
+                    // Images slider
+                    Slider.init(
+                        $("#slider-items"),
+                        0,
+                        $(".slider-item-wrap").toArray(),
+                        $(".slider-indicators-container"),
+                        $("#previous-btn"),
+                        $("#next-btn")
+                    );
+                },
                 setAddCalendarLink: function(trigger) {
 
                     try {

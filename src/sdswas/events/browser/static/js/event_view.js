@@ -23,6 +23,16 @@
         (function($) {
             $(document).ready(function() {
                 EventPresentations.init();
+
+                // Modal window slider
+                Slider.init(
+                    $("#slider-items"),
+                    0,
+                    $(".slider-item-wrap").toArray(),
+                    $(".slider-indicators-container"),
+                    $("#previous-btn"),
+                    $("#next-btn")
+                );
             });
         })(jQuery);
     });

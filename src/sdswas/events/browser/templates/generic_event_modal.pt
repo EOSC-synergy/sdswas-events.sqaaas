@@ -132,25 +132,15 @@
     </section>
 
     <!-- Modal window image slider -->
-    <section id="images" class="modwin-img-slider-section"
-            tal:condition="nocall:images">
-        <div class="modwin-cards-wrap modwin-padding">
-            <div class="modwin-cards-container">
-
-                <div class="modwin-cards-header">
-                    <h3>Images</h3>
-                </div>
-            </div>
-        </div>
-
-    </section><!-- News slider ends -->
+    <div tal:replace="structure context/images_slider">
+    <!-- News slider ends -->
 
     <section id="presentations"
             tal:condition="python: numPresentations > 1"
             class="modwin-cards-section">
 
         <div class="modwin-cards-wrap modwin-padding">
-            <div class="modwin-cards-container">
+            <div class="modwin-cards-container card-with-embedded-doc">
 
                 <div class="modwin-cards-header">
                     <h2>Presentations</h2>
@@ -181,5 +171,6 @@
             </div>
         </div>
     </section>
+
   </metal:row>
 </html>

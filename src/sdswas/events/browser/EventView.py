@@ -3,6 +3,7 @@ import datetime as dt
 import re
 from pytz import UTC as utc
 import locale
+from plone import api
 
 class EventView(DefaultView):
 
@@ -88,8 +89,10 @@ class EventView(DefaultView):
     def images(self):
 
         brains = self.context.getFolderContents(contentFilter={"portal_type" : "Image"})
+
         results = []
         for brain in brains:
+            print(brain)
             resObj = brain.getObject()
             results.append({
              'title': resObj.Title(),

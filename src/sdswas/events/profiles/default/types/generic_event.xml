@@ -14,6 +14,7 @@
  <property name="allowed_content_types">
     <element value="Image"/>
     <element value="presentation"/>
+    <element value="Folder"/>
  </property>
  <property name="allow_discussion">False</property>
  <property name="default_view">generic_event_view</property>
