@@ -59,7 +59,7 @@
                     text python:text_upcoming if is_upcoming else text_past;
                     url python:url_upcoming if is_upcoming else url_past;">
     <div class="modwin-title-wrap bg-color-white modwin-padding-lr modwin-padding-t">
-      <a class="modwin-back-link modwin-main-content" tal:attributes="href url">
+      <a class="modwin-back-link" tal:attributes="href url">
         <p class="breadcrum-text" tal:content="text"></p>
       </a>
     </div><!-- Resource breadcrum btn ends -->
