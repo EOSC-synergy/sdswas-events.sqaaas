@@ -12,8 +12,7 @@
                     hasPresentations python: numPresentations > 0;
                     agenda context/document;
                     register_url context/register_url;
-                    is_upcoming python:view.is_upcoming();
-                    share_url string:${context/absolute_url}">
+                    is_upcoming python:view.is_upcoming();">
 
     <!-- Modal window title -->
     <div tal:replace="structure context/modwin_page_title"/>

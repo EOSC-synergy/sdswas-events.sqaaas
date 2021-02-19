@@ -5,8 +5,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="sdswas.events">
 
-<metal:row define-macro="main-content" i18n:domain="sdswas.events"
-    tal:define ="share_url string:${context/absolute_url}">
+<metal:row define-macro="main-content" i18n:domain="sdswas.events">
 
     <!-- Modal window title -->
     <div tal:replace="structure context/modwin_page_title"/>
