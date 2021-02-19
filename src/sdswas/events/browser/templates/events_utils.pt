@@ -26,28 +26,6 @@
     </a>
 </metal:row>
 
-<metal:row define-macro="share-buttons" i18n:domain="sdswas.events">
-
-    <h4>Share</h4>
-
-    <div class="share-btns">
-
-        <a href="#" class="share-btn" title="Share on Facebook">
-        <i class="icon-facebook"></i>
-        </a>
-
-        <a href="#" class="share-btn" title="Share on Twitter">
-        <i class="icon-twitter"></i>
-        </a>
-
-        <a href="#" class="share-btn" title="Share on LinkedIn">
-        <i class="icon-linkedin"></i>
-        </a>
-
-    </div>
-
-</metal:row>
-
 <metal:row define-macro="breadcumb" i18n:domain="sdswas.events">
 
   <!--Resource breadcrum btn -->

@@ -12,7 +12,8 @@
                     hasPresentations python: numPresentations > 0;
                     agenda context/document;
                     register_url context/register_url;
-                    is_upcoming python:view.is_upcoming();">
+                    is_upcoming python:view.is_upcoming();
+                    share_url string:${context/absolute_url}">
 
     <!-- Modal window title -->
     <div tal:replace="structure context/modwin_page_title"/>
@@ -120,9 +121,8 @@
                 </div>  <!-- Sidepanel cta component ends -->
 
                 <!-- Sidepanel share component -->
-                <div class="sidepanel-share-component"
-                    metal:use-macro="context/events_utils/macros/share-buttons"/>
-                <!-- Sidepanel share component ends -->
+                <tal metal:use-macro="context/share_social_networks/macros/sidepanel"/>
+                <!-- Sidepanel share component ends-->
 
             </div>
             <!-- Modal window sidepanel ends -->

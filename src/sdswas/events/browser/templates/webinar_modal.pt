@@ -5,7 +5,8 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="sdswas.events">
 
-<metal:row define-macro="main-content" i18n:domain="sdswas.events">
+<metal:row define-macro="main-content" i18n:domain="sdswas.events"
+    tal:define ="share_url string:${context/absolute_url}">
 
     <!-- Modal window title -->
     <div tal:replace="structure context/modwin_page_title"/>
@@ -92,8 +93,8 @@
                     </div><!-- Sidepanel info card ends -->
 
                     <!-- Sidepanel share component -->
-                    <div class="sidepanel-share-component" metal:use-macro="context/events_utils/macros/share-buttons"/>
-                    <!-- Sidepanel share component ends -->
+                    <tal metal:use-macro="context/share_social_networks/macros/sidepanel"/>
+                    <!-- Sidepanel share component ends-->
 
                 </div>
                 <!-- Modal window sidepanel ends -->
