@@ -111,9 +111,17 @@
 
                 <!-- Past events cards container -->
 
-                <div class="pastev-cards-container"
+                <!--<div class="pastev-cards-container"
                     tal:define="items python:view.past_events_all();">
-                    <tal:row tal:repeat="item items">
+
+                    <tal:row tal:repeat="item items">-->
+                <div class="pastev-cards-container"
+                        tal:define="Batch python:modules['Products.CMFPlone'].Batch;
+                                    results python:view.past_events_all();
+                                     b_start python:request.get('b_start', 0);
+                                    batch python:Batch(results, 4, int(b_start));">
+
+                    <tal:row tal:repeat="item batch">
 
                         <div class="pastev-card"
                             tal:define="small_info python:item['event_start_date'];
@@ -131,6 +139,9 @@
                         </div><!-- Past events card  ends -->
 
                     </tal:row>
+
+                    <!-- Navigation -->
+                    <div metal:use-macro="here/batch_macros/macros/navigation" />
 
                     </div><!-- Past events cards container -->
 
