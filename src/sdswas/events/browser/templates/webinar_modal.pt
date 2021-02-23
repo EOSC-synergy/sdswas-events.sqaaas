@@ -92,8 +92,9 @@
                     </div><!-- Sidepanel info card ends -->
 
                     <!-- Sidepanel share component -->
-                    <tal metal:use-macro="context/share_social_networks/macros/sidepanel"/>
-                    <!-- Sidepanel share component ends-->
+                    <div class="sidepanel-share-component">
+                        <tal metal:use-macro="context/share_social_networks/macros/sidepanel"/>
+                    </div><!-- Sidepanel share component ends-->
 
                 </div>
                 <!-- Modal window sidepanel ends -->

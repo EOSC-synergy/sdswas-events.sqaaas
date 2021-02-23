@@ -119,9 +119,10 @@
                             metal:use-macro="context/events_utils/macros/filedownload"/>
                 </div>  <!-- Sidepanel cta component ends -->
 
-                <!-- Sidepanel share component -->
-                <tal metal:use-macro="context/share_social_networks/macros/sidepanel"/>
-                <!-- Sidepanel share component ends-->
+                 <!-- Sidepanel share component -->
+                <div class="sidepanel-share-component">
+                    <tal metal:use-macro="context/share_social_networks/macros/sidepanel"/>
+                </div><!-- Sidepanel share component ends-->
 
             </div>
             <!-- Modal window sidepanel ends -->
