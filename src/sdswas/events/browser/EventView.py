@@ -3,7 +3,7 @@ import datetime as dt
 import re
 from pytz import UTC as utc
 import locale
-from plone import api
+from plone.api import portal
 
 class EventView(DefaultView):
 
@@ -88,7 +88,9 @@ class EventView(DefaultView):
 
     def images(self):
 
-        brains = self.context.getFolderContents(contentFilter={"portal_type" : "Image"})
+        if not(self.context.has_key("pictures")): return None
+
+        brains = self.context["pictures"].getFolderContents(contentFilter={"portal_type" : "Image"})
 
         results = []
         for brain in brains:
@@ -97,22 +99,23 @@ class EventView(DefaultView):
              'title': resObj.Title(),
              'absolute_url': resObj.absolute_url()
             })
+
         return results
 
     def is_upcoming(self):
         return self.context.start >= utc.localize(dt.datetime.now())
 
     def presentations(self):
-        brains = self.context.portal_catalog(
-            path = {
-                'query': '/'.join(self.context.getPhysicalPath()),
-                'depth': 1},
-            portal_type=["presentation"],
-            review_state="published",
-            sort_on=["getPresentationDate"], ###second criteria should be "sortable_title"
-            sort_order="descending")
 
-        #brains = self.context.getFolderContents(contentFilter={"portal_type" : "presentation"})
+        if not(self.context.has_key("presentations")): return None
+
+        brains = self.context["presentations"].getFolderContents(
+            contentFilter={
+                "portal_type" : "presentation",
+                "review_state": "published",
+                "sort_on": ["getPresentationDate"], ###second criteria should be "sortable_title"
+                "sort_order": "descending"})
+
         results = []
         for brain in brains:
             resObj = brain.getObject()
@@ -128,10 +131,11 @@ class EventView(DefaultView):
 
     def numPresentations(self):
 
-        brains = self.context.portal_catalog(
-            path = {
-                'query': '/'.join(self.context.getPhysicalPath()),
-                'depth': 1},
-            portal_type=["presentation"],
-            review_state="published")
+        if not(self.context.has_key("presentations")): return 0
+
+        brains = self.context["presentations"].getFolderContents(
+            contentFilter={
+                "portal_type" : "presentation",
+                "review_state": "published"})
+
         return len(brains)
