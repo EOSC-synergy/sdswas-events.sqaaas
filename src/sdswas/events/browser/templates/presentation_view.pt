@@ -12,7 +12,10 @@
         tal:define="page_title string: Event presentation;
                     is_upcoming False">
 
-        <metal:macro use-macro="context/events_utils/macros/page-title"/>
+
+        <metal:macro use-macro="context/banner_title_macro/macros/master"
+                 tal:define="title string:Event presentation"/>
+
         <metal:macro use-macro="context/events_utils/macros/breadcumb"/>
 
         <section class="modwin-title-section">
@@ -29,17 +32,14 @@
             </div>
         </section>
 
+        <!-- Document embed section -->
         <section class="modwin-pdf-section">
             <div class="main-wrap main-padding">
-                <div class="main-container">
-                <div tal:condition="context/document"
-                    class="col-md-16 embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item"
-                        tal:attributes="src string:${context/absolute_url}/@@images/document;
-                                        allowfullscreen True"/>
-                </div>
+                <metal:macro use-macro="context/document_embed/macros/master"
+                        tal:define="field_name string:document;
+                                file context/document"/>
             </div>
-        </section>
+        </section><!-- Document embed section ends-->
 
     </metal:main>
 </body>
