@@ -17,10 +17,11 @@
             fill-slot="main"
             tal:define="is_upcoming view/is_upcoming;
                         text_upcoming string: Upcoming Events;
-                        text_past string: Resources;
-                        page_title python:text_upcoming if is_upcoming else text_past">
+                        text_past string: Resources;">
 
-            <metal:macro use-macro="context/events_utils/macros/page-title">
+
+            <metal:macro use-macro="context/banner_title_macro/macros/master"
+                        tal:define="title python:text_upcoming if is_upcoming else text_past"/>
 
             <!-- Wrapper to fix the max width -->
             <div class="main-wrap">
