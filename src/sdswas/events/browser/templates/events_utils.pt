@@ -120,26 +120,4 @@
 
 </metal:row>
 
-<metal:row define-macro="subscribe" i18n:domain="sdswas.events">
-
-    <!--Subscribe-->
-    <section class="subscribe-widget bg-color-white">
-      <div class="blue-ribbon"></div>
-      <div class="main-wrap main-padding">
-        <div class="subscribe-widget-container main-container">
-
-          <p class="subscribe-description">
-            Do you want to know more? Stay connected and subscribe to the SDS-WAS newsletter and be informed about
-            the next events, latest news and resources.
-          </p>
-
-          <a class="subscribe-cta" onclick=" window.location.href='${context/portal_url}/contact';" target="_self">
-            <p>Subscribe</p>
-          </a>
-        </div>
-      </div><!-- Subscribe widget container ends -->
-    </section>    <!--Subscribe end-->
-
-</metal:row>
-
 </html>
