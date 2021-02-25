@@ -4,17 +4,6 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
  >
-<metal:row define-macro="page-title" i18n:domain="sdswas.events">
-    <section class="banner-top bg-color-white">
-        <div class="banner-top-wrap main-wrap main-padding">
-            <div class="banner-top-container main-container">
-                <div class="page-title">
-                    <h1 tal:content="page_title"/>
-                </div>
-            </div>
-        </div>
-    </section>
-</metal:row>
 
 <metal:row define-macro="filedownload" i18n:domain="sdswas.events">
     <h2 class="modwin-cta-comp-title" tal:content="title"></h2>
