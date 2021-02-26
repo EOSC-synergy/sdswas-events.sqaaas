@@ -7,14 +7,14 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="sdswas.events">
 <body>
-    <metal:main
-        fill-slot="main"
-        tal:define="page_title string: Event presentation;
-                    is_upcoming False">
+<metal:main fill-slot="main"
+    tal:define="page_title string: Event presentation;
+                is_upcoming False">
 
+    <metal:macro use-macro="context/banner_title_macro/macros/master"
+                tal:define="title string:Event presentation"/>
 
-        <metal:macro use-macro="context/banner_title_macro/macros/master"
-                 tal:define="title string:Event presentation"/>
+    <div class="main-wrap">
 
         <metal:macro use-macro="context/events_utils/macros/breadcumb"/>
 
@@ -41,6 +41,8 @@
             </div>
         </section><!-- Document embed section ends-->
 
-    </metal:main>
+    </div>
+
+</metal:main>
 </body>
 </html>
