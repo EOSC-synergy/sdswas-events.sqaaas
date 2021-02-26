@@ -57,6 +57,7 @@
                     // Images slider
                     Slider.init(
                         $("#slider-items"),
+                        $("#mobile-swipe-area"),
                         0,
                         $(".slider-item-wrap").toArray(),
                         $(".slider-indicators-container"),
