@@ -7,7 +7,7 @@
 <metal:row define-macro="slider" i18n:domain="sdswas.events">
 
     <!-- Modal window image slider -->
-    <section class="modwin-img-slider-section">
+    <section id="images" lass="modwin-img-slider-section">
 
         <div class="modwin-img-slider-wrap modwin-padding">
             <div class="modwin-img-slider-container">
