@@ -44,9 +44,8 @@
                             $(document).ready(function() {
                                 if ($(trigger).attr("data-has-calendar")=="True")
                                     Events.setAddCalendarLink(trigger);
-                                else
-                                    EventPresentations.init();
 
+                                EventPresentations.init();
                                 Events.initImages();
                             });
                         }
@@ -55,15 +54,19 @@
 
                 initImages: function(){
                     // Images slider
-                    Slider.init(
-                        $("#slider-items"),
-                        $("#mobile-swipe-area"),
-                        0,
-                        $(".slider-item-wrap").toArray(),
-                        $(".slider-indicators-container"),
-                        $("#previous-btn"),
-                        $("#next-btn")
-                    );
+                    var imagesslider = $("#slider-items");
+
+                    if (imagesslider.length){
+                        Slider.init(
+                            imagesslider,
+                            $("#mobile-swipe-area"),
+                            0,
+                            $(".slider-item-wrap").toArray(),
+                            $(".slider-indicators-container"),
+                            $("#previous-btn"),
+                            $("#next-btn")
+                        );
+                    }
                 },
                 setAddCalendarLink: function(trigger) {
 
