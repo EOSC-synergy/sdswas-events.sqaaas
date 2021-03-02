@@ -21,7 +21,7 @@
         <section class="modwin-title-section">
             <div class="modwin-title-wrap modwin-padding">
                 <div class="modwin-title-container">
-                    <div class="modwin-title">
+                    <div class="modwin-title full-width-title">
                         <h2 tal:content="context/title"/>
                     </div>
                 </div>
