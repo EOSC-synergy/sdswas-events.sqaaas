@@ -11,8 +11,21 @@
     <div tal:replace="structure context/modwin_page_title"/>
     <!-- Modal window title ends-->
 
+    <!-- Modal window image -->
+    <section class="modwin-image-section"  tal:condition="context/image">
+      <div class="modwin-image-wrap modwin-padding">
+        <div class="modwin-image-container">
+          <div class="modwin-image ">
+            <!-- Modal window hero image -->
+            <div tal:replace="structure context/modwin_hero_image"/>
+            <!-- Modal window hero image ends-->
+        </div>
+        </div>
+      </div>
+    </section><!-- Modal window image ends -->
+
     <!-- Modal window video -->
-    <section class="modwin-image-section">
+    <section class="modwin-image-section" tal:condition="context/embedded_url">
         <div class="modwin-image-wrap modwin-padding">
             <div class="modwin-image-container">
                 <div tal:condition="context/embedded_url"
