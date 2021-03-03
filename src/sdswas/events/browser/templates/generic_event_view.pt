@@ -8,33 +8,34 @@
 <body>
 
 
-      <metal:javascriptslot fill-slot="javascript_head_slot">
+<metal:javascriptslot fill-slot="javascript_head_slot">
+
       <script type="text/javascript" tal:define="navroot context/@@plone_portal_state/navigation_root_url"
-                  tal:attributes="src string:${navroot}/++resource++sdswas.events/js/event_view.js"/>
-      </metal:javascriptslot>
+              tal:attributes="src string:${navroot}/++resource++sdswas.events/js/event_view.js"/>
 
-    <metal:main
-            fill-slot="main"
-            tal:define="is_upcoming view/is_upcoming;
-                        text_upcoming string: Upcoming Events;
-                        text_past string: Resources;">
+</metal:javascriptslot>
+
+<metal:main fill-slot="main"
+      tal:define="is_upcoming view/is_upcoming;
+                  text_upcoming string: Upcoming Events;
+                  text_past string: Resources;">
 
 
-            <metal:macro use-macro="context/banner_title_macro/macros/master"
-                        tal:define="title python:text_upcoming if is_upcoming else text_past"/>
+      <metal:macro use-macro="context/banner_title_macro/macros/master"
+                  tal:define="title python:text_upcoming if is_upcoming else text_past"/>
 
-            <!-- Wrapper to fix the max width -->
-            <div class="main-wrap">
+      <!-- Wrapper to fix the max width -->
+      <div class="main-wrap">
 
-                  <metal:macro use-macro="context/events_utils/macros/breadcumb"/>
+            <metal:macro use-macro="context/events_utils/macros/breadcumb"/>
 
-                  <!-- Modal window main content ends -->
-                  <div class="modwin-main-content bg-color-white">
-                        <div tal:replace="structure context/generic_event_modal">
-                  </div><!-- Modal window maincontent ends -->
+            <!-- Modal window main content ends -->
+            <div class="modwin-main-content bg-color-white">
+                  <div tal:replace="structure context/generic_event_modal">
+            </div><!-- Modal window maincontent ends -->
 
-            </div>  <!-- Wrapper to fix the max width ends-->
+      </div>  <!-- Wrapper to fix the max width ends-->
 
-     </metal:main>
+</metal:main>
 </body>
 </html>
