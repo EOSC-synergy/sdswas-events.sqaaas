@@ -24,10 +24,9 @@
             $(document).ready(function() {
                 EventPresentations.init();
 
-                // Modal window slider
+                // Images slider
                 Slider.init(
                     $("#slider-items"),
-                    $("#mobile-swipe-area"),
                     0,
                     $(".slider-item-wrap").toArray(),
                     $(".slider-indicators-container"),

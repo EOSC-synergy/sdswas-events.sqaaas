@@ -58,8 +58,7 @@
 
                     if (imagesslider.length){
                         Slider.init(
-                            imagesslider,
-                            $("#mobile-swipe-area"),
+                            $("#slider-items"),
                             0,
                             $(".slider-item-wrap").toArray(),
                             $(".slider-indicators-container"),
