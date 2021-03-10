@@ -4,8 +4,9 @@
     var requirejsOptions = {
         baseUrl: '++theme++sdswas/',
         optimize: 'none',
+        urlArgs:  "bust=v1",
         paths: {
-            'main': 'js/main',
+            'main': 'js/main'
         }
     };
 
@@ -41,32 +42,15 @@
                     $(".modwin-main-content").load(url, function(responseTxt, statusTxt, xhr) {
                         if (statusTxt = "success") {
                             Events.openModal();
-                            $(document).ready(function() {
-                                if ($(trigger).attr("data-has-calendar")=="True")
-                                    Events.setAddCalendarLink(trigger);
+                            if ($(trigger).attr("data-has-calendar")=="True")
+                                Events.setAddCalendarLink(trigger);
 
-                                EventPresentations.init();
-                                Events.initImages();
-                            });
+                            EventPresentations.init();
+                            ImagesSlider.init();
                         }
                     });
                 },
 
-                initImages: function(){
-                    // Images slider
-                    var imagesslider = $("#slider-items");
-
-                    if (imagesslider.length){
-                        Slider.init(
-                            $("#slider-items"),
-                            0,
-                            $(".slider-item-wrap").toArray(),
-                            $(".slider-indicators-container"),
-                            $("#previous-btn"),
-                            $("#next-btn")
-                        );
-                    }
-                },
                 setAddCalendarLink: function(trigger) {
 
                     try {
