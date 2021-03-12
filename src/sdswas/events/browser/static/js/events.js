@@ -6,7 +6,8 @@
         optimize: 'none',
         urlArgs:  "bust=v1",
         paths: {
-            'main': 'js/main'
+            'main': 'js/main',
+            'event_presentations': 'js/event_presentations',
         }
     };
 
@@ -18,7 +19,7 @@
     }
 
     requirejs([
-        'main',
+        'main', 'event_presentations'
     ], function($, _bootstrap) {
         (function($) {
             var Events = {
