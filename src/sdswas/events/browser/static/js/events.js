@@ -6,7 +6,7 @@
         urlArgs:  "bust=v1",
         paths: {
             'main': '++theme++sdswas/js/main',
-            'event_presentations': '++resources++sdswas.events/js/event_presentations',
+            'event_presentations': '++resource++sdswas.events/js/event_presentations',
         }
     };
 
