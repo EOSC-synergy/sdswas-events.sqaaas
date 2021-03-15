@@ -2,12 +2,11 @@
     'use strict';
 
     var requirejsOptions = {
-        baseUrl: '++theme++sdswas/',
         optimize: 'none',
         urlArgs:  "bust=v1",
         paths: {
-            'main': 'js/main',
-            'event_presentations': 'js/event_presentations',
+            'main': '++theme++sdswas/js/main',
+            'event_presentations': '++resources++sdswas.events/js/event_presentations',
         }
     };
 
