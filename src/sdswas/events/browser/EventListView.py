@@ -2,7 +2,6 @@ from plone.dexterity.browser.view import DefaultView
 from plone import api
 import datetime as dt
 from Products.AdvancedQuery import  Eq, Le, In, Ge, MatchGlob
-#from Products.CMFPlone.browser.search import Search
 
 class EventListView(DefaultView):
 
@@ -70,11 +69,11 @@ class EventListView(DefaultView):
 
         now = dt.date.today()
         path = "/".join(self.context.getPhysicalPath()) # Limit the search to the current folder and its children
-        clausepath = AdvancedQuery.Eq("path", path)
-        clausetype = AdvancedQuery.Eq("portal_type", "generic_event") | AdvancedQuery.Eq("portal_type", "webinar")
-        starting_or_to_be_started = AdvancedQuery.Ge("start", now) #start now or in the future
-        started = ~ AdvancedQuery.Ge("start", now)
-        not_finished = ~ AdvancedQuery.Le("end", now) # in progress
+        clausepath = Eq("path", path)
+        clausetype = Eq("portal_type", "generic_event") | Eq("portal_type", "webinar")
+        starting_or_to_be_started = Ge("start", now) #start now or in the future
+        started = ~ Ge("start", now)
+        not_finished = ~ Le("end", now) # in progress
         query = clausepath & clausetype & (starting_or_to_be_started | started & not_finished)
 
         # The following result variable contains iterable of CatalogBrain objects
