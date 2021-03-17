@@ -74,7 +74,7 @@ class EventListView(DefaultView):
         starting_or_to_be_started = Ge("start", now) #start now or in the future
         started = ~ Ge("start", now)
         not_finished = ~ Le("end", now) # in progress
-        query = clausepath & clausetype & (starting_or_to_be_started | started & not_finished)
+        query = clausepath & clausetype & (starting_or_to_be_started | started & not_finished) & Eq("review_state", "published")
 
         # The following result variable contains iterable of CatalogBrain objects
         events = self.context.portal_catalog.evalAdvancedQuery(query, (('start','asc'),))
