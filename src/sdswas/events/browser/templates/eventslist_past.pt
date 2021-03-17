@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+
+<metal:row define-macro="master" i18n:domain="sdswas.events"
+            tal:define="searchinput request/searchinput;
+                        items python:view.past_events_all(searchinput)">
+
+<tal:row tal:repeat="item items">
+    <!-- Past events card -->
+    <div class="pastev-card"
+        tal:define="small_info python:item['event_start_date'];
+                    url python:item['absolute_url'];
+                    title python:item['title'];
+                    event_type python:item['event_type'];"
+        tal:attributes="data-gobacklink string:< BACK TO PAST EVENTS;
+                        data-url string:${url}/${event_type}_modal;
+                        data-title title;
+                        data-has-calendar python:False">
+
+        <!-- Card content -->
+        <div class="pastev-card-content">
+
+            <a class="pastev-card-title js-card-trigger"><h3 tal:content="title"/></a>
+            <div class="pastev-card-small-info"><p tal:content="small_info"></p></div>
+
+        </div><!-- Card content ends -->
+
+        <!-- Resources card cta -->
+        <a class="pastev-card-cta js-card-trigger">
+
+            <div class="card-cta-icon"><i class="icon-event"></i></div>
+            <div class="card-cta-text"><p>Read more</p><i class=""></i></div>
+
+        </a><!-- Resources card cta ends -->
+    </div><!-- Past events card  ends -->
+
+</tal:row>
+
+<div id="errormessage" class="main-padding" tal:condition="python:not items" style="text-align:center;width:100%" >
+    <h3>There are no results for your search term.</h3>
+</div>
+</metal:row>
+
+</html>

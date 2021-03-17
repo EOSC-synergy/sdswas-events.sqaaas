@@ -5,28 +5,22 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="sdswas.events">
-
-
 <body>
 
 <metal:javascriptslot fill-slot="javascript_head_slot">
     <script type="text/javascript" tal:define="navroot context/@@plone_portal_state/navigation_root_url"
             tal:attributes="src string:${navroot}/++resource++sdswas.events/js/event_presentations.js"/>
     <script type="text/javascript" tal:define="navroot context/@@plone_portal_state/navigation_root_url"
-            tal:attributes="src string:${navroot}/++resource++sdswas.events/js/events.js"/>
+            tal:attributes="src string:${navroot}/++resource++sdswas.events/js/events.js?bust=v1"/>
 </metal:javascriptslot>
 
 <metal:main fill-slot="main">
 
     <!-- Banner top -->
     <section class="banner-top bg-color-white">
-
         <div class="banner-top-wrap main-wrap main-padding">
-
             <div class="banner-top-container main-container">
-
                 <div class="page-title"><h1>Upcoming Events</h1></div>
-
             </div>
         </div>
     </section>
@@ -55,11 +49,43 @@
                                             data-has-calendar python:(event_type=='generic_event');
                                             data-start-date python:item['event_start_date_gcalendar'];
                                             data-end-date python:item['event_end_date_gcalendar']">
-                        <metal:macro use-macro="context/events_utils/macros/upcoming_event_teaser"/>
 
+                        <!-- Card thumb -->
+                        <a class="events-upco-card-thumb js-card-trigger" href="#" target="_self">
+
+                        <img tal:attributes="src string:${url}/@@images/image/grid-teaser;
+                                                alt title;
+                                                width string:380px;
+                                                height string:206px" />
+
+
+                        </a><!-- Card thumb ends -->
+
+                        <!-- Card content -->
+                        <div class="events-upco-card-content">
+
+                            <div class="events-upco-card-subtitle">
+                                <h4 tal:content="small_info"></h4>
+                            </div>
+
+                            <div class="events-upco-card-small-info">
+                                <p tal:content="python:item['location']"></p>
+                            </div>
+
+                            <a class="events-upco-card-title js-card-trigger">
+                                <h3 tal:content="python:item['title']"/>
+                            </a>
+
+                            <a class="events-upco-text-link js-card-trigger">
+                                <p>Read more</p>
+                            </a>
+                        </div><!-- Card content ends -->
                     </div><!-- Events upco card ends -->
-
                 </tal:row>
+
+                <div tal:condition="python:not items" style="text-align:center;width:100%" class="main-padding">
+                    <h3>There are no Upcoming events at this moment.</h3>
+                </div>
 
             </div><!-- Upcoming events container ends -->
 
@@ -90,54 +116,35 @@
                     <!-- Past events toolbar -->
                     <div class="pastev-toolbar">
 
-                    <!-- Past events cta -->
-                    <a class="pastev-cta" target="_self"
-                        tal:attributes="href string:${context/portal_url}/resources">
-                        <p>Go to resources</p>
-                    </a>
-                    <!-- Past events cta ends -->
+                        <!-- Past events cta -->
+                        <a class="pastev-cta" target="_self"
+                            tal:attributes="href python:view.resources_page_url()">
+                            <p>Go to resources</p>
+                        </a>
+                        <!-- Past events cta ends -->
 
-                    <!-- Past events seach tool -->
-                    <div id="pastev-search-tool" class="search-tool-container">
-                        <form action="#">
-                        <input class="search-tool-input" type="text" placeholder="Search..." name="search">
-                        <span class="search-icon icon-search"></span>
-                        </form>
-                    </div><!-- Past events seach tool ends -->
+                        <!-- Past events seach tool -->
+                        <div id="pastev-search-tool" class="search-tool-container">
+                            <form id="searchPastev">
+                            <input class="search-tool-input" type="text" placeholder="Search..." name="search">
+                            <span class="search-icon icon-search"></span>
+                            </form>
+                        </div><!-- Past events seach tool ends -->
 
                     </div><!-- Past events toolbar ends -->
 
                 </div><!-- Past events header ends -->
 
+                <!-- Loader overlay -->
+                <div tal:replace="structure context/loader"/>
+                <!-- Loader overlay ends -->
+
                 <!-- Past events cards container -->
-
-                <!--<div class="pastev-cards-container"
-                    tal:define="items python:view.past_events_all();">
-
-                    <tal:row tal:repeat="item items">-->
                 <div class="pastev-cards-container"
-                        tal:define="items python:view.past_events_all();">
+                    tal:define="pastevents_url python:view.pastevents_url();"
+                    tal:attributes="data-url pastevents_url;">
 
-                    <tal:row tal:repeat="item items">
-
-                        <div class="pastev-card"
-                            tal:define="small_info python:item['event_start_date'];
-                                        url python:item['absolute_url'];
-                                        title python:item['title'];
-                                        event_type python:item['event_type'];"
-                            tal:attributes="data-gobacklink string:< BACK TO PAST EVENTS;
-                                            data-url string:${url}/${event_type}_modal;
-                                            data-title title;
-                                            data-has-calendar python:False">
-
-                                <!-- Card content -->
-                                <metal:macro use-macro="context/events_utils/macros/past_event_teaser"/><!-- Card content ends-->
-
-                        </div><!-- Past events card  ends -->
-
-                    </tal:row>
-
-                    </div><!-- Past events cards container -->
+                </div><!-- Past events cards container -->
 
             </div><!-- Past events container ends -->
 

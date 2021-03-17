@@ -1,7 +1,8 @@
 from plone.dexterity.browser.view import DefaultView
 from plone import api
 import datetime as dt
-from Products import AdvancedQuery
+from Products.AdvancedQuery import  Eq, Le, In, Ge, MatchGlob
+#from Products.CMFPlone.browser.search import Search
 
 class EventListView(DefaultView):
 
@@ -11,24 +12,26 @@ class EventListView(DefaultView):
         self.request.set('disable_plone.rightcolumn',1)
         self.request.set('disable_plone.leftcolumn',1)
 
-    def past_events(self):
-        ## Returns generic events and webinars with an end date older than now
+    def past_events(self, searchableText):
+        ## Returns past generic events and webinars that contains "text" in any field with indexer "SearchableText"
 
-        path = "/".join(self.context.getPhysicalPath()) # Limit the search to the current folder and its children
-        clause1 = AdvancedQuery.Eq("path", path)
-        clause2 = AdvancedQuery.Eq("portal_type", "generic_event")
-        clause3 = AdvancedQuery.Eq("portal_type", "webinar")
-        clause4 = AdvancedQuery.Le("end", dt.date.today())
-        query = clause1 & (clause2 | clause3) & clause4
+        searchParams = {
+            "path": "/".join(self.context.getPhysicalPath()), # Limit the search to the current folder and its children
+            "portal_type": ["generic_event",  "webinar"],
+            "review_state": "published",
+            "end": {'query':dt.datetime.now(),
+                    'range':'max'},
+            "sort_on": ["start"], ###second criteria should be "sortable_title"
+            "sort_order": "desc"
+        }
+        if (searchableText): searchParams[ "SearchableText"] = searchableText
 
-        # The following result variable contains iterable of CatalogBrain objects
-        events = self.context.portal_catalog.evalAdvancedQuery(query,(('start','desc'),))
-
+        events = self.context.portal_catalog(searchParams)
         return events
 
-    def past_events_all(self):
+    def past_events_all(self, searchableText):
 
-        events = self.past_events()
+        events = self.past_events(searchableText)
         results = []
         for event in events:
             resObj = event.getObject()
@@ -40,11 +43,12 @@ class EventListView(DefaultView):
                 'lead_image_url': resObj.absolute_url(),
                 'event_type': resObj.portal_type
             })
+
         return results
 
-    def past_events_batch(self, start, size):
+    def past_events_batch(self, start, size, searchableText):
 
-        events = self.past_events()
+        events = self.past_events(searchableText)
         results = []
         batch = events[start:size]
         for event in batch:
@@ -122,3 +126,9 @@ class EventListView(DefaultView):
             })
 
         return results
+
+    def pastevents_url(self):
+        ###Returns the absolute link to the Past Events view
+        url = ""
+        url = api.portal.get().unrestrictedTraverse("news-events/events").absolute_url_path() + "/@@eventslist_past"
+        return url

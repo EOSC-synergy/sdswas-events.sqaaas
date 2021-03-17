@@ -34,60 +34,6 @@
 
 </metal:row>
 
-<metal:row define-macro="upcoming_event_teaser" i18n:domain="sdswas.events">
-
-    <!-- Card thumb -->
-    <a class="events-upco-card-thumb js-card-trigger" href="#" target="_self">
-
-    <img tal:attributes="src string:${url}/@@images/image/grid-teaser;
-                            alt title;
-                            width string:380px;
-                            height string:206px" />
-
-
-    </a><!-- Card thumb ends -->
-
-    <!-- Card content -->
-    <div class="events-upco-card-content">
-
-        <div class="events-upco-card-subtitle">
-            <h4 tal:content="small_info"></h4>
-        </div>
-
-        <div class="events-upco-card-small-info">
-            <p tal:content="python:item['location']"></p>
-        </div>
-
-        <a class="events-upco-card-title js-card-trigger">
-            <h3 tal:content="python:item['title']"/>
-        </a>
-
-        <a class="events-upco-text-link js-card-trigger">
-            <p>Read more</p>
-        </a>
-    </div><!-- Card content ends -->
-
-</metal:row>
-
-<!--Idem than macro "resource_without_preview" from sdswas.resources addon-->
-<metal:row define-macro="past_event_teaser" i18n:domain="sdswas.events">
-  <!-- Card content -->
-  <div class="pastev-card-content">
-
-    <a class="pastev-card-title js-card-trigger"><h3 tal:content="title"/></a>
-    <div class="pastev-card-small-info"><p tal:content="small_info"></p></div>
-
- </div><!-- Card content ends -->
-
-  <!-- Resources card cta -->
-  <a class="pastev-card-cta js-card-trigger">
-
-    <div class="card-cta-icon"><i class="icon-event"></i></div>
-    <div class="card-cta-text"><p>Read more</p><i class=""></i></div>
-
-  </a><!-- Resources card cta ends -->
-</metal:row>
-
 <metal:row define-macro="generic_event_menu" i18n:domain="sdswas.events">
    <ul class="modwin-anchor-navigation">
       <li tal:condition="nocall:agenda">

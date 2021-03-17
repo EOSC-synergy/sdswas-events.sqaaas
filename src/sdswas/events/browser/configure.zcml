@@ -126,6 +126,16 @@
     permission="zope2.View"
   />
 
+  <browser:page
+    name="eventslist_past"
+    for="*"
+    layer="zope.interface.Interface"
+    class=".EventListView.EventListView"
+    template="templates/eventslist_past.pt"
+    permission="zope2.View"
+  />
+
+
   <!-- Resource directory -->
 
    <browser:resourceDirectory

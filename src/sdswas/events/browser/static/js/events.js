@@ -25,7 +25,7 @@
                 init: function() {
                     App.con("----> Events init");
                     this.upcoCards.init();
-                    this.pastevCards.init();
+                    this.pastevCardsContainer.init();
                 },
 
                 populateModal: function(trigger) {
@@ -138,7 +138,7 @@
 
                     trimTextsLength: function() {
                         // Trim titles
-                        this.titles.each(function() {
+                        $(".pastev-card-title :first-child").each(function() {
                             var text = $(this).text();
                             var maxlength = Events.pastevCards.titleLenght;
                             $(this).text(Utils.textTrimmer(text, maxlength));
@@ -147,7 +147,7 @@
                     },
                     addListeners: function() {
                         App.con("----)))) Past events >> Cards are listening");
-                        this.selectors.each(function() {
+                        $(".pastev-card").each(function() {
 
                             $(this).on("click", ".js-card-trigger", function(event) {
                                 event.preventDefault();
@@ -156,9 +156,50 @@
                             });
                         });
                     },
+                },
+
+                pastevCardsContainer: {
+                    updateUrl: $(".pastev-cards-container").attr("data-url"),
+
+                    init: function() {
+                        App.con("----> Past events cards container init");
+                        this.addListeners();
+                        this.update();
+                    },
+
+                    addListeners: function() {
+                        App.con("----)))) Past events >> Search input is listening");
+
+                        $("form#searchPastev").submit(function(e) {
+                            e.preventDefault();
+                            Events.pastevCardsContainer.update();
+                        });
+                    },
+
+                    update: function() {
+
+                        App.loader.init();
+
+                        var searchinput = $("#searchPastev .search-tool-input").val()
+                        var url = this.updateUrl+"?searchinput="+encodeURIComponent(searchinput)
+
+                        $(".pastev-cards-container").load(url, function(responseTxt, statusTxt, xhr) {
+                            if (statusTxt == "success") {
+                                Events.pastevCards.init();
+                            } else {
+                                $(this).append("<p>Past events can not be displayed now. Please <a href='contact-info'> contact us</a>.</p>");
+                            }
+                            gsap.to(".page-overlay", {
+                                    duration: 5,
+                                    onComplete: function() {
+                                        App.loader.end();
+                                    }
+                            });
+                        })
+                    },
+
                 }
             }
-
 
             $(document).ready(function() {
                 Events.init();
