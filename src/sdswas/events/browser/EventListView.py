@@ -113,7 +113,7 @@ class EventListView(DefaultView):
                 sort_order="ascending")
 
         results = []
-        latests = events[:2]
+        latests = events[:3]
         for event in latests:
             resObj = event.getObject()
             results.append({
