@@ -7,14 +7,17 @@
 
 
 <metal:row define-macro="main-content" i18n:domain="sdswas.events"
-        tal:define="presentations python:view.presentations();">
+        tal:define="searchinput request/searchinput;
+                    items python:view.presentations(searchinput);">
 
-    <!-- Presentation cards -->
-    <tal:row tal:repeat="item presentations">
+<!-- Presentation cards -->
+<tal:row tal:repeat="item items">
+    <div metal:use-macro="context/presentation_teaser/macros/teaser"/>
+</tal:row>
 
-        <div metal:use-macro="context/presentation_teaser/macros/teaser"/>
-
-    </tal:row>
+<div id="errormessage" class="main-padding" tal:condition="python:not items" style="text-align:center;width:100%" >
+    <h3>There are no results for your search term.</h3>
+</div>
 
 </metal:row>
 </html>

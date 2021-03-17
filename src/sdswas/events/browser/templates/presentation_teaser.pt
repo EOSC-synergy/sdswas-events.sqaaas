@@ -7,7 +7,7 @@
 
 <metal:row define-macro="teaser" i18n:domain="sdswas.events">
     <!-- Modular window card -->
-    <div class="modwin-card pastev-presentation-card"
+    <div class="modwin-card pastev-presentation-card card-with-embedded-doc"
         tal:define="absolute_url python:item['absolute_url']">
 
         <!-- Card content -->
@@ -21,14 +21,14 @@
                 <p tal:content="python:item['author']"/>
             </div>
 
-            <a class="modwin-card-subtitle"
-                    tal:attributes="href absolute_url"
+            <a class="modwin-card-subtitle js-card-trigger"
+                    tal:attributes="data-href absolute_url"
                     target="_blank">
                 <h4 tal:content="python:item['title']"/>
             </a>
 
-            <a class="modwin-text-link"
-                    tal:attributes="href absolute_url"
+            <a class="modwin-text-link js-card-trigger"
+                    tal:attributes="data-href absolute_url"
                     target="_blank">
                 <p>Preview</p>
             </a>
