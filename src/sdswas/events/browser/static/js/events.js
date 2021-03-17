@@ -41,7 +41,7 @@
                     /**Fetch the rest of the information: contents of the body */
                     $(".modwin-main-content").load(url, function(responseTxt, statusTxt, xhr) {
                         if (statusTxt = "success") {
-                            Events.openModal();
+                            ModalWindow.open();
                             if ($(trigger).attr("data-has-calendar")=="True")
                                 Events.setAddCalendarLink(trigger);
 
@@ -80,16 +80,6 @@
                         $("#add-calendar").hide();
                      }
 
-                },
-
-                openModal: function() {
-
-                    App.mainContent.addClass("freeze-main-content");
-                    Sidenav.repos();
-
-                    ModalWindow.el.addClass("show");
-                    ModalWindow.el.removeClass("hide");
-                    ModalWindow.isOpen = true;
                 },
 
                 upcoCards: {
