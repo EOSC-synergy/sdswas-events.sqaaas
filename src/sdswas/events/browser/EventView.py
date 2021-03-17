@@ -105,16 +105,19 @@ class EventView(DefaultView):
     def is_upcoming(self):
         return self.context.start >= utc.localize(dt.datetime.now())
 
-    def presentations(self):
+    def presentations(self, searchableText):
 
         if not(self.context.has_key("presentations")): return None
 
-        brains = self.context["presentations"].getFolderContents(
-            contentFilter={
-                "portal_type" : "presentation",
-                "review_state": "published",
-                "sort_on": ["getPresentationDate"], ###second criteria should be "sortable_title"
-                "sort_order": "descending"})
+        searchParams = {
+            "portal_type" : "presentation",
+            "review_state": "published",
+            "sort_on": ["getPresentationDate"], ###second criteria should be "sortable_title"
+            "sort_order": "descending"}
+
+        if (searchableText): searchParams[ "SearchableText"] = searchableText
+
+        brains = self.context["presentations"].getFolderContents(contentFilter=searchParams)
 
         results = []
         for brain in brains:
