@@ -168,23 +168,23 @@
 
                     update: function() {
 
-                        App.loader.init();
+                       // App.loader.init();
 
                         var searchinput = $("#searchPastev .search-tool-input").val()
                         var url = this.updateUrl+"?searchinput="+encodeURIComponent(searchinput)
 
-                        $(".pastev-cards-container").load(url, function(responseTxt, statusTxt, xhr) {
+                        $(".pastev-cards-container").empty().load(url, function(responseTxt, statusTxt, xhr) {
                             if (statusTxt == "success") {
                                 Events.pastevCards.init();
                             } else {
                                 $(this).append("<p>Past events can not be displayed now. Please <a href='contact-info'> contact us</a>.</p>");
                             }
-                            gsap.to(".page-overlay", {
+                          /*  gsap.to(".page-overlay", {
                                     duration: 5,
                                     onComplete: function() {
                                         App.loader.end();
                                     }
-                            });
+                            });*/
                         })
                     },
 

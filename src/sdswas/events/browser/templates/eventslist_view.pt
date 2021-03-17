@@ -134,7 +134,7 @@
                 </div><!-- Past events header ends -->
 
                 <!-- Loader overlay -->
-                <div tal:replace="structure context/loader"/>
+                <!--<div tal:replace="structure context/loader"/>-->
                 <!-- Loader overlay ends -->
 
                 <!-- Past events cards container -->
