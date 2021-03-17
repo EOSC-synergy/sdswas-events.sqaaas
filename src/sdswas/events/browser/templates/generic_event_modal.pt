@@ -163,7 +163,7 @@
                         <!-- Search tool -->
                         <div id="modwin-cards-search-tool" class="search-tool-container">
                             <form action="#">
-                            <input class="search-tool-input" type="text" placeholder="Search..." name="search">
+                            <input class="search-tool-input" type="text" placeholder="Search..." name="search" autocomplete="off">
                             <span class="search-icon icon-search"></span>
                             </form>
                         </div><!-- Search tool ends -->
