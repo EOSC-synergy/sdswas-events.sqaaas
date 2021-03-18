@@ -104,6 +104,14 @@
 
                     </div><!-- Sidepanel info card ends -->
 
+                    <div class="sidepanel-cta-component"
+                        tal:define="picture nocall:context/document;"
+                        tal:condition="nocall:picture">
+                        <div tal:define="title string:Presentation"
+                                metal:use-macro="context/resources_utils/macros/filedownload"/>
+                    </div>  <!-- Sidepanel cta component ends -->
+
+
                     <!-- Sidepanel share component -->
                     <div class="sidepanel-share-component">
                         <tal metal:use-macro="context/share_social_networks/macros/sidepanel"/>
