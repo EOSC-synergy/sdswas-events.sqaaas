@@ -1,5 +1,7 @@
 <!-- News upcoming events -->
-<section class="bg-color-seaweed-dark">
+<section class="bg-color-seaweed-dark"  tal:condition="items"
+            tal:define="items python:view.upcoming_events_subset(3)">
+
 <!-- News upcoming events wrap -->
 <div class="news-upcoev-wrap main-wrap main-padding main-padding-tb">
     <!-- News upcoming events container -->
@@ -10,8 +12,7 @@
     </div>
 
     <!-- News upcoming events cards container -->
-    <div class="news-upcoev-cards-container"
-        tal:define="items python:view.upcoming_events_subset(3)">
+    <div class="news-upcoev-cards-container">
 
         <!-- Upcoming event card -->
         <tal:row tal:repeat="item items">
