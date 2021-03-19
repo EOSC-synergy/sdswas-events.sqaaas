@@ -24,7 +24,6 @@ class EventListView(DefaultView):
             "sort_order": "desc"
         }
         if (searchableText): searchParams[ "SearchableText"] = searchableText
-
         events = self.context.portal_catalog(searchParams)
         return events
 
