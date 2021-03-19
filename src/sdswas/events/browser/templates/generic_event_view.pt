@@ -11,7 +11,7 @@
 <metal:javascriptslot fill-slot="javascript_head_slot">
 
       <script type="text/javascript" tal:define="navroot context/@@plone_portal_state/navigation_root_url"
-              tal:attributes="src string:${navroot}/++resource++sdswas.events/js/event_view.js"/>
+              tal:attributes="src string:${navroot}/++resource++sdswas.events/js/event_view.js?bust=v1"/>
 
 </metal:javascriptslot>
 

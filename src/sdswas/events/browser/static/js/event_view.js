@@ -4,10 +4,8 @@
     var requirejsOptions = {
         baseUrl: '++theme++sdswas/',
         optimize: 'none',
-        urlArgs:  "bust=v1",
         paths: {
-            'main': '++theme++sdswas/js/main',
-            'event_presentations': '++resource++sdswas.events/js/event_presentations',
+            'main': 'js/main',
         }
     };
 
@@ -19,10 +17,11 @@
     }
 
     requirejs([
-        'main','event_presentations'
+        'main'
     ], function($, _bootstrap) {
         (function($) {
             $(document).ready(function() {
+
                 EventPresentations.init();
 
                 // Images slider
