@@ -2,6 +2,7 @@ from plone.dexterity.browser.view import DefaultView
 from plone import api
 import datetime as dt
 from Products.AdvancedQuery import  Eq, Le, In, Ge, MatchGlob
+from plone.batching import Batch
 
 class EventListView(DefaultView):
 
@@ -11,7 +12,7 @@ class EventListView(DefaultView):
         self.request.set('disable_plone.rightcolumn',1)
         self.request.set('disable_plone.leftcolumn',1)
 
-    def past_events(self, searchableText):
+    def past_events(self, searchableText, b_size, b_start):
         ## Returns past generic events and webinars that contains "text" in any field with indexer "SearchableText"
 
         searchParams = {
@@ -23,13 +24,11 @@ class EventListView(DefaultView):
             "sort_on": ["start"], ###second criteria should be "sortable_title"
             "sort_order": "desc"
         }
+
         if (searchableText): searchParams[ "SearchableText"] = searchableText
+
         events = self.context.portal_catalog(searchParams)
-        return events
 
-    def past_events_all(self, searchableText):
-
-        events = self.past_events(searchableText)
         results = []
         for event in events:
             resObj = event.getObject()
@@ -42,26 +41,10 @@ class EventListView(DefaultView):
                 'event_type': resObj.portal_type
             })
 
-        return results
-
-    def past_events_batch(self, start, size, searchableText):
-
-        events = self.past_events(searchableText)
-        results = []
-        batch = events[start:size]
-        for event in batch:
-            resObj = event.getObject()
-            results.append({
-                'title': resObj.Title(),
-                'event_start_date': resObj.start.strftime('%-d %B %Y'),
-                'absolute_url': resObj.absolute_url(),
-                'location': resObj.location,
-                'lead_image_url': resObj.absolute_url(),
-                'end': resObj.end,
-                'event_type': resObj.portal_type
-            })
+        results = Batch(results, size=b_size, start=b_start, orphan=0)
 
         return results
+
 
     def upcoming_events(self):
         ## Returns generic events and webinars that satisfy: starting or to_be_started | started & not_finished
