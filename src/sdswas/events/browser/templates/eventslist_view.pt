@@ -94,13 +94,14 @@
     <!-- Upcoming events container -->
 
     <!-- Past events -->
-    <section class="bg-color-grey-light">
+    <section id="pastev-cards" class="bg-color-grey-light">
 
         <!-- Past events wrap -->
         <div class="pastev-wrap main-wrap main-padding main-padding-tb">
 
             <!-- Past events container -->
-            <div class="pastev-container main-container">
+            <div class="pastev-container main-container"
+                    tal:attributes="data-url python:view.pastevents_url();">
 
                 <!-- Past events header -->
                 <div class="pastev-header">
@@ -138,11 +139,8 @@
                 <!-- Loader overlay ends -->
 
                 <!-- Past events cards container -->
-                <div class="pastev-cards-container"
-                    tal:define="pastevents_url python:view.pastevents_url();"
-                    tal:attributes="data-url pastevents_url;">
-
-                </div><!-- Past events cards container -->
+                <div class="pastev-cards-container"/>
+                <!-- Past events cards container -->
 
             </div><!-- Past events container ends -->
 

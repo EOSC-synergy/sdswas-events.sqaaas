@@ -5,10 +5,12 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
 <metal:row define-macro="master" i18n:domain="sdswas.events"
-            tal:define="searchinput request/searchinput;
-                        items python:view.past_events_all(searchinput)">
+        tal:define="searchinput request/searchinput;
+                    b_start python:0;
+                    b_start request/b_start | b_start;
+                    batch python: view.past_events(searchinput, b_size=12, b_start=b_start);">
 
-<tal:row tal:repeat="item items">
+<tal:row tal:repeat="item batch">
     <!-- Past events card -->
     <div class="pastev-card"
         tal:define="small_info python:item['event_start_date'];
@@ -39,9 +41,12 @@
 
 </tal:row>
 
-<div id="errormessage" class="main-padding" tal:condition="python:not items" style="text-align:center;width:100%" >
+<div id="errormessage" class="main-padding" tal:condition="python:not batch" style="text-align:center;width:100%" >
     <h3>There are no results for your search term.</h3>
 </div>
-</metal:row>
 
+<tal id="pastev-cards-pagination">
+    <div metal:use-macro="context/batch_macros/macros/navigation" />
+</tal>
+</metal:row>
 </html>
