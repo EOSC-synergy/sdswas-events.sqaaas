@@ -4,6 +4,7 @@ import re
 from pytz import UTC as utc
 import locale
 from plone.api import portal
+from plone.batching import Batch
 
 class EventView(DefaultView):
 
@@ -105,7 +106,7 @@ class EventView(DefaultView):
     def is_upcoming(self):
         return self.context.start >= utc.localize(dt.datetime.now())
 
-    def presentations(self, searchableText):
+    def presentations(self, searchableText, b_size, b_start):
 
         if not(self.context.has_key("presentations")): return None
 
@@ -129,6 +130,8 @@ class EventView(DefaultView):
             'presentation_date': resObj.presentationDate.strftime('%-d %B %Y'),
             'doc_filepath': resObj.absolute_url()+"/@@download/document/"+resObj.document.filename
             })
+
+        results = Batch(results, size=b_size, start=b_start, orphan=0)
 
         return results
 

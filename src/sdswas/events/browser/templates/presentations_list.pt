@@ -8,16 +8,21 @@
 
 <metal:row define-macro="main-content" i18n:domain="sdswas.events"
         tal:define="searchinput request/searchinput;
-                    items python:view.presentations(searchinput);">
-
+                    b_start python:0;
+                    b_start request/b_start | b_start;
+                    batch python: view.presentations(searchinput, b_size=8, b_start=b_start);">
 <!-- Presentation cards -->
-<tal:row tal:repeat="item items">
+<tal:row tal:repeat="item batch">
     <div metal:use-macro="context/presentation_teaser/macros/teaser"/>
 </tal:row>
 
-<div id="errormessage" class="main-padding" tal:condition="python:not items" style="text-align:center;width:100%" >
+<div id="errormessage" class="main-padding" tal:condition="python:not batch" style="text-align:center;width:100%" >
     <h3>There are no results for your search term.</h3>
 </div>
+
+<tal id="presentation-cards-pagination">
+    <div metal:use-macro="context/batch_macros/macros/navigation" />
+</tal>
 
 </metal:row>
 </html>
