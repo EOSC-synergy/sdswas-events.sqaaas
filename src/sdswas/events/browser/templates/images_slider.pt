@@ -46,8 +46,10 @@
 
                 <!-- Slider indicators -->
                 <div class="slider-indicators">
-                    <div class="slider-indicators-container">
-                        <!-- Generated -->
+                    <div class="slider-indicators-wrap">
+                        <div class="slider-indicators-container">
+                            <!-- Generated -->
+                        </div>
                     </div>
                 </div><!-- Slider indicators -->
 
