@@ -35,13 +35,13 @@ class EventView(DefaultView):
         if (not(self.context.end) and not(self.context.start)): return '-'
 
         if (self.context.open_end):
-            return self.context.start.strftime('%H:%M') +" GMT - open"
+            return self.context.start.strftime('%H:%M %Z') +" - open"
 
         if (self.context.end):
             diff = self.context.end - self.context.start
             if (diff.days >= 1): return '-'
 
-        return self.context.start.strftime('%H:%M') + " - " + self.context.end.strftime('%H:%M') + " GMT"
+        return self.context.start.strftime('%H:%M') + " - " + self.context.end.strftime('%H:%M %Z')
 
     def duration(self):
         ##Display value of the field Duration (computed from the event's start and end fields)
