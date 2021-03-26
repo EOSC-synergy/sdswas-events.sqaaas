@@ -149,13 +149,10 @@
     <metal:macro  tal:condition="nocall:images" use-macro="context/images_slider/macros/slider">
     <!-- Modal window image slider ends -->
 
-    <section id="presentations"
-            tal:condition="python: numPresentations > 1"
-            class="modwin-cards-section">
-
-        <div class="modwin-cards-wrap modwin-padding">
-            <div class="modwin-cards-container card-with-embedded-doc">
-
+    <!--Presentations section header-->
+    <section class="modwin-cards-header-section">
+        <div class="modwin-cards-header-wrap modwin-padding-lr">
+            <div class="modwin-cards-header-container">
                 <div class="modwin-cards-header">
                     <h2>Presentations</h2>
 
@@ -175,7 +172,17 @@
                         </a>
                     </div>
 
-                </div>
+                </div> <!--Presentations section header ends-->
+            </div>
+        </div>
+    </section><!--Presentations section contents-->
+
+    <section id="presentations"
+            tal:condition="python: numPresentations > 1"
+            class="modwin-cards-section section-with-min-height">
+
+        <div class="modwin-cards-wrap modwin-padding">
+            <div class="modwin-cards-container card-with-embedded-doc">
 
                 <!-- Modular window cards -->
                 <div class="modwin-cards"
@@ -184,7 +191,15 @@
 
             </div>
         </div>
+
+        <!-- Loader widget -->
+        <div id="loader-presentation-cards" class="loader bg-color-white hide">
+            <div tal:replace="structure context/loader"/>
+        </div>
+        <!-- Loader widget ends-->
+
     </section>
+    <!--Presentations section contents ends-->
 
   </metal:row>
 </html>
