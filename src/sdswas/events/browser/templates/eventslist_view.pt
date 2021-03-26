@@ -150,7 +150,7 @@
 
     <!-- Homepage subscribe form section -->
     <section class="subscribe-widget bg-color-grey-light">
-        <div tal:replace="structure context/subscribeform_banner"/>
+       <div metal:use-macro="context/subscribeform/macros/banner" />
     </section>
     <!-- Homepage subscribe form section ends-->
 
