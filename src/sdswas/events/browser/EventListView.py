@@ -3,6 +3,7 @@ from plone import api
 import datetime as dt
 from Products.AdvancedQuery import  Eq, Le, In, Ge, MatchGlob
 from plone.batching import Batch
+from sdswas.customViews.browser.NewsletterForm import NewsletterForm
 
 class EventListView(DefaultView):
 
@@ -113,3 +114,6 @@ class EventListView(DefaultView):
         url = ""
         url = api.portal.get().unrestrictedTraverse("news-events/events").absolute_url_path() + "/@@eventslist_past"
         return url
+
+    def subscribe_link(self):
+       return NewsletterForm.subscribe_link(self)
