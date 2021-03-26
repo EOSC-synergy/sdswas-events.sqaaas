@@ -25,7 +25,7 @@
     <!-- Banner top ends -->
 
     <!-- Upcoming events-->
-    <section class="bg-color-white">
+      <section class="events-upco-cards bg-color-white">
 
         <!-- Upcoming events wrap -->
         <div class="main-wrap main-padding main-padding-tb">
@@ -89,54 +89,66 @@
 
         </div><!-- Upcoming events wrap carpet ends -->
 
+        <!-- Loader widget -->
+        <!--<div id="loader-upco-cards" class="loader bg-color-white hide">
+            <div tal:replace="structure context/loader"/>
+        </div> Loader widget ends -->
+
     </section><!-- Upcoming events carpet ends -->
 
     <!-- Upcoming events container -->
 
-    <!-- Past events -->
-    <section id="pastev-cards" class="bg-color-grey-light">
+
+
+    <!-- Past events header -->
+    <section class="events-pastev-header bg-color-grey-light">
+        <!-- Past events header wrap -->
+        <div class="pastev-header-wrap main-wrap main-padding main-padding-tb">
+          <!-- Past events header container -->
+          <div class="pastev-header-container main-container">
+            <div class="pastev-header">
+
+                <h2 class="pastev-desc-text">Past Events</h2>
+                <p class="pastev-desc-text">
+                You can find and explore all the resources from our past events in the Resources tab in the menu, or
+                you can search directly in the following boxes.
+                </p>
+
+                <!-- Past events toolbar -->
+                <div class="pastev-toolbar">
+
+                    <!-- Past events cta -->
+                    <a class="pastev-cta" target="_self"
+                        tal:attributes="href python:view.resources_page_url()">
+                        <p>Go to resources</p>
+                    </a>
+                    <!-- Past events cta ends -->
+
+                    <!-- Past events seach tool -->
+                    <div id="pastev-search-tool" class="search-tool-container">
+                        <form id="searchPastev">
+                        <input class="search-tool-input" type="text" placeholder="Search..." name="search" autocomplete="off">
+                        <span class="search-icon icon-search"></span>
+                        </form>
+                    </div><!-- Past events seach tool ends -->
+
+                </div><!-- Past events toolbar ends -->
+
+            </div><!-- Past events header ends -->
+            </div><!-- Past events header container ends -->
+        </div><!-- Past events header wrap ends -->
+    </section><!-- Past events header ends -->
+
+    <!-- Past events contents-->
+
+    <section class="events-pastev-cards section-with-min-height bg-color-grey-light">
 
         <!-- Past events wrap -->
-        <div class="pastev-wrap main-wrap main-padding main-padding-tb">
+        <div class="pastev-cards-wrap main-wrap main-padding main-padding-tb">
 
             <!-- Past events container -->
             <div class="pastev-container main-container"
                     tal:attributes="data-url python:view.pastevents_url();">
-
-                <!-- Past events header -->
-                <div class="pastev-header">
-
-                    <h2 class="pastev-desc-text">Past Events</h2>
-                    <p class="pastev-desc-text">
-                    You can find and explore all the resources from our past events in the Resources tab in the menu, or
-                    you can search directly in the following boxes.
-                    </p>
-
-                    <!-- Past events toolbar -->
-                    <div class="pastev-toolbar">
-
-                        <!-- Past events cta -->
-                        <a class="pastev-cta" target="_self"
-                            tal:attributes="href python:view.resources_page_url()">
-                            <p>Go to resources</p>
-                        </a>
-                        <!-- Past events cta ends -->
-
-                        <!-- Past events seach tool -->
-                        <div id="pastev-search-tool" class="search-tool-container">
-                            <form id="searchPastev">
-                            <input class="search-tool-input" type="text" placeholder="Search..." name="search" autocomplete="off">
-                            <span class="search-icon icon-search"></span>
-                            </form>
-                        </div><!-- Past events seach tool ends -->
-
-                    </div><!-- Past events toolbar ends -->
-
-                </div><!-- Past events header ends -->
-
-                <!-- Loader overlay -->
-                <!--<div tal:replace="structure context/loader"/>-->
-                <!-- Loader overlay ends -->
 
                 <!-- Past events cards container -->
                 <div class="pastev-cards-container"/>
@@ -146,7 +158,12 @@
 
         </div><!-- Past events wrap ends -->
 
-    </section><!-- Past events ends -->
+        <!-- Loader widget -->
+        <div id="loader-pastev-cards" class="loader bg-color-grey-light hide">
+            <div tal:replace="structure context/loader"/>
+        </div><!-- Loader widget ends -->
+
+    </section><!-- Past events contents ends -->
 
     <!-- Homepage subscribe form section -->
     <section class="subscribe-widget bg-color-grey-light">
