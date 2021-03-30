@@ -83,7 +83,7 @@
                         </div>
 
                         <div class="info-card-data">
-                            <p class="text-bold">Place</p>
+                            <p class="text-bold">Venue</p>
                             <p tal:content="structure view/w/place/render">-</p>
                         </div>
 
