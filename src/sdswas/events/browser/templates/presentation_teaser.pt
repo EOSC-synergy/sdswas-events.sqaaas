@@ -27,7 +27,7 @@
                 <h4 tal:content="python:item['title']"/>
             </a>
 
-            <a class="modwin-text-link js-card-trigger"
+            <a class="modwin-text-link js-card-trigger hide-el-on-mobile"
                     tal:attributes="data-href absolute_url"
                     target="_blank">
                 <p>Preview</p>
