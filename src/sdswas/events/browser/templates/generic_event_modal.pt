@@ -150,7 +150,7 @@
     <!-- Modal window image slider ends -->
 
     <!--Presentations section header-->
-    <section class="modwin-cards-header-section">
+    <section class="modwin-cards-header-section" tal:condition="python: numPresentations > 0">
         <div class="modwin-cards-header-wrap modwin-padding-lr">
             <div class="modwin-cards-header-container">
                 <div class="modwin-cards-header">
@@ -178,7 +178,7 @@
     </section><!--Presentations section contents-->
 
     <section id="presentations"
-            tal:condition="python: numPresentations > 1"
+            tal:condition="python: numPresentations > 0"
             class="modwin-cards-section section-with-min-height">
 
         <div class="modwin-cards-wrap modwin-padding">
