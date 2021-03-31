@@ -53,23 +53,23 @@ class EventView(DefaultView):
         if (self.context.open_end):
             return 'Open end'
 
-        diff = self.context.end - self.context.start
-        days = diff.days
+        timedelta = self.context.end - self.context.start
+        #Compute difference in hours and
+        days = timedelta.days
+        seconds = timedelta.seconds
+        hours = seconds//3600
+        minutes = (seconds//60)%60
+        print("days:", days, "hours:", hours, "minutes:", minutes)
         result = ''
-
-        if days > 0:
-            result = str(days) + ' day'
-            if days > 1: result += 's'
-        else:
-            hours, minutes = divmod(diff.seconds,60*60)
-
-            result = ''
-            if hours > 0:
-                result = str(hours) + ' h '
+        if (days == 0):
+            result = str(hours) + ' h '
 
             if minutes > 0:
-                result += str(int(minutes/60)) + ' m'
-
+                result += str(minutes) + ' m'
+        else:
+            days += 1
+            result = str(days) + ' day'
+            if (days > 1): result += 's'
         return result
 
     def downloadfile_url(self):
