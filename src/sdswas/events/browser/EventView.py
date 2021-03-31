@@ -59,7 +59,6 @@ class EventView(DefaultView):
         seconds = timedelta.seconds
         hours = seconds//3600
         minutes = (seconds//60)%60
-        print("days:", days, "hours:", hours, "minutes:", minutes)
         result = ''
         if (days == 0):
             result = str(hours) + ' h '
