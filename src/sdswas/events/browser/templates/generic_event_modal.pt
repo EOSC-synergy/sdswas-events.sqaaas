@@ -48,7 +48,10 @@
 
                 <div class="modwin-text-cta" tal:condition="is_upcoming">
                     <!-- Add to calendar button -->
-                    <a id="add-calendar" class="modwin-cta-within-text" href="#" target="_blank">
+                    <a id="add-calendar" class="modwin-cta-within-text" target="_blank"
+                        title="Download this event in iCal format"
+                        tal:define="here_url context/@@plone_context_state/object_url"
+                        tal:attributes="href string:$here_url/ics_view">
                     <p>Add to calendar</p>
                     </a>
 
@@ -84,7 +87,7 @@
 
                         <div class="info-card-data">
                             <p class="text-bold">Venue</p>
-                            <p tal:content="structure view/w/place/render">-</p>
+                            <p tal:content="structure view/w/venue/render">-</p>
                         </div>
 
                         <div class="info-card-data">

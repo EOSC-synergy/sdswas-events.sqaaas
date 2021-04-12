@@ -1,4 +1,5 @@
-<model xmlns:i18n="http://xml.zope.org/namespaces/i18n" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:users="http://namespaces.plone.org/supermodel/users" xmlns:lingua="http://namespaces.plone.org/supermodel/lingua" xmlns="http://namespaces.plone.org/supermodel/schema">
+<model xmlns:i18n="http://xml.zope.org/namespaces/i18n" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:users="http://namespaces.plone.org/supermodel/users" xmlns:lingua="http://namespaces.plone.org/supermodel/lingua"
+xmlns="http://namespaces.plone.org/supermodel/schema">
   <schema>
     <field name="full_description" type="plone.app.textfield.RichText">
       <description/>
@@ -10,10 +11,11 @@
       <required>False</required>
       <title>Image</title>
     </field>
-    <field name="place" type="zope.schema.TextLine">
+    <field name="venue" type="zope.schema.TextLine">
       <description/>
       <required>False</required>
-      <title>Place</title>
+      <title>Venue</title>
+
     </field>
     <field name="presented_by" type="zope.schema.TextLine">
       <description/>
