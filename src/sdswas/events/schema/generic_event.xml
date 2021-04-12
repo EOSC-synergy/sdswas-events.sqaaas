@@ -8,7 +8,7 @@ xmlns="http://namespaces.plone.org/supermodel/schema">
     </field>
     <field name="image" type="plone.namedfile.field.NamedBlobImage">
       <description/>
-      <required>False</required>
+      <required>True</required>
       <title>Image</title>
     </field>
     <field name="venue" type="zope.schema.TextLine">
