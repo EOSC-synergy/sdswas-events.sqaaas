@@ -106,7 +106,7 @@ class EventView(DefaultView):
         return results
 
     def is_upcoming(self):
-        return self.context.start >= utc.localize(dt.datetime.now())
+       return  self.context.end.replace(tzinfo=utc) > dt.datetime.now(utc)
 
     def presentations(self, searchableText, b_size, b_start):
 
