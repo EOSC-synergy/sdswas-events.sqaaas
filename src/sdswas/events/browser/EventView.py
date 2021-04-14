@@ -3,7 +3,6 @@ import datetime as dt
 import re
 from pytz import UTC as utc
 import locale
-from plone.api import portal
 from plone.batching import Batch
 
 class EventView(DefaultView):
@@ -61,11 +60,16 @@ class EventView(DefaultView):
         minutes = (seconds//60)%60
         result = ''
         if (days == 0):
-            result = str(hours) + ' h '
+            #Single day event: Compute duration in hours and minutes if the whole day option has not been set
+            if (self.context.whole_day):
+                result = '1 day'
+            else:
+                result = str(hours) + ' h '
 
-            if minutes > 0:
-                result += str(minutes) + ' m'
+                if minutes > 0:
+                    result += str(minutes) + ' m'
         else:
+            #Multiple day event: Compute duration in days
             days += 1
             result = str(days) + ' day'
             if (days > 1): result += 's'
