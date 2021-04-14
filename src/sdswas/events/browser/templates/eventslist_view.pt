@@ -44,9 +44,7 @@
                             tal:attributes="data-gobacklink string:< BACK TO UPCOMING EVENTS;
                                             data-page-url url;
                                             data-url string:${url}/${event_type}_modal;
-                                            data-title title;
-                                            data-start-date python:item['event_start_date_gcalendar'];
-                                            data-end-date python:item['event_end_date_gcalendar']">
+                                            data-title title;">
 
                         <!-- Card thumb -->
                         <a class="events-upco-card-thumb js-card-trigger" href="#" target="_self">

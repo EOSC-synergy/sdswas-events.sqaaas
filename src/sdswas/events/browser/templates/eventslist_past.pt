@@ -19,8 +19,7 @@
                     event_type python:item['event_type'];"
         tal:attributes="data-gobacklink string:< BACK TO PAST EVENTS;
                         data-url string:${url}/${event_type}_modal;
-                        data-title title;
-                        data-has-calendar python:False">
+                        data-title title;">
 
         <!-- Card content -->
         <div class="pastev-card-content">
