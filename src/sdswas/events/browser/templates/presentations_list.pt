@@ -17,7 +17,14 @@
 </tal:row>
 
 <div id="errormessage" class="main-padding" tal:condition="python:not batch" style="text-align:center;width:100%" >
-    <h3>There are no results for your search term.</h3>
+    <section class="no-results-section">
+        <div class="no-results-wrap main-container">
+            <h3>Sorry there were no results for your search 🤨</h3>
+            <p>You can go back to see
+            <a target="_self" href="#" onclick = '$("form#searchPresentations").trigger("reset").submit();'>All presentations</a>
+             of this event.</p>
+        </div>
+    </section>
 </div>
 
 <tal id="presentation-cards-pagination">
