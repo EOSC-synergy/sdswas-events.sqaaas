@@ -118,9 +118,10 @@ class EventView(DefaultView):
 
         searchParams = {
             "portal_type" : "presentation",
-            "review_state": "published",
-            "sort_on": ["getPresentationDate"], ###second criteria should be "sortable_title"
-            "sort_order": "descending"}
+            "review_state": "published"
+            #"sort_on": ["getPresentationDate"], ##this index needs to be created and the second criteria should be "sortable_title"
+            #"sort_order": "descending"
+            }
 
         if (searchableText): searchParams[ "SearchableText"] = searchableText
 
