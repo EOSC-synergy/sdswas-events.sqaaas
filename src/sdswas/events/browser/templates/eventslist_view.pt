@@ -155,7 +155,7 @@
     <section class="events-pastev-cards section-with-min-height bg-color-grey-light">
 
         <!-- Past events wrap -->
-        <div class="pastev-cards-wrap main-wrap main-padding main-padding-tb">
+        <div class="pastev-cards-wrap main-wrap main-padding">
 
             <!-- Past events container -->
             <div class="pastev-container main-container"
@@ -164,7 +164,6 @@
                 <!-- Past events cards container -->
                 <div class="pastev-cards-container"/>
                 <!-- Past events cards container -->
-
             </div><!-- Past events container ends -->
 
         </div><!-- Past events wrap ends -->
