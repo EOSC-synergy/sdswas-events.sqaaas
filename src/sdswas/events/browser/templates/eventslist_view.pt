@@ -45,7 +45,6 @@
                                             data-page-url url;
                                             data-url string:${url}/${event_type}_modal;
                                             data-title title;
-                                            data-has-calendar python:(event_type=='generic_event');
                                             data-start-date python:item['event_start_date_gcalendar'];
                                             data-end-date python:item['event_end_date_gcalendar']">
 
