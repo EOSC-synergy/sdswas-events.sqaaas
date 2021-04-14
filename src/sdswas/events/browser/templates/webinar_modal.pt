@@ -5,7 +5,9 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="sdswas.events">
 
-<metal:row define-macro="main-content" i18n:domain="sdswas.events">
+<metal:row define-macro="main-content" i18n:domain="sdswas.events"
+    tal:define="register_url context/register_url;
+                is_upcoming python:view.is_upcoming();">
 
     <!-- Modal window title -->
     <div tal:replace="structure context/modwin_page_title"/>
@@ -47,9 +49,24 @@
                     <p tal:content="structure context/full_description/raw" />
                 </div>
             </div>
+
+            <div class="modwin-text-cta" tal:condition="is_upcoming">
+                <!-- Add to calendar button -->
+                <a id="add-calendar" class="modwin-cta-within-text" target="_blank"
+                    title="Download this event in iCal format"
+                    tal:define="here_url context/@@plone_context_state/object_url"
+                    tal:attributes="href string:$here_url/ics_view">
+                <p>Add to calendar</p>
+                </a>
+
+                <!-- Register button -->
+                <a tal:condition="nocall:register_url" class="modwin-cta-within-text"
+                    tal:attributes="href register_url" target="_blank">
+                    <p>Register</p>
+                </a>
+            </div>
         </div>
     </section><!-- Modal window text ends -->
-
 
     <!-- Modal window sidepanel section -->
     <section class="modwin-sidepanel-section">
