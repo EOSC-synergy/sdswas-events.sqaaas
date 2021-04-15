@@ -21,7 +21,7 @@
         <div class="no-results-wrap main-container">
             <h3>Sorry there were no results for your search 🤨</h3>
             <p>You can go back to see
-            <a target="_self" href="#" onclick = '$("form#searchPresentations").trigger("reset").submit();'>All presentations</a>
+            <a target="_self" href="#presentations" onclick = '$("form#searchPresentations").trigger("reset").submit();'>All presentations</a>
              of this event.</p>
         </div>
     </section>

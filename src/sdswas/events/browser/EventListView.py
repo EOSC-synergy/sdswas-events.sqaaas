@@ -4,6 +4,7 @@ import datetime as dt
 from Products.AdvancedQuery import  Eq, Le, In, Ge, MatchGlob
 from plone.batching import Batch
 from sdswas.customViews.browser.NewsletterForm import NewsletterForm
+from pytz import UTC as utc
 
 class EventListView(DefaultView):
 
@@ -50,18 +51,15 @@ class EventListView(DefaultView):
     def upcoming_events(self):
         ## Returns generic events and webinars that satisfy: starting or to_be_started | started & not_finished
 
-        now = dt.date.today()
+        now = dt.datetime.utcnow()
         path = "/".join(self.context.getPhysicalPath()) # Limit the search to the current folder and its children
         clausepath = Eq("path", path)
         clausetype = Eq("portal_type", "generic_event") | Eq("portal_type", "webinar")
-        starting_or_to_be_started = Ge("start", now) #start now or in the future
-        started = ~ Ge("start", now)
         not_finished = ~ Le("end", now) # in progress
-        query = clausepath & clausetype & (starting_or_to_be_started | started & not_finished) & Eq("review_state", "published")
+        query = clausepath & clausetype & not_finished & Eq("review_state", "published")
 
         # The following result variable contains iterable of CatalogBrain objects
         events = self.context.portal_catalog.evalAdvancedQuery(query, (('start','asc'),))
-
         results = []
         for event in events:
             resObj = event.getObject()
@@ -94,7 +92,7 @@ class EventListView(DefaultView):
                 sort_order="ascending")
 
         results = []
-        latests = events[:3]
+        latests = events[:numitems]
         for event in latests:
             resObj = event.getObject()
             results.append({
