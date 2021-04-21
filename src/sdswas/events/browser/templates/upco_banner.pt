@@ -7,54 +7,47 @@
         tal:define="items python:view.upcoming_events_subset(2)">
 
         <tal:row tal:repeat="item items">
-        <!-- Home upcoming event card -->
+            <!-- Home upcoming event card -->
             <div class="home-upcoev-card">
                 <div class="home-upcoev-card-content">
+                    <a class="home-upcoev-card-title" target="_self"
+                    tal:attributes="href string:${context/portal_url}/news-events/events">
+                        <h3 tal:content="item/event_start_date"></h3>
+                    </a>
 
-                <a class="home-upcoev-card-title" target="_self"
-                tal:attributes="href string:${context/portal_url}/news-events/events">
-                    <h3 tal:content="item/event_start_date"></h3>
-                </a>
+                    <div class="home-upcoev-card-small-info">
+                        <p tal:content="item/location"></p>
+                    </div>
 
-                <div class="home-upcoev-card-small-info">
-                    <p tal:content="item/location"></p>
-                </div>
+                    <div class="home-upcoev-card-description">
+                        <p tal:content="item/description"></p>
+                    </div>
 
-                <div class="home-upcoev-card-description">
-                    <p tal:content="item/description"></p>
-                </div>
-
-                <a class="home-upcoev-text-link" target="_self"
-                tal:attributes="href string:${context/portal_url}/news-events/events">
-                    <p>Read more</p>
-                </a>
-
+                    <a class="home-upcoev-text-link" target="_self"
+                    tal:attributes="href string:${context/portal_url}/news-events/events">
+                        <p>Read more</p>
+                    </a>
                 </div>
             </div><!-- Home upcoming event card ends -->
         </tal:row>
 
+        <!-- "No upcoming events" card -->
         <div tal:condition="python:not items">
+            <div class="home-upcoev-card">
+                <div class="home-upcoev-card-content">
+                    <h3>There are not any upcoming events</h3>
+                    <br/>
+                    <div class="home-upcoev-card-description">
+                        <p>We invite you to explore our library of past events</p>
+                    </div>
 
-<!--
-            <br/>
-            <div class="news-upcoev-card-text-link">
-            <a target="_self" tal:attributes="href string:${context/portal_url}/news-events/events">
-                <p>Explore all events</p>
-            </a>
-            </div>-->
-
-
-                                <section class="no-results-section bg-white">
-                        <div class="no-results-wrap ">
-                            <h3>Right now we don't have anything to show in this section</h3>
-                            <br/>
-                            <p>You can subscribe to our newsletter and be the first to know when the next event is coming
-                                <a target="_self"
-                                tal:define="url python:view.subscribe_link()"
-                                tal:attributes="href url">Subscribe here</a>.</p>
-                        </div>
-                    </section>
-        </div>
+                    <a class="home-upcoev-text-link" target="_self"
+                        tal:attributes="href string:${context/portal_url}/news-events/events#past">
+                        <p>Read more</p>
+                    </a>
+                </div>
+            </div>
+        </div><!-- "No upcoming events" card ends -->
 
     </div><!-- Home upcoming events cards container ends -->
 

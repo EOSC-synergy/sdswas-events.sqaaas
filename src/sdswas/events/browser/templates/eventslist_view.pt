@@ -99,7 +99,8 @@
 
     <!-- Past events header -->
     <section class="events-pastev-header bg-color-grey-light">
-        <!-- Past events header wrap -->
+       <a id="past"/>
+       <!-- Past events header wrap -->
         <div class="pastev-header-wrap main-wrap main-padding main-padding-tb">
           <!-- Past events header container -->
           <div class="pastev-header-container main-container">
@@ -137,7 +138,6 @@
     </section><!-- Past events header ends -->
 
     <!-- Past events contents-->
-
     <section class="events-pastev-cards section-with-min-height bg-color-grey-light">
 
         <!-- Past events wrap -->
