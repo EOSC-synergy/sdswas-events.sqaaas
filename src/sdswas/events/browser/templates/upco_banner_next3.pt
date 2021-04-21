@@ -1,60 +1,68 @@
 <!-- News upcoming events -->
-<section class="bg-color-seaweed-dark"  tal:condition="items"
+<section class="bg-color-seaweed-dark"
             tal:define="items python:view.upcoming_events_subset(3)">
 
-<!-- News upcoming events wrap -->
-<div class="news-upcoev-wrap main-wrap main-padding main-padding-tb">
-    <!-- News upcoming events container -->
-    <div class="news-upcoev-container main-container">
+    <!-- News upcoming events wrap -->
+    <div class="news-upcoev-wrap main-wrap main-padding main-padding-tb">
+        <!-- News upcoming events container -->
+        <div class="news-upcoev-container main-container">
 
-    <div class="news-upcoev-title">
-        <h2>Upcoming events</h2>
-    </div>
+        <div class="news-upcoev-title">
+            <h2>Upcoming events</h2>
+        </div>
 
-    <!-- News upcoming events cards container -->
-    <div class="news-upcoev-cards-container">
+        <!-- No results section -->
+        <div tal:condition="python:not items">
+            <section class="no-results-section">
+                <div metal:use-macro="context/events_utils/macros/no_results_section"/>
+            </section>
+        </div><!-- No results section -->
 
-        <!-- Upcoming event card -->
-        <tal:row tal:repeat="item items">
+        <!-- News upcoming events cards container -->
+        <div tal:condition="python:items" class="news-upcoev-cards-container">
 
-            <div class="news-upcoev-card">
+            <!-- Upcoming event card -->
+            <tal:row tal:repeat="item items">
 
-                <!-- Upcoming event card content -->
-                <div class="news-upcoev-card-content">
+                <div class="news-upcoev-card">
 
-               <a class="news-upcoev-card-title" target="_self"
-                tal:attributes="href string:${context/portal_url}/news-events/events">
-                    <h3 tal:content="item/event_start_date"></h3>
-                </a>
+                    <!-- Upcoming event card content -->
+                    <div class="news-upcoev-card-content">
 
-                <div class="news-upcoev-card-small-info">
-                   <p tal:content="item/location"></p>
+                <a class="news-upcoev-card-title" target="_self"
+                    tal:attributes="href string:${context/portal_url}/news-events/events">
+                        <h3 tal:content="item/event_start_date"></h3>
+                    </a>
+
+                    <div class="news-upcoev-card-small-info">
+                    <p tal:content="item/location"></p>
+                    </div>
+
+                    <div class="news-upcoev-card-description">
+                        <p tal:content="item/description"></p>
+                    </div>
+
+                    <a class="news-upcoev-card-text-link" target="_self"
+                    tal:attributes="href string:${context/portal_url}/news-events/events">
+                        <p>Read more</p>
+                    </a>
+
+                    </div><!-- Upcoming event card content ends -->
+
                 </div>
 
-                <div class="news-upcoev-card-description">
-                    <p tal:content="item/description"></p>
-                </div>
+            </tal:row><!-- Upcoming event card ends -->
 
-                <a class="news-upcoev-card-text-link" target="_self"
-                tal:attributes="href string:${context/portal_url}/news-events/events">
-                    <p>Read more</p>
-                </a>
+        </div><!-- News upcoming events cards container ends -->
 
-                </div><!-- Upcoming event card content ends -->
+        <!--Explore all link-->
+        <div tal:condition="python:items" class="news-upcoev-link">
+            <a target="_self" tal:attributes="href string:${context/portal_url}/news-events/events">
+                <p>Explore all events</p>
+            </a>
+        </div> <!--Explore all link ends -->
 
-            </div>
+        </div><!-- Upcoming events carpet wrap ends -->
+    </div><!-- News upcoming events wrap ends -->
 
-        </tal:row><!-- Upcoming event card ends -->
-
-    </div><!-- News upcoming events cards container ends -->
-
-    <!--Explore all link-->
-    <div class="news-upcoev-link">
-        <a target="_self" tal:attributes="href string:${context/portal_url}/news-events/events">
-            <p>Explore all events</p>
-        </a>
-    </div> <!--Explore all link ends -->
-
-    </div><!-- Upcoming events carpet wrap ends -->
-</div>
 </section>

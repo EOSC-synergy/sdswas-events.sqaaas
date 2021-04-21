@@ -34,13 +34,26 @@
         </tal:row>
 
         <div tal:condition="python:not items">
-            <p>There are no Upcoming events at this moment.</p>
+
+<!--
             <br/>
             <div class="news-upcoev-card-text-link">
             <a target="_self" tal:attributes="href string:${context/portal_url}/news-events/events">
                 <p>Explore all events</p>
             </a>
-            </div>
+            </div>-->
+
+
+                                <section class="no-results-section bg-white">
+                        <div class="no-results-wrap ">
+                            <h3>Right now we don't have anything to show in this section</h3>
+                            <br/>
+                            <p>You can subscribe to our newsletter and be the first to know when the next event is coming
+                                <a target="_self"
+                                tal:define="url python:view.subscribe_link()"
+                                tal:attributes="href url">Subscribe here</a>.</p>
+                        </div>
+                    </section>
         </div>
 
     </div><!-- Home upcoming events cards container ends -->
