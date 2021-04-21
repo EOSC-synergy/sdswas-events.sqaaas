@@ -55,4 +55,16 @@
 
 </metal:row>
 
+<metal:row define-macro="no_results_section" i18n:domain="sdswas.events">
+  <div class="main-wrap main-padding">
+    <div class="no-results-wrap main-container">
+        <h3>Right now we don’t have any upcoming events, but stay tuned.</h3>
+        <p>You can subscribe to our newsletter and be the first to know when the next event is coming
+            <a target="_self"
+            tal:define="url view/subscribe_link"
+            tal:attributes="href url">Subscribe here</a>.</p>
+    </div>
+  </div>
+</metal:row>
+
 </html>

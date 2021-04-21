@@ -26,13 +26,13 @@
     <!-- Banner top ends -->
 
     <!-- Upcoming events-->
-      <section class="events-upco-cards bg-color-white">
+    <section class="events-upco-cards bg-color-white"
+            tal:define="items python:view.upcoming_events()">
 
         <!-- Upcoming events wrap -->
         <div class="main-wrap main-padding main-padding-tb">
 
-            <div id="upcoming-events" class="events-upco-cards-container main-container"
-                tal:define="items python:view.upcoming_events()">
+            <div id="upcoming-events" class="events-upco-cards-container main-container">
 
                 <tal:row tal:repeat="item items">
                     <!-- Events upco card -->
@@ -79,20 +79,6 @@
                     </div><!-- Events upco card ends -->
                 </tal:row>
 
-                <div tal:condition="python:not items" style="text-align:center;width:100%" class="main-padding">
-                    <section class="no-results-section bg-white">
-                        <div class="main-wrap main-padding">
-                        <div class="no-results-wrap main-container">
-                            <h3>Right now we don’t have any upcoming events, but stay tuned.</h3>
-                            <p>You can subscribe to our newsletter and be the first to know when the next event is coming
-                                <a target="_self"
-                                tal:define="url python:view.subscribe_link()"
-                                tal:attributes="href url">Subscribe here</a>.</p>
-                        </div>
-                        </div>
-                    </section>
-                </div>
-
             </div><!-- Upcoming events container ends -->
 
         </div><!-- Upcoming events wrap carpet ends -->
@@ -102,11 +88,14 @@
             <div tal:replace="structure context/loader"/>
         </div> Loader widget ends -->
 
+        <!-- No results section -->
+        <div tal:condition="python:not items" class="main-padding">
+            <section class="no-results-section bg-white">
+                <div metal:use-macro="context/events_utils/macros/no_results_section"/>
+            </section>
+        </div><!-- No results section -->
+
     </section><!-- Upcoming events carpet ends -->
-
-    <!-- Upcoming events container -->
-
-
 
     <!-- Past events header -->
     <section class="events-pastev-header bg-color-grey-light">
