@@ -4,6 +4,10 @@ import re
 from pytz import UTC as utc
 import locale
 from plone.batching import Batch
+from plone.namedfile import NamedBlobFile
+from plone import api
+import transaction
+import shutil, os
 
 class EventView(DefaultView):
 
@@ -152,3 +156,130 @@ class EventView(DefaultView):
                 "review_state": "published"})
 
         return len(brains)
+
+    def presentations_zip_link(self):
+    # Return URL of the zip file containing the event's presentations folder.
+    # Check if it has already been generated and it is not outdated, otherwise create it
+    # The zip is a plone File stored in the event's dir with name "presentations-zip"
+
+        if not(self.context.has_key("presentations")): return ""
+
+        zipurl = ""
+    #  try:
+        files = self.context.getFolderContents(
+            contentFilter=  {
+                "portal_type" : "File",
+                "title": "presentations-zip"})
+
+        generate_zip = False
+
+        if (len(files)):
+            # Regenerate zip if the folder has been modified (added/removed entries)
+            # or any presentation is newer than the zip
+
+            zip = files[0].getObject() # There should be only one file with this name
+            folder_modified = self.context["presentations"].modified()
+            if folder_modified > zip.modified(): #folder modified (added/removed entries)
+                #print("Presentations zip is outdated: folder is newer (",folder_modified,") than the zip (", zip.modified(),")")
+                generate_zip = True
+            else:
+                presentations = self.context["presentations"].getFolderContents(
+                    contentFilter={
+                        "portal_type" : "presentation",
+                        "review_state": "published"})
+
+                for item in presentations:
+                    item_modified = item.getObject().modified()
+                    if item_modified > zip.modified():
+                        #print("Presentations zip is outdated: found at least one presentation with date newer (",item_modified,") than the zip (", zip.modified(),")")
+                        generate_zip = True
+
+            if generate_zip: #Zip is outdated: delete it
+                #print("Deleting zip file:", zip.absolute_url())
+                zip.aq_parent.manage_delObjects([zip.getId()])
+                transaction.commit()
+
+        else: #Zip does not exist
+            print("zip no exist")
+            generate_zip = True
+
+        zipurl = self.generate_presentations_zip() if generate_zip else zip.absolute_url() + '/@@download'
+
+    #    except Exception as e:
+     #       print("Error getting link to the presentations zip of event ",self.context.title, ":",e)
+
+        return zipurl
+
+    def generate_presentations_zip(self):
+    # Return the link to the presentations zip. If it does not exist, generate it.
+    # The zip is Plone file stored in the event's folder with title self.context.presentations_zipname.
+
+        if not(self.context.has_key("presentations")): return ""
+
+        brains = self.context["presentations"].getFolderContents(
+            contentFilter=  {
+                "portal_type" : "presentation",
+                "review_state": "published"})
+
+        # Create folder for this event if it does not exist
+        dirname = u'{0}-presentations'.format(self.context.id)
+        print("---------- Generating zip of event presentations folder for event with title: '",self.context.title,"'----------")
+
+        currentpath = os.getcwd()
+        zipurl = ""
+        try:
+            os.chdir('/tmp')
+
+            if os.path.exists(dirname):
+                shutil.rmtree(dirname)
+
+            os.mkdir(dirname)
+
+            #Insert files in the folder
+            for brain in brains:
+                resObj = brain.getObject()
+                filedoc = resObj.document
+                filename = filedoc.filename
+                f = open(os.path.join(dirname, filename), 'wb')
+                f.write(filedoc.data)
+                f.close()
+                #print("Saved {}".format(filename))
+
+            #Zip the folder, delete the folder, create a plone File with the zip folder and remove zip folder from the file system
+            shutil.make_archive(dirname, 'zip',dirname)
+            shutil.rmtree(dirname)
+            zipurl = self.upload_zip(dirname)
+        finally:
+            os.chdir(currentpath)
+
+        return zipurl
+
+    def upload_zip(self, filename):
+    # Upload zip file fylesystem dir (/tmp) to the current Plone context
+    # The zip filename is "filename"
+
+        zip_filename = "{}.zip".format(filename)
+
+        zip_file = api.content.create(
+            type='File',
+            title=u'presentations-zip',
+            container=self.context,
+        )
+
+        try:
+            f = open(zip_filename, 'rb')
+        except IOError:
+            print("Error: Zip file can't be uploaded to Plone, it does not appear to exist.")
+            return 0
+
+        zip_file.file = NamedBlobFile(
+            data=f,
+            filename=zip_filename,
+            contentType='application/zip'
+        )
+
+        f.close()
+        zip_file.reindexObject()
+        transaction.commit()
+        return zip_file.absolute_url() + '/@@download'
+

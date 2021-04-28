@@ -169,7 +169,8 @@
                         </div><!-- Search tool ends -->
 
                         <a  id="download-all-cta" tal:condition="hasPresentations"
-                            class="outlined-cta" href="#" target="_self">
+                            class="outlined-cta" target="_self"
+                            tal:attributes="href view/presentations_zip_link">
                             <p>Download all</p>
                             <i class="icon-download"></i>
                         </a>
