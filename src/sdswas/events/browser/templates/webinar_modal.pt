@@ -121,7 +121,7 @@
 
                     </div><!-- Sidepanel info card ends -->
 
-                    <div class="sidepanel-cta-component"
+                    <div class="sidepanel-cta-component sidepanel-info-card"
                         tal:define="picture nocall:context/document;"
                         tal:condition="nocall:picture">
                         <div tal:define="title string:Presentation"

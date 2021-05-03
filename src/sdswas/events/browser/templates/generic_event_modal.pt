@@ -129,7 +129,7 @@
                 </div><!-- Sidepanel info card ends -->
 
                 <!-- Sidepanel cta component -->
-                <div id="agenda" class="sidepanel-cta-component"
+                <div id="agenda" class="sidepanel-cta-component sidepanel-info-card"
                     tal:condition="nocall:agenda">
                         <div tal:define="title string:Agenda"
                             metal:use-macro="context/events_utils/macros/filedownload"/>
