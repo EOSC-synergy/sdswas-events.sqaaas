@@ -165,48 +165,49 @@ class EventView(DefaultView):
         if not(self.context.has_key("presentations")): return ""
 
         zipurl = ""
-    #  try:
-        files = self.context.getFolderContents(
-            contentFilter=  {
-                "portal_type" : "File",
-                "title": "presentations-zip"})
 
-        generate_zip = False
+        try:
+            files = self.context.getFolderContents(
+                contentFilter=  {
+                    "portal_type" : "File",
+                    "title": "presentations-zip"})
 
-        if (len(files)):
-            # Regenerate zip if the folder has been modified (added/removed entries)
-            # or any presentation is newer than the zip
+            generate_zip = False
 
-            zip = files[0].getObject() # There should be only one file with this name
-            folder_modified = self.context["presentations"].modified()
-            if folder_modified > zip.modified(): #folder modified (added/removed entries)
-                #print("Presentations zip is outdated: folder is newer (",folder_modified,") than the zip (", zip.modified(),")")
+            if (len(files)):
+                # Regenerate zip if the folder has been modified (added/removed entries)
+                # or any presentation is newer than the zip
+
+                zip = files[0].getObject() # There should be only one file with this name
+                folder_modified = self.context["presentations"].modified()
+                if folder_modified > zip.modified(): #folder modified (added/removed entries)
+                    #print("Presentations zip is outdated: folder is newer (",folder_modified,") than the zip (", zip.modified(),")")
+                    generate_zip = True
+                else:
+                    presentations = self.context["presentations"].getFolderContents(
+                        contentFilter={
+                            "portal_type" : "presentation",
+                            "review_state": "published"})
+
+                    for item in presentations:
+                        item_modified = item.getObject().modified()
+                        if item_modified > zip.modified():
+                            #print("Presentations zip is outdated: found at least one presentation with date newer (",item_modified,") than the zip (", zip.modified(),")")
+                            generate_zip = True
+
+                if generate_zip: #Zip is outdated: delete it
+                    #print("Deleting zip file:", zip.absolute_url())
+                    zip.aq_parent.manage_delObjects([zip.getId()])
+                    transaction.commit()
+
+            else: #Zip does not exist
+                print("zip no exist")
                 generate_zip = True
-            else:
-                presentations = self.context["presentations"].getFolderContents(
-                    contentFilter={
-                        "portal_type" : "presentation",
-                        "review_state": "published"})
 
-                for item in presentations:
-                    item_modified = item.getObject().modified()
-                    if item_modified > zip.modified():
-                        #print("Presentations zip is outdated: found at least one presentation with date newer (",item_modified,") than the zip (", zip.modified(),")")
-                        generate_zip = True
+            zipurl = self.generate_presentations_zip() if generate_zip else zip.absolute_url() + '/@@download'
 
-            if generate_zip: #Zip is outdated: delete it
-                #print("Deleting zip file:", zip.absolute_url())
-                zip.aq_parent.manage_delObjects([zip.getId()])
-                transaction.commit()
-
-        else: #Zip does not exist
-            print("zip no exist")
-            generate_zip = True
-
-        zipurl = self.generate_presentations_zip() if generate_zip else zip.absolute_url() + '/@@download'
-
-    #    except Exception as e:
-     #       print("Error getting link to the presentations zip of event ",self.context.title, ":",e)
+        except Exception as e:
+            print("Error getting link to the presentations zip of event ",self.context.title, ":",e)
 
         return zipurl
 
