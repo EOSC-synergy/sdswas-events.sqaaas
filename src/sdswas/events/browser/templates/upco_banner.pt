@@ -1,10 +1,10 @@
 <!-- Upcoming events widget to show the next 2 upcoming events-->
-<div class="home-upcoev home-widget">
+<div class="home-upcoev home-widget"
+    tal:define="items python:view.upcoming_events_subset(2)">
     <h3>Upcoming events</h3>
 
     <!-- Home upcoming events cards container -->
-    <div class="home-upcoev-cards-container"
-        tal:define="items python:view.upcoming_events_subset(2)">
+    <div class="home-upcoev-cards-container">
 
         <tal:row tal:repeat="item items">
             <!-- Home upcoming event card -->
@@ -50,5 +50,10 @@
         </div><!-- "No upcoming events" card ends -->
 
     </div><!-- Home upcoming events cards container ends -->
+
+    <!-- "Explore all" link -->
+    <tal tal:condition="python:items">
+        <a href="${context/portal_url}/news-events/events" class="home-widget-link">Explore all events</a>
+    </tal> <!-- "Explore all" link ends -->
 
 </div><!-- Upcoming events widget ends -->
