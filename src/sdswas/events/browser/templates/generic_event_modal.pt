@@ -85,7 +85,7 @@
                             <p tal:content="structure view/w/IEventLocation.location/render">-</p>
                         </div>
 
-                        <div class="info-card-data">
+                        <div class="info-card-data" tal:condition="context/venue">
                             <p class="text-bold">Venue</p>
                             <p tal:content="structure view/w/venue/render">-</p>
                         </div>
