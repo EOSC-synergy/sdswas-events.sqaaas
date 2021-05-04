@@ -1,0 +1,5 @@
+*.pyc
+src/sdswas/events/__pycache__/*.pyc
+src/sdswas/events/browser/__pycache__/*.pyc
+src/sdswas/events/locales/__pycache__/*.pyc
+src/sdswas/events/schema/__pycache__/*.pyc
