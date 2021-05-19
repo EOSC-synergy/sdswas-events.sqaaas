@@ -30,7 +30,7 @@
                     <tal:row tal:repeat="item images">
 
                         <!-- Item -->
-                        <div class="slider-item-wrap slider-i-1">
+                        <div class="slider-item-wrap">
                             <div class="slider-item-container">
                                 <div class="slider-img-item">
                                     <img class="slider-img"
