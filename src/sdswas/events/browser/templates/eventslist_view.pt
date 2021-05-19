@@ -83,10 +83,10 @@
 
         </div><!-- Upcoming events wrap carpet ends -->
 
-        <!-- Loader widget -->
+        <!-- This loader is not used because the cards of this container are not fetched using ajax -->
         <!--<div id="loader-upco-cards" class="loader bg-color-white hide">
             <div tal:replace="structure context/loader"/>
-        </div> Loader widget ends -->
+        </div>--> <!--Loader widget ends -->
 
         <!-- No results section -->
         <div tal:condition="python:not items" class="main-padding">
