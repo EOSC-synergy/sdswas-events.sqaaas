@@ -7,14 +7,16 @@
 
 <metal:row define-macro="main-content" i18n:domain="sdswas.events"
     tal:define="register_url context/register_url;
-                is_upcoming python:view.is_upcoming();">
+                is_upcoming python:view.is_upcoming();
+                has_image nocall:context/image;
+                has_video nocall:context/embedded_url">
 
     <!-- Modal window title -->
     <div tal:replace="structure context/modwin_page_title"/>
     <!-- Modal window title ends-->
 
     <!-- Modal window image -->
-    <section class="modwin-image-section"  tal:condition="context/image">
+    <section class="modwin-image-section"  tal:condition="python:has_image and not(has_video)">
       <div class="modwin-image-wrap modwin-padding">
         <div class="modwin-image-container">
           <div class="modwin-image ">
@@ -27,7 +29,7 @@
     </section><!-- Modal window image ends -->
 
     <!-- Modal window video -->
-    <section class="modwin-image-section" tal:condition="context/embedded_url">
+    <section class="modwin-image-section" tal:condition="has_video">
         <div class="modwin-image-wrap modwin-padding">
             <div class="modwin-image-container">
                 <div tal:condition="context/embedded_url"
