@@ -120,8 +120,9 @@
 
                         </div><!-- Info card subcontent ends  -->
 
-                        <a class="info-card-data">
-                            <p class="text-bold" tal:content="structure view/w/website_url/render">-</p>
+                        <a class="info-card-data" target="_blank"
+                                tal:attributes="href context/website_url">
+                            <p class="text-bold" tal:content="context/website_url">-</p>
                         </a>
 
                     </div><!-- Info card content ends  -->
