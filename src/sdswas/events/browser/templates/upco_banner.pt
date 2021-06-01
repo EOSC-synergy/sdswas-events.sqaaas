@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="home-upcoev-card-description">
-                        <p tal:content="item/description"></p>
+                        <p tal:content="item/Title"></p>
                     </div>
 
                     <a class="home-upcoev-text-link" target="_self"

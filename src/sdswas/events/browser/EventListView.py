@@ -99,7 +99,7 @@ class EventListView(DefaultView):
                 'event_start_date': resObj.start.strftime('%-d %B %Y'),
                 'absolute_url': resObj.absolute_url(),
                 'location': resObj.location,
-                'description': resObj.description,
+                'Title': resObj.Title,
             })
 
         return results
