@@ -120,7 +120,7 @@
 
                         </div><!-- Info card subcontent ends  -->
 
-                        <a class="info-card-data" target="_blank"
+                        <a class="info-card-data link-break-text" target="_blank"
                                 tal:attributes="href context/website_url">
                             <p class="text-bold" tal:content="context/website_url">-</p>
                         </a>
