@@ -1,6 +1,15 @@
-<model xmlns:i18n="http://xml.zope.org/namespaces/i18n" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:users="http://namespaces.plone.org/supermodel/users" xmlns:lingua="http://namespaces.plone.org/supermodel/lingua" xmlns="http://namespaces.plone.org/supermodel/schema">
-  <schema>
-    <field name="full_description" type="plone.app.textfield.RichText">
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://namespaces.plone.org/supermodel/schema"
+xmlns:easyform="http://namespaces.plone.org/supermodel/easyform"
+xmlns:form="http://namespaces.plone.org/supermodel/form"
+xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+xmlns:lingua="http://namespaces.plone.org/supermodel/lingua"
+xmlns:marshal="http://namespaces.plone.org/supermodel/marshal"
+xmlns:security="http://namespaces.plone.org/supermodel/security"
+xmlns:users="http://namespaces.plone.org/supermodel/users"
+xmlns:indexer="http://namespaces.plone.org/supermodel/indexer">
+   <schema based-on="plone.supermodel.model.Schema">
+    <field name="full_description" type="plone.app.textfield.RichText" indexer:searchable="true">
       <description/>
       <required>True</required>
       <title>Full description</title>
@@ -10,7 +19,7 @@
       <required>False</required>
       <title>Image</title>
     </field>
-    <field name="embedded_url" type="zope.schema.URI">
+    <field name="embedded_url" type="zope.schema.URI" indexer:searchable="true">
       <description/>
       <required>False</required>
       <title>Embedded media URL</title>
@@ -20,12 +29,12 @@
       <required>False</required>
       <title>Document</title>
     </field>
-    <field name="presented_by" type="zope.schema.TextLine">
+    <field name="presented_by" type="zope.schema.TextLine" indexer:searchable="true">
       <description/>
       <required>True</required>
       <title>Presented by</title>
     </field>
-    <field name="event_type" type="zope.schema.Choice">
+    <field name="event_type" type="zope.schema.Choice" indexer:searchable="true">
       <description/>
       <required>False</required>
       <title>Event type</title>
@@ -33,12 +42,12 @@
         <element>Webinar</element>
       </values>
     </field>
-    <field name="event_language" type="zope.schema.TextLine">
+    <field name="event_language" type="zope.schema.TextLine" indexer:searchable="true">
       <description/>
       <required>False</required>
       <title>Language</title>
     </field>
-    <field name="register_url" type="zope.schema.URI">
+    <field name="register_url" type="zope.schema.URI" indexer:searchable="true">
       <description/>
       <required>False</required>
       <title>Register website URL</title>

@@ -27,6 +27,7 @@
  <property name="add_permission">cmf.AddPortalContent</property>
  <property name="klass">plone.dexterity.content.Container</property>
  <property name="behaviors">
+  <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer" />
   <element value="plone.dublincore"/>
   <element value="plone.namefromtitle"/>
   <element value="plone.eventbasic"/>
