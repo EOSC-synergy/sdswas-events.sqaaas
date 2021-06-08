@@ -167,8 +167,6 @@
     </section>
     <!-- Homepage subscribe form section ends-->
 
-    <section class="news-spacer"></section>
-
 </metal:main>
 </body>
 </html>
