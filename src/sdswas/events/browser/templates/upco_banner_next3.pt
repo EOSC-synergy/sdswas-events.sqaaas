@@ -30,7 +30,7 @@
                     <div class="news-upcoev-card-content">
 
                 <a class="news-upcoev-card-title" target="_self"
-                    tal:attributes="href string:${context/portal_url}/news-events/events">
+                        tal:attributes="href item/absolute_url">
                         <h3 tal:content="item/event_start_date"></h3>
                     </a>
 
@@ -43,7 +43,7 @@
                     </div>
 
                     <a class="news-upcoev-card-text-link" target="_self"
-                    tal:attributes="href string:${context/portal_url}/news-events/events">
+                        tal:attributes="href item/absolute_url">
                         <p>Read more</p>
                     </a>
 
