@@ -7,7 +7,7 @@
 
 
 <metal:row define-macro="main-content" i18n:domain="sdswas.events"
-        tal:define = "images python:view.images();
+        tal:define = "has_images view/has_images;
                     numPresentations python:view.numPresentations();
                     hasPresentations python: numPresentations > 0;
                     agenda context/document;
@@ -150,7 +150,34 @@
 
 
     <!-- Modal window image slider -->
-    <metal:macro  tal:condition="nocall:images" use-macro="context/images_slider/macros/slider">
+    <section id="images" class="modwin-img-slider-section" tal:condition="has_images">
+        <div class="modwin-img-slider-wrap modwin-padding">
+            <div class="modwin-img-slider-container section-with-min-height " >
+                <div class="modwin-img-slider-title">
+                    <h2>Images</h2>
+                </div>
+
+                <!-- Slider component -->
+                <div id="modwin-img-slider" class="slider section-with-min-height ">
+
+                    <div id="slider-items-contents"
+                        tal:attributes="data-url string:${context/absolute_url}/images_slider">
+                    </div>
+
+                    <!-- Loader widget -->
+                    <div id="loader-images" class="loader bg-color-grey-light">
+                        <div tal:replace="structure context/loader"/>
+                    </div>
+                    <!-- Loader widget ends-->
+
+                </div><!-- Slider component ends -->
+
+
+            </div>
+        </div>
+
+
+    </section>
     <!-- Modal window image slider ends -->
 
     <!--Presentations section header-->

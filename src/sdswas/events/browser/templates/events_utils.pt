@@ -41,7 +41,7 @@
           <p class="modwin-anchor-link-p">Agenda</p>
         </a>
       </li>
-      <li tal:condition="nocall:images">
+      <li tal:condition="has_images">
         <a href="#images">
           <p class="modwin-anchor-link-p">Images</p>
         </a>

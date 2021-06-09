@@ -21,18 +21,7 @@
     ], function($, _bootstrap) {
         (function($) {
             $(document).ready(function() {
-
-                EventPresentations.init();
-
-                // Images slider
-                Slider.init(
-                    $("#slider-items"),
-                    0,
-                    $(".slider-item-wrap").toArray(),
-                    $(".slider-indicators-container"),
-                    $("#previous-btn"),
-                    $("#next-btn")
-                );
+                Event.init();
             });
         })(jQuery);
     });

@@ -113,6 +113,12 @@ class EventView(DefaultView):
 
         return results
 
+    def has_images(self):
+
+        if not(self.context.has_key("pictures")): return False
+        brains = self.context["pictures"].getFolderContents(contentFilter={"portal_type" : "Image"})
+        return len(brains) > 0
+
     def is_upcoming(self):
        return  self.context.end.replace(tzinfo=utc) > dt.datetime.now(utc)
 
