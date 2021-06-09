@@ -23,6 +23,9 @@
                         <img class="slider-img"
                                 tal:attributes="src string:${item/absolute_url};
                                 alt item/title;" />
+                        <p class="slider-img-number">
+                            Showing <span tal:content="repeat/item/number"/> of <span tal:content="python:len(images)"/> images
+                        </p>
                     </div>
                 </div>
             </div><!-- Item ends -->
