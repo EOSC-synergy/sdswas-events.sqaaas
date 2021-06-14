@@ -23,8 +23,8 @@ class EventListView(DefaultView):
             "review_state": "published",
             "end": {'query':dt.datetime.now(),
                     'range':'max'},
-            "sort_on": ["start"], ###second criteria should be "sortable_title"
-            "sort_order": "desc"
+            "sort_on": ["start", "sortable_title"],
+            "sort_order": ["descending", "ascending"]
         }
 
         if (searchableText): searchParams[ "SearchableText"] = searchableText
@@ -59,7 +59,7 @@ class EventListView(DefaultView):
         query = clausepath & clausetype & not_finished & Eq("review_state", "published")
 
         # The following result variable contains iterable of CatalogBrain objects
-        events = self.context.portal_catalog.evalAdvancedQuery(query, (('start','asc'),))
+        events = self.context.portal_catalog.evalAdvancedQuery(query, (('start','asc'),('sortable_title', 'asc')))
         results = []
         for event in events:
             resObj = event.getObject()
