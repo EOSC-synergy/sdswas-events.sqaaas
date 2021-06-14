@@ -107,11 +107,12 @@
             <div class="pastev-header">
 
                 <h2 class="pastev-desc-text">Past Events</h2>
+                <br/>
                 <p class="pastev-desc-text">
                 You can find and explore all the resources from our past events in the Resources tab in the menu, or
                 you can search directly in the following boxes.
                 </p>
-
+                <br/>
                 <!-- Past events toolbar -->
                 <div class="pastev-toolbar">
 
