@@ -11,6 +11,8 @@
             <h2>Upcoming events</h2>
         </div>
 
+        <br/>
+
         <!-- No results section -->
         <div tal:condition="python:not items">
             <section class="no-results-section">
@@ -54,6 +56,8 @@
             </tal:row><!-- Upcoming event card ends -->
 
         </div><!-- News upcoming events cards container ends -->
+
+        <br/>
 
         <!--Explore all link-->
         <div tal:condition="python:items" class="news-upcoev-link">
