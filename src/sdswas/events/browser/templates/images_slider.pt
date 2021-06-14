@@ -17,7 +17,7 @@
         <tal:row tal:repeat="item images">
 
             <!-- Item -->
-            <div class="slider-item-wrap">
+            <div class="slider-item-wrap hide">
                 <div class="slider-item-container">
                     <div class="slider-img-item">
                         <img class="slider-img"
