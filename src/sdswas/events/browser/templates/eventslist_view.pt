@@ -41,7 +41,7 @@
                                         url python:item['absolute_url'];
                                         title python:item['title'];
                                         event_type python:item['event_type'];"
-                            tal:attributes="data-gobacklink string:< BACK TO UPCOMING EVENTS;
+                            tal:attributes="data-breadcumb-text string:< BACK TO UPCOMING EVENTS;
                                             data-page-url url;
                                             data-url string:${url}/${event_type}_modal;
                                             data-title title;">
@@ -98,8 +98,8 @@
     </section><!-- Upcoming events carpet ends -->
 
     <!-- Past events header -->
-    <section class="events-pastev-header bg-color-grey-light">
-       <a id="past"/>
+    <section id="past-events" class="events-pastev-header bg-color-grey-light">
+
        <!-- Past events header wrap -->
         <div class="pastev-header-wrap main-wrap main-padding main-padding-tb">
           <!-- Past events header container -->

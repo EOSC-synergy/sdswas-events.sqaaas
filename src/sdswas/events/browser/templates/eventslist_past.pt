@@ -17,7 +17,8 @@
                     url python:item['absolute_url'];
                     title python:item['title'];
                     event_type python:item['event_type'];"
-        tal:attributes="data-gobacklink string:< BACK TO PAST EVENTS;
+        tal:attributes="data-breadcumb-text string:< BACK TO PAST EVENTS;
+                        data-redirect-aid string:past-events;
                         data-url string:${url}/${event_type}_modal;
                         data-title title;">
 
