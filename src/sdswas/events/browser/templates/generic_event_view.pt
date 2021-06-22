@@ -28,7 +28,6 @@
       <div id="view" class="main-wrap"
             tal:define = "upcoming_boolean string:upcoming"
             tal:attributes="upcoming python: upcoming_boolean if is_upcoming else None">
->
 
             <metal:macro use-macro="context/events_utils/macros/breadcumb"/>
 
