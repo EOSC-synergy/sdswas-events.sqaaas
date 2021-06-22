@@ -20,15 +20,13 @@
         'main'
     ], function($, _bootstrap) {
         (function($) {
-
-            var is_upcoming = $("#view").attr("upcoming");
-            if (is_upcoming == undefined) is_upcoming = false;
-            var menu_entry = is_upcoming ? ("#news-and-events-btn") : ("#resources-btn");
-
-            Header.highlightMenuButton(menu_entry);
-
             $(document).ready(function() {
-                Event.init();
+
+                var is_upcoming = $("#view").attr("upcoming");
+                if (is_upcoming == undefined) is_upcoming = false;
+                var menu_entry = is_upcoming ? ("#news-and-events-btn") : ("#resources-btn");
+
+                Header.highlightMenuButton(menu_entry);
             });
         })(jQuery);
     });

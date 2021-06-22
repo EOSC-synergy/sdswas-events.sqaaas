@@ -11,21 +11,24 @@
 <metal:javascriptslot fill-slot="javascript_head_slot">
 
       <script type="text/javascript" tal:define="navroot context/@@plone_portal_state/navigation_root_url"
-              tal:attributes="src string:${navroot}/++resource++sdswas.events/js/event_view.js?1623251704336"/>
+              tal:attributes="src string:${navroot}/++resource++sdswas.events/js/event_view.js?1624375025672"/>
 
 </metal:javascriptslot>
 
 <metal:main fill-slot="main"
       tal:define="is_upcoming view/is_upcoming;
-                  text_upcoming string: Upcoming Events;
-                  text_past string: Resources;">
+                  text_upcoming string: Upcoming Event;
+                  text_past string: Past Event;">
 
 
       <metal:macro use-macro="context/banner_title_macro/macros/master"
                   tal:define="title python:text_upcoming if is_upcoming else text_past"/>
 
       <!-- Wrapper to fix the max width -->
-      <div class="main-wrap">
+      <div id="view" class="main-wrap"
+            tal:define = "upcoming_boolean string:upcoming"
+            tal:attributes="upcoming python: upcoming_boolean if is_upcoming else None">
+>
 
             <metal:macro use-macro="context/events_utils/macros/breadcumb"/>
 
