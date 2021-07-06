@@ -90,7 +90,8 @@
                             <p tal:content="structure view/w/venue/render">-</p>
                         </div>
 
-                        <div class="info-card-data">
+                        <div class="info-card-data"
+                            tal:condition="context/presented_by">
                             <p class="text-bold">Presented by</p>
                             <p tal:content="structure view/w/presented_by/render"/>
                         </div>

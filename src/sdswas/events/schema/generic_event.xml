@@ -27,7 +27,7 @@ xmlns:indexer="http://namespaces.plone.org/supermodel/indexer">
     </field>
     <field name="presented_by" type="zope.schema.TextLine" indexer:searchable="true">
       <description/>
-      <required>True</required>
+      <required>False</required>
       <title>Presented by</title>
     </field>
     <field name="event_type" type="zope.schema.Choice" indexer:searchable="true">
