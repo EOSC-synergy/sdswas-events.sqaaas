@@ -32,10 +32,9 @@
             <metal:macro use-macro="context/events_utils/macros/breadcumb"/>
 
             <!-- Modal window main content ends -->
-            <div class="modwin-main-content bg-color-white">
+            <div class="modwin-dynamic-content">
                   <div tal:replace="structure context/generic_event_modal">
-            </div><!-- Modal window maincontent ends -->
-
+            </div>
       </div>  <!-- Wrapper to fix the max width ends-->
 
 </metal:main>

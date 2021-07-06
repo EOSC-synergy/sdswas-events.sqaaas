@@ -33,7 +33,7 @@
                   use-macro="context/events_utils/macros/breadcumb"/>
 
             <!-- Modal window main content ends -->
-            <div class="modwin-main-content bg-color-white">
+            <div class="modwin-dynamic-content">
                   <metal:macro use-macro="context/webinar_modal/macros/main-content"/>
             </div><!-- Modal window maincontent ends -->
 
