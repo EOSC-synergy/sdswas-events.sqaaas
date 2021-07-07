@@ -47,20 +47,21 @@ class EventListView(DefaultView):
 
         return results
 
-
     def upcoming_events(self):
-        ## Returns generic events and webinars that satisfy: starting or to_be_started | started & not_finished
-
         now = dt.datetime.utcnow()
-        path = "/".join(self.context.getPhysicalPath()) # Limit the search to the current folder and its children
-        clausepath = Eq("path", path)
+        clausepath = Eq("path", self.events_folder_url())
         clausetype = Eq("portal_type", "generic_event") | Eq("portal_type", "webinar")
         not_finished = ~ Le("end", now) # in progress
-        query = clausepath & clausetype & not_finished & Eq("review_state", "published")
-
-        # The following result variable contains iterable of CatalogBrain objects
+        ready_to_publish = Eq("review_state", "published")
+        query = clausepath & clausetype & not_finished & ready_to_publish & Eq("effectiveRange", now)
         events = self.context.portal_catalog.evalAdvancedQuery(query, (('start','asc'),('sortable_title', 'asc')))
+        return events
+
+    def upcoming_events_all(self):
+        ## Returns generic events and webinars that satisfy: starting or to_be_started | started & not_finished
+        ##effectiveRange return only objects whose effective_date is in the past and effective_date has been introduced in UTC in the system*/
         results = []
+        events = self.upcoming_events()
         for event in events:
             resObj = event.getObject()
             results.append({
@@ -81,18 +82,15 @@ class EventListView(DefaultView):
         resource_folder = portal.unrestrictedTraverse("resources")
         return resource_folder.absolute_url_path()
 
+    def events_folder_url(self):
+        events_folder = api.portal.get().unrestrictedTraverse("news-events/events")
+        return events_folder.absolute_url_path()
+
     def upcoming_events_subset(self, numitems):
         ## Returns the next 'numitems' upcoming events (both generic events and webinars), sorted by date ascendantly
-        events = self.context.portal_catalog(
-                 portal_type=["generic_event","webinar"],
-                review_state="published",
-                end= {'query':dt.date.today(),
-                    'range':'min'},
-                sort_on=["start"], ###second criteria should be "sortable_title"
-                sort_order="ascending")
-
         results = []
-        latests = events[:numitems]
+        all_events =  self.upcoming_events()
+        latests = self.upcoming_events()[:numitems]
         for event in latests:
             resObj = event.getObject()
             results.append({

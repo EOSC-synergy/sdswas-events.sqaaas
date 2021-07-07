@@ -27,7 +27,7 @@
 
     <!-- Upcoming events-->
     <section class="events-upco-cards bg-color-white"
-            tal:define="items python:view.upcoming_events()">
+            tal:define="items python:view.upcoming_events_all()">
 
         <!-- Upcoming events wrap -->
         <div class="main-wrap main-padding main-padding-tb">
