@@ -25,10 +25,10 @@ xmlns:indexer="http://namespaces.plone.org/supermodel/indexer">
       <title>Venue</title>
 
     </field>
-    <field name="presented_by" type="zope.schema.TextLine" indexer:searchable="true">
+    <field name="organized_by" type="zope.schema.TextLine" indexer:searchable="true">
       <description/>
       <required>False</required>
-      <title>Presented by</title>
+      <title>Organized by</title>
     </field>
     <field name="event_type" type="zope.schema.Choice" indexer:searchable="true">
       <description/>
