@@ -49,11 +49,10 @@ class EventListView(DefaultView):
 
     def upcoming_events(self):
         now = dt.datetime.utcnow()
-        clausepath = Eq("path", self.events_folder_url())
         clausetype = Eq("portal_type", "generic_event") | Eq("portal_type", "webinar")
         not_finished = ~ Le("end", now) # in progress
         ready_to_publish = Eq("review_state", "published")
-        query = clausepath & clausetype & not_finished & ready_to_publish & Eq("effectiveRange", now)
+        query = clausetype & not_finished & ready_to_publish & Eq("effectiveRange", now)
         events = self.context.portal_catalog.evalAdvancedQuery(query, (('start','asc'),('sortable_title', 'asc')))
         return events
 
