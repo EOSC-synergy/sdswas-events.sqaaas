@@ -91,9 +91,9 @@
                         </div>
 
                         <div class="info-card-data"
-                            tal:condition="context/organized_by">
+                            tal:condition="context/presented_by">
                             <p class="text-bold">Organized by</p>
-                            <p tal:content="structure view/w/organized_by/render"/>
+                            <p tal:content="structure view/w/presented_by/render"/>
                         </div>
 
                         <!-- Info card subcontent -->

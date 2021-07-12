@@ -25,7 +25,7 @@ xmlns:indexer="http://namespaces.plone.org/supermodel/indexer">
       <title>Venue</title>
 
     </field>
-    <field name="organized_by" type="zope.schema.TextLine" indexer:searchable="true">
+    <field name="presented_by" type="zope.schema.TextLine" indexer:searchable="true">
       <description/>
       <required>False</required>
       <title>Organized by</title>
