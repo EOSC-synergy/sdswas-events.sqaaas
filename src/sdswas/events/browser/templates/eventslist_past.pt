@@ -13,11 +13,11 @@
 <tal:row tal:repeat="item batch">
     <!-- Past events card -->
     <div class="pastev-card"
-        tal:define="small_info python:item['event_start_date'];
-                    url python:item['absolute_url'];
-                    title python:item['title'];
-                    event_type python:item['event_type'];
-                    presented_by python:item['presented_by']"
+        tal:define="small_info item/event_start_date;
+                    url item/absolute_url;
+                    title item/title;
+                    event_type item/event_type;
+                    presented_by item/presented_by"
         tal:attributes="data-breadcumb-text string:< BACK TO PAST EVENTS;
                         data-redirect-aid string:past-events;
                         data-url string:${url}/${event_type}_modal;
