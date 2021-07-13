@@ -19,6 +19,10 @@
                         <p tal:content="item/location"></p>
                     </div>
 
+                    <div class="news-upcoev-card-small-info">
+                        <p tal:content="item/presented_by"></p>
+                    </div>
+
                     <div class="home-upcoev-card-description">
                         <p tal:content="item/Title"></p>
                     </div>

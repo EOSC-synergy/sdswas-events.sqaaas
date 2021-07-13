@@ -34,13 +34,19 @@ class EventListView(DefaultView):
         results = []
         for event in events:
             resObj = event.getObject()
+
+            ##The field 'presented_by' in generic events does not contain the speaker but the organiser. Thus, do not include it in the card
+            ##The field has to be added to all the entries of the results set
+            presented_by = resObj.presented_by if resObj.portal_type == "webinar" else None
+
             results.append({
                 'title': resObj.Title(),
                 'event_start_date': resObj.start.strftime('%-d %B %Y'),
                 'absolute_url': resObj.absolute_url(),
                 'location': resObj.location,
                 'lead_image_url': resObj.absolute_url(),
-                'event_type': resObj.portal_type
+                'event_type': resObj.portal_type,
+                'presented_by': presented_by
             })
 
         results = Batch(results, size=b_size, start=b_start, orphan=0)
@@ -63,6 +69,11 @@ class EventListView(DefaultView):
         events = self.upcoming_events()
         for event in events:
             resObj = event.getObject()
+
+            ##The field 'presented_by' in generic events does not contain the speaker but the organiser. Thus, do not include it in the card
+            ##The field has to be added to all the entries of the results set
+            presented_by = resObj.presented_by if resObj.portal_type == "webinar" else None
+
             results.append({
                 'title': resObj.Title(),
                 'event_start_date': resObj.start.strftime('%-d %B %Y'),
@@ -70,7 +81,8 @@ class EventListView(DefaultView):
                 'location': resObj.location,
                 'lead_image_url': resObj.absolute_url(),
                 'end': resObj.end,
-                'event_type': resObj.portal_type
+                'event_type': resObj.portal_type,
+                'presented_by': presented_by
             })
 
         return results
@@ -92,11 +104,17 @@ class EventListView(DefaultView):
         latests = self.upcoming_events()[:numitems]
         for event in latests:
             resObj = event.getObject()
+
+            ##The field 'presented_by' in generic events does not contain the speaker but the organiser. Thus, do not include it in the card
+            ##The field has to be added to all the entries of the results set
+            presented_by = resObj.presented_by if resObj.portal_type == "webinar" else None
+
             results.append({
                 'event_start_date': resObj.start.strftime('%-d %B %Y'),
                 'absolute_url': resObj.absolute_url(),
                 'location': resObj.location,
                 'Title': resObj.Title,
+                'presented_by': presented_by
             })
 
         return results
