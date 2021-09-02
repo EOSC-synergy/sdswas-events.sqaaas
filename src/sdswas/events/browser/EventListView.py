@@ -58,7 +58,7 @@ class EventListView(DefaultView):
         clausetype = Eq("portal_type", "generic_event") | Eq("portal_type", "webinar")
         not_finished = ~ Le("end", now) # in progress
         ready_to_publish = Eq("review_state", "published")
-        query = clausetype & not_finished & ready_to_publish & Eq("effectiveRange", now)
+        query = clausetype & not_finished & ready_to_publish & Eq("effectiveRange",  dt.datetime.now())
         events = self.context.portal_catalog.evalAdvancedQuery(query, (('start','asc'),('sortable_title', 'asc')))
         return events
 
