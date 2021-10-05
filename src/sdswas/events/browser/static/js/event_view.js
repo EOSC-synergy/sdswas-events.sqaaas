@@ -4,10 +4,7 @@
     var requirejsOptions = {
         baseUrl: '++theme++sdswas/',
         optimize: 'none',
-        paths: {
-            'main': 'js/main',
-        }
-    };
+    }
 
     if (typeof exports !== 'undefined' && typeof module !== 'undefined') {
         module.exports = requirejsOptions;
@@ -17,7 +14,7 @@
     }
 
     requirejs([
-        'main'
+        'main-min',
     ], function($, _bootstrap) {
         (function($) {
 
