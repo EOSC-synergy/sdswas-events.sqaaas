@@ -41,7 +41,8 @@
                                         url item/absolute_url;
                                         title item/title;
                                         event_type item/event_type;
-                                        presented_by item/presented_by;"
+                                        presented_by item/presented_by;
+                                        item_bgimage string:${url}/@@images/image/grid-teaser;"
                             tal:attributes="data-breadcumb-text string:< BACK TO UPCOMING EVENTS;
                                             data-page-url url;
                                             data-url string:${url}/${event_type}_modal;
@@ -49,12 +50,8 @@
 
                         <!-- Card thumb -->
                         <a class="events-upco-card-thumb js-card-trigger" href="#" target="_self">
-
-                        <img tal:attributes="src string:${url}/@@images/image/grid-teaser;
-                                                alt title;
-                                                width string:380px;
-                                                height string:206px" />
-
+                            <div class="events-upco-card-thumb-img bg-center bg-cover"
+                                 tal:attributes="alt title; style string: background-image:url('${item_bgimage}')"/>
 
                         </a><!-- Card thumb ends -->
 
