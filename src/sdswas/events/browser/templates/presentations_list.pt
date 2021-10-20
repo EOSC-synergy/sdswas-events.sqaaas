@@ -19,7 +19,7 @@
 <div id="errormessage" class="main-padding" tal:condition="python:not batch" style="text-align:center;width:100%" >
     <section class="no-results-section">
         <div class="no-results-wrap main-container">
-            <h3>Sorry there were no results for your search 🤨</h3>
+            <h3>Sorry there were no results for your search <i class="far fa-frown-open"></h3>
             <p>You can go back to see
             <a target="_self" href="#presentations" onclick = '$("form#searchPresentations").trigger("reset").submit();'>All presentations</a>
              of this event.</p>
